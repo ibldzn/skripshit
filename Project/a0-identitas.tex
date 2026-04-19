@@ -1,0 +1,105 @@
+%%========================================================================
+%% INFORMASI YANG WAJIB DIUBAH. PASTIKAN SEMUA COMMAND DIISI DENGAN DATA YANG BENAR
+%%========================================================================
+
+\providecommand{\judulid}{Judul Skripsi} %Judul Tugas Akhir Bahasa Indonesia
+\providecommand{\judulen}{Thesis Title} %Judul Tugas Akhir Bahasa Inggris
+
+\providecommand{\judulidtabbed}{
+	Judulskripsijudulskripsijudulskripsi\\
+	Judulskripsijudulskripsijudul\\
+	Judulskripsijudulskripsi\\
+	Judulskripsijudul\\
+	Judulskripsi\\
+} %Judul Tugas Akhir Bahasa Indonesia berbentuk segitiga terbalik
+
+\providecommand{\judullaporanid}{Judul Skripsi} %Judul Laporan Bahasa Indonesia
+\providecommand{\judullaporanen}{Thesis Title} %Judul Laporan Bahasa Inggris
+
+% DATA PENULIS
+\providecommand{\penulis}{Fulan} %Nama Lengkap Mahasiswa 
+\providecommand{\nim}{1234567890}
+\providecommand{\tempattanggallahir}{Jakarta, 01 Januari 1945}
+\providecommand{\jeniskelamin}{Laki-laki}
+\providecommand{\alamat}{Jl. Jalan}
+\providecommand{\agama}{Agama}
+\providecommand{\statuspernikahan}{Belum Menikah}
+\providecommand{\nohandphone}{1234567890}
+\providecommand{\email}{pengguna@email.com}
+
+\providecommand{\datapribadi}{
+	% BUKAN BAGIAN YANG DIEDIT
+	\begin{tabular}{@{}p{4cm}rp{8cm}@{}}
+		Nama                 & : & {\penulis}                                                   \\
+		Tempat Tanggal Lahir & : & {\tempattanggallahir}                                        \\
+		Jenis Kelamin        & : & {\jeniskelamin}                                              \\
+		Alamat               & : & {\alamat}                                                    \\
+		Agama                & : & {\agama}                                                     \\
+		Status Perkawinan    & : & {\statuspernikahan}                                          \\
+		No. Handphone        & : & {\nohandphone}                                               \\
+		Email                & : & \textcolor{blue}{\underline{\href{mailto:{\email}}{\email}}} \\[0.5cm]
+	\end{tabular}
+
+	% SILAKAN EDIT DATA PADA BAGIAN INI
+	\newcounter{pendidikan}
+	\setcounter{pendidikan}{0}
+	\begin{tabular}{@{}p{0.5cm}p{3cm}rp{8cm}@{}}
+		\multicolumn{4}{@{}l@{}}{\textbf{Riwayat Pendidikan}}                                         \\[0.2cm]
+
+		\stepcounter{pendidikan}\arabic{pendidikan}. & Sekolah    & : & SDN Karang Tengah 6 Tangerang \\
+		                                             & Tahun      & : & 1951 - 1958                   \\
+		                                             & Keterangan & : & Lulus Berijazah               \\[0.3cm]
+
+		\stepcounter{pendidikan}\arabic{pendidikan}. & Sekolah    & : & Universitas Bani Saleh        \\
+		                                             & Tahun      & : & 1959 - Sekarang               \\
+	\end{tabular}
+}
+
+\providecommand{\tipe}{Skripsi} %Tugas Akhir, Karya Ilmiah, Skripsi
+\providecommand{\tipelaporan}{Kuliah Kerja Praktik}
+\providecommand{\tipelaporansingkatan}{KKP}
+\providecommand{\type}{Undergraduate Thesis} %Undergraduate Thesis
+\providecommand{\gelar}{Sarjana} %Bisa diganti sesuai dengan gelar mahasiswa (Sarjana / Diplomat)
+\providecommand{\gelartingkat}{Strata 1} %Bisa diganti sesuai dengan gelar mahasiswa (Strata 1 / Diploma 3)
+\providecommand{\gelarsingkat}{S1} %Bisa diganti sesuai dengan gelar mahasiswa (S1 / D3)
+\providecommand{\prodi}{Teknik Informatika} %
+\providecommand{\fakultas}{Fakultas Teknologi dan Informasi Digital} %
+\providecommand{\universitas}{Universitas Bani Saleh} %
+
+\providecommand{\tglpersetujuan}{06 Juni 2025} %Tanggal di Lembar Persetujuan
+\providecommand{\tglpengesahan}{\today} %Tanggal di Lembar Pengesahan
+\providecommand{\tglpernyataan}{\today} %Tanggal di Lembar Pernyataan
+\providecommand{\tahun}{\the\year{}} %Tahun Proyek Akhir
+\providecommand{\tahunakademik}{2024/2025} %
+
+\providecommand{\rektor}{Dr. Ns. Desrinah Harahap, M.Kep., Sp.Kep.Mat} %Nama Rektor
+
+\providecommand{\dekan}{Rahmadi, S.Kom., M.Kom.} %Nama Dosen Dekan
+\providecommand{\kaprodi}{Zaenal Muttaqin Subekti S.Kom., M.Kom.} %Nama Dosen Kaprodi
+\providecommand{\koprodi}{Mami Maryati, S.Kom., M.M.S.I.} %Nama Koordinator Program Studi
+\providecommand{\NIPdekan}{1234567890} %NIP Dosen Dekan
+\providecommand{\NIPkaprodi}{1234567890} %NIP Dosen Kaprodi
+
+\providecommand{\pembimbingutama}{Fulan bin Fulana} %Nama Dosen Pembimbing Utama
+\providecommand{\pembimbingpendamping}{Fulan bin Fulana} %Nama Dosen Pembimbing Pendamping
+\providecommand{\NIPpembimbingutama}{1234567890} %NIP Dosen Pembimbing Utama
+\providecommand{\NIPpembimbingpendamping}{1234567890} %NIP Dosen Pembimbing Pendamping
+
+\providecommand{\pengujisatu}{Fulan bin Fulana} %Nama Dosen Penguji 1
+\providecommand{\pengujidua}{Fulan bin Fulana} %Nama Dosen Penguji 2
+\providecommand{\pengujitiga}{Fulan bin Fulana} %Nama Dosen Penguji 3
+\providecommand{\NIDNpengujisatu}{1234567890} %NIDN Dosen Penguji 1
+\providecommand{\NIDNpengujidua}{1234567890} %NIDN Dosen Penguji 2
+\providecommand{\NIDNpengujitiga}{1234567890} %NIDN Dosen Penguji 3
+
+\providecommand{\pembimbinglapangan}{Fulan bin Fulana} %Nama Pembimbing Lapangan
+\providecommand{\dosenpembimbing}{Fulan bin Fulana} %Nama Dosen Pembimbing
+
+\providecommand{\namainstansi}{Kementerian Komunikasi dan Digital}
+\providecommand{\alamatinstansi}{Jl. Medan Merdeka Barat No. 9, Jakarta Pusat 10110}
+
+\providecommand{\kota}{Bekasi}
+
+%% Daftar Nama Dosen
+%%
+%% https://ti.stmik.banisaleh.ac.id/dosen-pages
