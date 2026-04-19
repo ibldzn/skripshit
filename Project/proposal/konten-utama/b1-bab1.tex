@@ -1,45 +1,40 @@
 %==================================================================
-% Ini adalah bab 1
-% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
+% Bab 1 - Pendahuluan
+% Topik: Perbandingan Akurasi dan Efisiensi YOLOv8 Nano dan YOLO11 Nano
+% untuk Klasifikasi Penyakit Daun Tomat pada Perangkat Edge
 %==================================================================
 
 \chapter[PENDAHULUAN]{\\ PENDAHULUAN}
 
-Bab ini menjelaskan latar belakang masalah, permasalahan penelitian, tujuan dan manfaat penelitian, serta sistematika penulisan yang menjadi dasar pelaksanaan penelitian.
-
 \section{Latar Belakang Masalah}
 \begin{sectioncontent}
-    \hspace{\parindent}Air merupakan sumber daya yang sangat penting bagi kehidupan manusia, sehingga kualitasnya perlu dijaga dan dipantau secara berkelanjutan. Salah satu parameter yang umum digunakan dalam penilaian kualitas air adalah kekeruhan. Kekeruhan menunjukkan tingkat kejernihan air yang dipengaruhi oleh keberadaan partikel tersuspensi, sehingga parameter ini sering digunakan sebagai indikator awal dalam pemantauan kualitas air untuk kebutuhan konsumsi, lingkungan, maupun pengelolaan sumber daya air \cite{jantarakasem2024smartphone,zhu2022mlwater,wai2022dlwater}.
+    \hspace{\parindent}Tanaman tomat merupakan salah satu komoditas hortikultura yang banyak dibudidayakan dan memiliki nilai ekonomi penting. Namun, produktivitas tomat sering menurun akibat serangan penyakit pada daun, seperti \textit{early blight}, \textit{late blight}, \textit{leaf mold}, \textit{bacterial spot}, dan beberapa penyakit lain yang menimbulkan perubahan warna, bercak, atau kerusakan jaringan daun. Deteksi penyakit daun tomat yang terlambat dapat menyebabkan penurunan kualitas hasil panen, peningkatan kerugian ekonomi, dan keterlambatan penanganan di lapangan \cite{jelali2024tomatoreview,das2025tomatoreview,nyawose2025plantreview}.
 
-    \hspace{\parindent}Pada praktik konvensional, pengukuran kekeruhan air umumnya dilakukan menggunakan alat khusus seperti turbidimeter. Metode tersebut cukup baik untuk kebutuhan laboratorium, namun dalam implementasi lapangan masih memiliki beberapa keterbatasan, seperti kebutuhan alat khusus, biaya pengadaan, prosedur pengukuran tertentu, serta ketergantungan pada operator yang memahami proses pengujian. Kondisi tersebut mendorong perlunya pendekatan alternatif yang lebih fleksibel, praktis, dan berpotensi diterapkan secara lebih luas \cite{jantarakasem2024smartphone,lin2022secchi,nie2025turbidity,soto2025imagebased}.
+    Pada praktik konvensional, identifikasi penyakit tanaman masih banyak mengandalkan pengamatan manual oleh petani atau tenaga ahli. Pendekatan ini memiliki keterbatasan karena membutuhkan pengalaman, waktu, serta konsistensi pengamatan yang baik. Dalam kondisi lapangan yang luas dan berubah-ubah, identifikasi manual juga berisiko menimbulkan kesalahan interpretasi, terutama ketika gejala beberapa penyakit tampak mirip secara visual. Oleh karena itu, dibutuhkan pendekatan otomatis yang mampu membantu proses klasifikasi penyakit daun tomat secara lebih cepat dan konsisten \cite{jackulin2022plantreview,jelali2024tomatoreview,das2025tomatoreview}.
 
-    \hspace{\parindent}Perkembangan \textit{computer vision} dan \textit{deep learning} membuka peluang untuk melakukan klasifikasi tingkat kekeruhan air dari citra digital. Beberapa penelitian menunjukkan bahwa citra yang diambil menggunakan kamera dapat dimanfaatkan untuk mengestimasi atau mengklasifikasikan tingkat kekeruhan air dengan hasil yang menjanjikan. Jantarakasem \textit{et al.} menunjukkan bahwa citra dari kamera ponsel dapat digunakan untuk memperkirakan kondisi kekeruhan air \cite{jantarakasem2024smartphone}. Penelitian lain memperlihatkan bahwa model CNN yang dioptimalkan mampu meningkatkan akurasi klasifikasi citra kekeruhan air \cite{nie2025turbidity}, sedangkan skema klasifikasi berbasis citra juga telah digunakan untuk membedakan beberapa kategori kekeruhan air \cite{soto2025imagebased}. Hal ini menunjukkan bahwa pendekatan berbasis citra memiliki potensi untuk digunakan sebagai solusi klasifikasi kekeruhan air yang lebih sederhana dan efisien.
+    Perkembangan \textit{computer vision} dan \textit{deep learning} telah membuka peluang untuk mengotomatisasi proses klasifikasi penyakit tanaman berbasis citra. Berbagai penelitian terbaru menunjukkan bahwa citra daun tomat dapat digunakan untuk membangun model klasifikasi penyakit dengan tingkat performa yang baik. Selain penelitian model, ketersediaan dataset publik juga semakin mendukung pengembangan riset pada domain ini, termasuk dataset daun tomat multikelas dengan beberapa kategori penyakit dan daun sehat \cite{imtiaz2025dataset,oni2025dataset,liu2025dataset,sun2024tomatoclassification}.
 
-    \hspace{\parindent}Meskipun demikian, sebagian besar penelitian terdahulu pada domain kekeruhan air masih berfokus pada penggunaan CNN umum, metode berbasis kamera ponsel, atau model estimasi pada citra penginderaan jauh. Sementara itu, kebutuhan implementasi sistem di lapangan tidak hanya menuntut model yang akurat, tetapi juga efisien ketika dijalankan pada perangkat dengan sumber daya komputasi terbatas. Dalam konteks tersebut, komputasi \textit{edge} menjadi relevan karena pemrosesan dapat dilakukan lebih dekat dengan sumber data, sehingga berpotensi mengurangi latensi, mengurangi ketergantungan pada komputasi awan, dan meningkatkan respons sistem secara langsung \cite{singh2023edge,gill2025taxonomy,xu2025edge}.
+    Meskipun demikian, kebutuhan implementasi sistem di lapangan tidak hanya menuntut model yang akurat, tetapi juga efisien ketika dijalankan pada perangkat dengan sumber daya komputasi terbatas. Dalam konteks tersebut, komputasi \textit{edge} menjadi relevan karena proses inferensi dapat dilakukan secara lokal, lebih dekat dengan sumber data, sehingga berpotensi mengurangi latensi, menurunkan ketergantungan pada komputasi awan, serta meningkatkan respons sistem secara langsung \cite{singh2023edge,gill2025taxonomy,xu2025edge,majeed2024edge}.
 
-    \hspace{\parindent}Seiring dengan perkembangan model \textit{deep learning}, keluarga YOLO terus mengalami evolusi dan menjadi salah satu arsitektur yang banyak diperhatikan karena menawarkan keseimbangan antara kecepatan dan performa. Literatur ulasan terbaru menunjukkan bahwa perkembangan YOLO bergerak dari versi awal hingga versi terbaru yang menekankan efisiensi dan penerapan yang semakin luas \cite{terven2023yolo,ali2024yoloframework,murat2025yolo}. Meskipun YOLO lebih dikenal pada tugas \textit{object detection}, varian modernnya juga dapat digunakan untuk tugas klasifikasi citra. Dalam penelitian ini, pendekatan klasifikasi dipilih karena tujuan utama penelitian adalah menentukan kelas tingkat kekeruhan dari keseluruhan citra air, bukan mendeteksi lokasi objek tertentu pada citra.
+    Seiring perkembangan model \textit{deep learning}, keluarga YOLO terus berevolusi dan menjadi salah satu arsitektur yang banyak diperhatikan karena menawarkan keseimbangan antara kecepatan dan performa. Literatur ulasan terbaru menunjukkan bahwa perkembangan YOLO bergerak dari versi awal hingga versi yang lebih baru dengan penekanan pada efisiensi dan fleksibilitas penerapan \cite{terven2023yolo,ali2024yoloframework,murat2025yolo}. Pada dokumentasi resmi Ultralytics, YOLOv8 dan YOLO11 juga mendukung tugas \textit{image classification}, sehingga keduanya dapat digunakan untuk membandingkan performa klasifikasi penyakit daun tomat, bukan hanya untuk \textit{object detection} \cite{ultralyticsclassify,ultralyticsyolov8,ultralyticsyolo11}.
 
-    \hspace{\parindent}Selain model, aspek akuisisi citra juga menjadi perhatian penting dalam penelitian ini. Hasil klasifikasi citra dapat dipengaruhi oleh kualitas gambar, kondisi pencahayaan, sudut pengambilan, jarak kamera terhadap objek, pantulan cahaya pada permukaan air, serta konsistensi latar belakang. Oleh karena itu, agar perbandingan model dilakukan secara adil dan objektif, kamera dalam penelitian ini tidak diperlakukan sebagai variabel bebas, melainkan sebagai alat akuisisi data yang dikendalikan melalui pengaturan kondisi pengambilan citra yang konsisten. Dengan demikian, fokus penelitian tetap diarahkan pada perbandingan performa model, bukan pada perbedaan kualitas perangkat akuisisi.
+    Selain model, aspek akuisisi citra juga memengaruhi hasil klasifikasi. Variasi pencahayaan, sudut pengambilan, jarak kamera, latar belakang, dan kualitas visual daun dapat memengaruhi karakteristik citra yang diproses model. Oleh karena itu, dalam penelitian ini kamera tidak diposisikan sebagai variabel bebas, melainkan sebagai alat akuisisi data yang dikendalikan melalui kondisi pengambilan gambar yang dibuat konsisten. Dengan pendekatan tersebut, fokus penelitian tetap diarahkan pada perbandingan performa model, bukan pada perbedaan kualitas perangkat akuisisi.
 
-    \hspace{\parindent}Berdasarkan penelusuran awal literatur oleh penulis, penelitian yang secara spesifik membandingkan YOLOv8 Nano dan YOLO11 Nano untuk tugas klasifikasi tingkat kekeruhan air pada perangkat \textit{edge} masih terbatas. Padahal, pembandingan tersebut penting untuk mengetahui model yang lebih sesuai digunakan pada perangkat dengan sumber daya terbatas. Dalam penelitian ini, perangkat \textit{edge} yang digunakan adalah Raspberry Pi 5 dengan RAM 8 GB sebagai media implementasi dan pengujian model. Pemilihan perangkat ini didasarkan pada pertimbangan bahwa Raspberry Pi merupakan salah satu platform \textit{edge} yang banyak digunakan dalam eksperimen \textit{embedded AI} dan cukup representatif untuk menguji keseimbangan antara akurasi dan efisiensi model dalam kondisi komputasi terbatas.
+    Berdasarkan penelusuran awal literatur, penelitian mengenai penyakit daun tomat berbasis \textit{deep learning} sudah cukup banyak dilakukan, tetapi pembandingan yang secara khusus menilai YOLOv8 Nano dan YOLO11 Nano untuk tugas klasifikasi pada perangkat \textit{edge} masih terbatas. Padahal, pembandingan ini penting untuk mengetahui model mana yang lebih sesuai diterapkan pada perangkat dengan sumber daya terbatas. Dalam penelitian ini, perangkat \textit{edge} yang digunakan adalah Raspberry Pi 5 dengan RAM 8 GB sebagai media implementasi dan pengujian model \cite{raspberrypi5,raspberrypi5brief}.
 
-    \hspace{\parindent}Berdasarkan uraian tersebut, penelitian ini mengangkat judul \textbf{\judulid}.
-    \newpage
-    Penelitian ini diharapkan dapat memberikan kontribusi dalam menentukan model yang lebih sesuai untuk kebutuhan klasifikasi kekeruhan air berbasis citra pada perangkat \textit{edge}, dengan mempertimbangkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi komputasi.
+    Berdasarkan uraian tersebut, penelitian ini mengangkat judul \textbf{\judulid}. Penelitian ini diharapkan dapat memberikan kontribusi dalam menentukan model yang lebih sesuai untuk kebutuhan klasifikasi penyakit daun tomat berbasis citra pada lingkungan komputasi terbatas, dengan mempertimbangkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi komputasi.
 \end{sectioncontent}
 
 \section{Permasalahan Penelitian}
 
 \subsection{Identifikasi Masalah}
 \begin{subsectioncontent}
-    \hspace{\parindent}Berdasarkan latar belakang masalah di atas, maka identifikasi masalah dalam penelitian ini adalah sebagai berikut:
-
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Pengukuran kekeruhan air secara konvensional masih bergantung pada alat khusus dan prosedur tertentu yang tidak selalu praktis untuk implementasi lapangan.
-        \item Pendekatan berbasis citra dan \textit{deep learning} telah menunjukkan potensi dalam klasifikasi tingkat kekeruhan air, namun performanya masih bergantung pada model yang digunakan.
+        \item Identifikasi penyakit daun tomat secara manual masih bergantung pada pengamatan visual manusia yang memerlukan pengalaman dan berpotensi menimbulkan ketidakkonsistenan hasil.
+        \item Pendekatan berbasis citra dan \textit{deep learning} telah menunjukkan potensi untuk klasifikasi penyakit daun tomat, namun performa dan efisiensinya masih bergantung pada model yang digunakan.
         \item Implementasi model klasifikasi pada perangkat \textit{edge} memerlukan model yang tidak hanya akurat, tetapi juga efisien dari sisi waktu inferensi dan penggunaan sumber daya.
-        \item Hasil klasifikasi citra berpotensi dipengaruhi oleh faktor akuisisi gambar, seperti pencahayaan, sudut pengambilan, jarak kamera, dan kualitas visual citra, sehingga diperlukan pengendalian kondisi akuisisi agar perbandingan model tetap objektif.
-        \item Belum banyak penelitian yang secara spesifik membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi tingkat kekeruhan air pada perangkat \textit{edge}.
+        \item Hasil klasifikasi citra dapat dipengaruhi oleh variasi kondisi akuisisi gambar, seperti pencahayaan, sudut pengambilan, jarak kamera, dan latar belakang.
+        \item Belum banyak penelitian yang secara spesifik membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge}.
     \end{enumerate}
 \end{subsectioncontent}
 
@@ -48,26 +43,25 @@ Bab ini menjelaskan latar belakang masalah, permasalahan penelitian, tujuan dan 
     \hspace{\parindent}Agar penelitian lebih terarah dan fokus, maka batasan masalah dalam penelitian ini adalah sebagai berikut:
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Penelitian difokuskan pada tugas \textit{image classification} untuk menentukan tingkat kekeruhan air dari citra.
+        \item Penelitian difokuskan pada tugas \textit{image classification} untuk menentukan kelas penyakit daun tomat dari citra.
         \item Model yang dibandingkan hanya dua, yaitu YOLOv8 Nano dan YOLO11 Nano.
-        \item Data masukan penelitian berupa citra air yang telah diberi label berdasarkan kelas tingkat kekeruhan yang ditetapkan dalam penelitian.
+        \item Data masukan penelitian berupa citra daun tomat yang telah diberi label berdasarkan kelas penyakit yang digunakan pada dataset penelitian.
         \item Pengujian implementasi model dilakukan pada perangkat \textit{edge} berupa Raspberry Pi 5 dengan RAM 8 GB.
-        \item Akuisisi citra dilakukan menggunakan satu jenis kamera dengan kondisi pengambilan gambar yang dijaga tetap, meliputi pencahayaan, sudut, jarak, dan latar belakang, agar pengaruh kamera tidak menjadi variabel utama penelitian.
-        \item Aspek yang dibandingkan dibatasi pada akurasi dan efisiensi model, dengan indikator seperti akurasi klasifikasi, waktu inferensi, dan penggunaan sumber daya yang relevan.
-        \item Penelitian tidak membahas analisis kimia air secara langsung, melainkan berfokus pada klasifikasi visual tingkat kekeruhan air berbasis citra.
+        \item Akuisisi citra pada pengujian implementasi dilakukan dengan kondisi yang dijaga tetap agar pengaruh variasi kamera dan lingkungan tidak menjadi variabel utama penelitian.
+        \item Aspek yang dibandingkan dibatasi pada akurasi dan efisiensi model, dengan indikator seperti akurasi klasifikasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, dan penggunaan sumber daya yang relevan.
+        \item Penelitian tidak membahas \textit{object detection}, segmentasi, maupun rekomendasi penanganan penyakit tanaman, tetapi berfokus pada klasifikasi penyakit daun tomat berbasis citra.
     \end{enumerate}
 \end{subsectioncontent}
 
 \subsection{Rumusan Masalah}
 \begin{subsectioncontent}
     \hspace{\parindent}Berdasarkan identifikasi masalah dan batasan masalah di atas, maka rumusan masalah dalam penelitian ini adalah sebagai berikut:
-
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Bagaimana performa YOLOv8 Nano dan YOLO11 Nano dalam melakukan klasifikasi tingkat kekeruhan air?
-        \item Bagaimana perbandingan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi tingkat kekeruhan air yang digunakan?
+        \item Bagaimana performa YOLOv8 Nano dan YOLO11 Nano dalam melakukan klasifikasi penyakit daun tomat?
+        \item Bagaimana perbandingan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi penyakit daun tomat yang digunakan?
         \item Bagaimana perbandingan efisiensi YOLOv8 Nano dan YOLO11 Nano ketika dijalankan pada perangkat \textit{edge} berupa Raspberry Pi 5 8 GB?
         \item Sejauh mana pengendalian kondisi akuisisi citra dapat mendukung objektivitas perbandingan performa kedua model?
-        \item Model manakah yang lebih sesuai untuk diterapkan pada sistem klasifikasi tingkat kekeruhan air berbasis perangkat \textit{edge}?
+        \item Model manakah yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}?
     \end{enumerate}
 \end{subsectioncontent}
 
@@ -78,11 +72,12 @@ Bab ini menjelaskan latar belakang masalah, permasalahan penelitian, tujuan dan 
     \hspace{\parindent}Tujuan yang ingin dicapai dalam penelitian ini adalah sebagai berikut:
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Menerapkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi tingkat kekeruhan air berbasis citra.
-        \item Membandingkan akurasi kedua model pada data klasifikasi tingkat kekeruhan air.
+        \item Menerapkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat berbasis citra.
+        \item Membandingkan akurasi kedua model pada data klasifikasi penyakit daun tomat.
         \item Menganalisis efisiensi kedua model pada perangkat \textit{edge} berupa Raspberry Pi 5 8 GB berdasarkan metrik pengujian yang digunakan.
+        \newpage
         \item Menerapkan skenario akuisisi citra yang terkontrol agar perbandingan model dilakukan pada kondisi data yang konsisten.
-        \item Menentukan model yang lebih optimal untuk implementasi klasifikasi tingkat kekeruhan air pada perangkat \textit{edge}.
+        \item Menentukan model yang lebih optimal untuk implementasi klasifikasi penyakit daun tomat pada perangkat \textit{edge}.
     \end{enumerate}
 \end{subsectioncontent}
 
@@ -92,23 +87,25 @@ Bab ini menjelaskan latar belakang masalah, permasalahan penelitian, tujuan dan 
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item \textbf{Manfaat teoritis}\par
-        Penelitian ini diharapkan dapat menambah referensi ilmiah mengenai penerapan \textit{deep learning}, khususnya model keluarga YOLO, pada klasifikasi tingkat kekeruhan air berbasis citra serta memberikan gambaran mengenai hubungan antara akurasi model, efisiensi komputasi, dan pengendalian akuisisi citra pada perangkat \textit{edge}.
+        Penelitian ini diharapkan dapat menambah referensi ilmiah mengenai penerapan \textit{deep learning}, khususnya model keluarga YOLO, pada klasifikasi penyakit daun tomat berbasis citra serta memberikan gambaran mengenai hubungan antara akurasi model, efisiensi komputasi, dan implementasi pada perangkat \textit{edge}.
 
         \item \textbf{Manfaat praktis}\par
-        Penelitian ini diharapkan dapat menjadi bahan pertimbangan dalam pemilihan model yang tepat untuk pengembangan sistem pemantauan kekeruhan air yang ringan, cepat, dan dapat dijalankan secara lokal pada perangkat dengan sumber daya terbatas.
+        Penelitian ini diharapkan dapat menjadi bahan pertimbangan dalam pemilihan model yang tepat untuk pengembangan sistem klasifikasi penyakit daun tomat yang ringan, cepat, dan dapat dijalankan secara lokal pada perangkat dengan sumber daya terbatas.
 
         \item \textbf{Manfaat metodologis}\par
         Penelitian ini diharapkan dapat memberikan gambaran mengenai pentingnya pengendalian kondisi akuisisi citra, seperti pencahayaan, sudut pengambilan, jarak kamera, dan latar belakang, agar evaluasi model klasifikasi berbasis citra dapat dilakukan secara lebih adil dan objektif.
     \end{enumerate}
 \end{subsectioncontent}
 
+\newpage
+
 \section{Sistematika Penulisan}
 \begin{sistematika}
     \babsistematika{I}{PENDAHULUAN}{Berisi latar belakang masalah, identifikasi masalah, batasan masalah, rumusan masalah, tujuan penelitian, manfaat penelitian, serta sistematika penulisan.}
 
-    \babsistematika{II}{LANDASAN TEORI}{Menjelaskan teori-teori yang mendukung penelitian, meliputi konsep kekeruhan air, klasifikasi citra, \textit{deep learning}, model YOLO, perangkat \textit{edge}, akuisisi citra, penelitian terdahulu, dan kerangka pemikiran penelitian.}
+    \babsistematika{II}{LANDASAN TEORI DAN KERANGKA PEMIKIRAN}{Menjelaskan teori-teori yang mendukung penelitian, meliputi konsep penyakit daun tomat, klasifikasi citra, \textit{deep learning}, model YOLO, perangkat \textit{edge}, akuisisi citra, penelitian terdahulu, dan kerangka pemikiran penelitian.}
 
-    \babsistematika{III}{METODE PENELITIAN}{Menjelaskan tahapan penelitian yang dilakukan, mulai dari pengumpulan data, penentuan kelas kekeruhan, skenario akuisisi citra, \textit{preprocessing}, pelatihan model, implementasi pada perangkat \textit{edge}, hingga pengujian dan evaluasi.}
+    \babsistematika{III}{METODE PENELITIAN}{Menjelaskan tahapan penelitian yang dilakukan, mulai dari pengumpulan data, penentuan kelas penyakit, skenario akuisisi citra, \textit{preprocessing}, pelatihan model, implementasi pada perangkat \textit{edge}, hingga pengujian dan evaluasi.}
 
     \babsistematika{IV}{HASIL DAN PEMBAHASAN}{Menyajikan hasil pelatihan dan pengujian model, analisis perbandingan akurasi dan efisiensi, serta pembahasan hasil penelitian sesuai rumusan masalah.}
 
