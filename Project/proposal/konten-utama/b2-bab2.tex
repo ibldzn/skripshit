@@ -86,26 +86,26 @@
     Efisiensi merupakan aspek penting dalam implementasi model pada perangkat \textit{edge}. Efisiensi dapat dinilai melalui indikator seperti waktu inferensi, penggunaan memori, ukuran model, dan penggunaan sumber daya komputasi lain yang relevan. Dalam penelitian ini, akurasi dan efisiensi diposisikan sebagai dua dasar utama untuk menentukan model yang lebih sesuai diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge} \cite{singh2023edge,gill2025taxonomy,xu2025edge,majeed2024edge}.
 \end{subsectioncontent}
 
-\section{Kerangka Pemikiran}
-\begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini berangkat dari kebutuhan akan metode klasifikasi penyakit daun tomat yang lebih praktis, cepat, dan konsisten dibandingkan pendekatan identifikasi manual. Pendekatan berbasis citra dipilih karena memungkinkan gejala visual pada daun diproses menggunakan model \textit{deep learning}. Berdasarkan kajian pustaka, penelitian penyakit daun tomat berbasis citra telah menunjukkan hasil yang baik, sedangkan keluarga YOLO berkembang sebagai model yang menekankan keseimbangan antara performa dan efisiensi \cite{jelali2024tomatoreview,das2025tomatoreview,ali2024yoloframework,murat2025yolo}.
+% \section{Kerangka Pemikiran}
+% \begin{sectioncontent}
+%     \hspace{\parindent}Penelitian ini berangkat dari kebutuhan akan metode klasifikasi penyakit daun tomat yang lebih praktis, cepat, dan konsisten dibandingkan pendekatan identifikasi manual. Pendekatan berbasis citra dipilih karena memungkinkan gejala visual pada daun diproses menggunakan model \textit{deep learning}. Berdasarkan kajian pustaka, penelitian penyakit daun tomat berbasis citra telah menunjukkan hasil yang baik, sedangkan keluarga YOLO berkembang sebagai model yang menekankan keseimbangan antara performa dan efisiensi \cite{jelali2024tomatoreview,das2025tomatoreview,ali2024yoloframework,murat2025yolo}.
 
-    Penelitian ini kemudian memfokuskan perhatian pada dua model ringan, yaitu YOLOv8 Nano dan YOLO11 Nano, karena keduanya dipandang cocok untuk dibandingkan pada perangkat \textit{edge}. Agar perbandingan dilakukan secara adil, citra daun tomat pada pengujian implementasi dikumpulkan dalam kondisi akuisisi yang dikendalikan sehingga variasi pencahayaan, sudut pengambilan, jarak kamera, dan latar belakang dapat diminimalkan. Setelah itu, kedua model dilatih dan diuji menggunakan dataset yang sama, lalu hasilnya dibandingkan berdasarkan aspek akurasi dan efisiensi.
+%     Penelitian ini kemudian memfokuskan perhatian pada dua model ringan, yaitu YOLOv8 Nano dan YOLO11 Nano, karena keduanya dipandang cocok untuk dibandingkan pada perangkat \textit{edge}. Agar perbandingan dilakukan secara adil, citra daun tomat pada pengujian implementasi dikumpulkan dalam kondisi akuisisi yang dikendalikan sehingga variasi pencahayaan, sudut pengambilan, jarak kamera, dan latar belakang dapat diminimalkan. Setelah itu, kedua model dilatih dan diuji menggunakan dataset yang sama, lalu hasilnya dibandingkan berdasarkan aspek akurasi dan efisiensi.
 
-    Secara garis besar, alur kerangka pemikiran dalam penelitian ini adalah sebagai berikut:
+%     Secara garis besar, alur kerangka pemikiran dalam penelitian ini adalah sebagai berikut:
 
-    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Penyakit daun tomat merupakan masalah penting yang dapat menurunkan kualitas dan hasil panen.
-        \item Pendekatan identifikasi manual memiliki keterbatasan dari sisi kecepatan, konsistensi, dan ketergantungan pada pengalaman pengamat.
-        \item Pendekatan berbasis citra dan \textit{deep learning} memiliki potensi untuk mengklasifikasikan penyakit daun tomat secara otomatis.
-        \item Model klasifikasi yang diterapkan pada perangkat \textit{edge} harus dinilai tidak hanya dari akurasi, tetapi juga dari efisiensinya.
-        \item YOLOv8 Nano dan YOLO11 Nano dipilih sebagai dua model ringan yang akan dibandingkan.
-        \item Pengujian dilakukan pada perangkat \textit{edge} dengan data citra yang diperoleh melalui akuisisi terkontrol.
-        \item Hasil pengujian digunakan untuk menentukan model yang lebih sesuai untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge}.
-    \end{enumerate}
+%     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+%         \item Penyakit daun tomat merupakan masalah penting yang dapat menurunkan kualitas dan hasil panen.
+%         \item Pendekatan identifikasi manual memiliki keterbatasan dari sisi kecepatan, konsistensi, dan ketergantungan pada pengalaman pengamat.
+%         \item Pendekatan berbasis citra dan \textit{deep learning} memiliki potensi untuk mengklasifikasikan penyakit daun tomat secara otomatis.
+%         \item Model klasifikasi yang diterapkan pada perangkat \textit{edge} harus dinilai tidak hanya dari akurasi, tetapi juga dari efisiensinya.
+%         \item YOLOv8 Nano dan YOLO11 Nano dipilih sebagai dua model ringan yang akan dibandingkan.
+%         \item Pengujian dilakukan pada perangkat \textit{edge} dengan data citra yang diperoleh melalui akuisisi terkontrol.
+%         \item Hasil pengujian digunakan untuk menentukan model yang lebih sesuai untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge}.
+%     \end{enumerate}
 
-    \hspace{\parindent}Dengan kerangka pemikiran tersebut, penelitian ini diharapkan mampu memberikan dasar yang jelas dalam menjawab rumusan masalah sekaligus menunjukkan posisi penelitian ini di antara penelitian-penelitian terdahulu yang relevan.
-\end{sectioncontent}
+%     \hspace{\parindent}Dengan kerangka pemikiran tersebut, penelitian ini diharapkan mampu memberikan dasar yang jelas dalam menjawab rumusan masalah sekaligus menunjukkan posisi penelitian ini di antara penelitian-penelitian terdahulu yang relevan.
+% \end{sectioncontent}
 
 % Implementasi untuk bagian Kerangka Pemikiran
 % Mulai halaman baru dengan orientasi landscape untuk section Kerangka Pemikiran
