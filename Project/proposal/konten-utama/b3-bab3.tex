@@ -174,12 +174,12 @@ tomato-leaf-disease/
 
     \begin{verbatim}
 yolo classify train model=yolov8n-cls.pt data=tomato-leaf-disease \
-epochs=50 imgsz=224 batch=16 device=0 seed=42
+epochs=50 imgsz=224 batch=16 device=0
     \end{verbatim}
 
     \begin{verbatim}
 yolo classify train model=yolo11n-cls.pt data=tomato-leaf-disease \
-epochs=50 imgsz=224 batch=16 device=0 seed=42
+epochs=50 imgsz=224 batch=16 device=0
     \end{verbatim}
 
     Apabila terjadi keterbatasan memori pada perangkat pelatihan, nilai \textit{batch size} dapat diturunkan. Namun, nilai tersebut harus dibuat sama pada kedua model agar hasil perbandingan tetap adil.
