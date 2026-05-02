@@ -7,42 +7,42 @@
 
 \section{Jenis Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini merupakan penelitian eksperimen komparatif. Penelitian dilakukan dengan membandingkan dua model \textit{deep learning}, yaitu YOLOv8 Nano dan YOLO11 Nano, pada tugas klasifikasi penyakit daun tomat. Perbandingan dilakukan berdasarkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi pada perangkat \textit{edge}.
+    \hspace{\parindent}Penelitian ini menggunakan pendekatan eksperimen komparatif. Pendekatan tersebut digunakan karena penelitian ini membandingkan dua model \textit{deep learning}, yaitu YOLOv8 Nano dan YOLO11 Nano, pada tugas klasifikasi penyakit daun tomat. Perbandingan dilakukan berdasarkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
 
-    Pendekatan eksperimen digunakan karena penelitian ini bertujuan untuk mengetahui perbedaan performa antara dua model yang diuji pada dataset dan konfigurasi pengujian yang sama. Dengan demikian, hasil penelitian diharapkan dapat menunjukkan model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}.
+    Eksperimen dilakukan dengan menggunakan dataset dan konfigurasi pengujian yang sama untuk kedua model. Dengan cara tersebut, perbedaan hasil yang diperoleh dapat lebih diarahkan pada perbedaan performa model, bukan pada perbedaan data atau skenario pengujian. Hasil dari penelitian ini kemudian digunakan untuk menentukan model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}.
 \end{sectioncontent}
 
 \section{Objek Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Objek dalam penelitian ini adalah citra daun tomat yang terdiri dari beberapa kelas penyakit dan daun sehat. Citra tersebut digunakan sebagai data masukan untuk proses klasifikasi menggunakan model YOLOv8 Nano dan YOLO11 Nano. Penelitian ini berfokus pada tugas \textit{image classification}, sehingga keluaran model berupa label kelas dari keseluruhan citra, bukan lokasi objek pada citra.
+    \hspace{\parindent}Objek dalam penelitian ini adalah citra daun tomat yang terdiri dari beberapa kelas penyakit dan satu kelas daun sehat. Citra tersebut digunakan sebagai data masukan untuk proses klasifikasi menggunakan model YOLOv8 Nano dan YOLO11 Nano. Penelitian ini berfokus pada tugas \textit{image classification}, sehingga keluaran model berupa label kelas dari keseluruhan citra, bukan lokasi objek atau area penyakit pada citra.
 
-    Kelas yang digunakan dalam penelitian ini direncanakan terdiri dari beberapa kategori penyakit daun tomat dan satu kategori daun sehat. Kategori tersebut meliputi \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}. Penentuan kelas disesuaikan dengan struktur dataset publik yang digunakan dalam penelitian.
+    Kelas yang digunakan dalam penelitian ini terdiri dari \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}. Penentuan kelas tersebut disesuaikan dengan struktur dataset publik yang digunakan dalam penelitian.
 \end{sectioncontent}
 
 \section{Tahapan Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Tahapan penelitian disusun agar proses penelitian dapat dilakukan secara sistematis, mulai dari pengumpulan dataset hingga analisis hasil pengujian. Secara umum, tahapan penelitian ini adalah sebagai berikut:
+    \hspace{\parindent}Tahapan penelitian disusun agar proses eksperimen dapat dilakukan secara sistematis, mulai dari studi literatur, persiapan dataset, pelatihan model, hingga analisis hasil pengujian. Secara umum, tahapan penelitian ini adalah sebagai berikut:
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Studi literatur mengenai penyakit daun tomat, klasifikasi citra, model YOLO, dan perangkat \textit{edge}.
-        \item Pengumpulan dataset citra penyakit daun tomat dari sumber publik.
-        \item Pemeriksaan struktur dataset dan jumlah data pada setiap kelas.
-        \item Pembagian dataset ke dalam data latih, data validasi, dan data uji.
-        \item Preprocessing dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
-        \item Pelatihan model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama.
-        \item Evaluasi akurasi model pada data validasi dan data uji.
-        \item Export model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
-        \item Pengujian inferensi model pada Raspberry Pi 5.
-        \item Analisis perbandingan akurasi dan efisiensi kedua model.
-        \item Penarikan kesimpulan berdasarkan hasil pengujian.
+        \item Melakukan studi literatur mengenai penyakit daun tomat, klasifikasi citra, model YOLO, dan perangkat \textit{edge}.
+        \item Mengumpulkan dataset citra penyakit daun tomat dari sumber publik.
+        \item Memeriksa struktur dataset dan jumlah data pada setiap kelas.
+        \item Membagi dataset ke dalam data latih, data validasi, dan data uji.
+        \item Melakukan \textit{preprocessing} dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
+        \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama.
+        \item Mengevaluasi performa klasifikasi model menggunakan data validasi dan data uji.
+        \item Mengekspor model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
+        \item Menjalankan pengujian inferensi model pada Raspberry Pi 5.
+        \item Menganalisis perbandingan akurasi dan efisiensi kedua model.
+        \item Menarik kesimpulan berdasarkan hasil pengujian yang diperoleh.
     \end{enumerate}
 \end{sectioncontent}
 
 \section{Dataset Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini adalah dataset publik citra penyakit daun tomat. Dataset tersebut berisi gambar daun tomat yang telah dikelompokkan ke dalam beberapa kelas penyakit dan kelas daun sehat. Penggunaan dataset publik bertujuan agar penelitian dapat dilakukan dengan data yang telah tersedia dan memiliki struktur kelas yang jelas.
+    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini merupakan dataset publik citra penyakit daun tomat. Dataset tersebut berisi gambar daun tomat yang telah dikelompokkan ke dalam beberapa kelas penyakit dan kelas daun sehat. Penggunaan dataset publik dipilih agar penelitian dapat dilakukan dengan data yang telah tersedia, memiliki label kelas yang jelas, serta dapat disusun sesuai kebutuhan tugas klasifikasi citra.
 
-    Dataset akan disusun ke dalam format direktori yang sesuai dengan kebutuhan tugas klasifikasi pada Ultralytics YOLO. Struktur dataset yang digunakan terdiri dari tiga bagian utama, yaitu data latih, data validasi, dan data uji. Setiap bagian memiliki subdirektori berdasarkan nama kelas.
+    Dataset disusun ke dalam format direktori yang sesuai dengan kebutuhan tugas klasifikasi pada Ultralytics YOLO. Struktur dataset terdiri dari tiga bagian utama, yaitu data latih, data validasi, dan data uji. Setiap bagian memiliki subdirektori berdasarkan nama kelas.
 
     \begin{verbatim}
 tomato-leaf-disease/
@@ -71,22 +71,24 @@ tomato-leaf-disease/
     |-- Tomato_Septoria_leaf_spot/
     \end{verbatim}
 
-    Pembagian dataset akan dilakukan dengan memperhatikan proporsi jumlah data pada setiap kelas. Data latih digunakan untuk proses pelatihan model, data validasi digunakan untuk memantau performa model selama proses pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model. Data uji tidak digunakan dalam proses pelatihan maupun pemilihan parameter model agar hasil evaluasi lebih objektif.
+    \newpage
+
+    Pembagian dataset dilakukan dengan memperhatikan proporsi data pada setiap kelas. Data latih digunakan untuk melatih model, data validasi digunakan untuk memantau performa model selama proses pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model. Data uji tidak digunakan dalam proses pelatihan maupun pemilihan parameter model agar hasil evaluasi lebih objektif.
 \end{sectioncontent}
 
 \section{Perangkat Keras dan Perangkat Lunak}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini menggunakan perangkat keras dan perangkat lunak untuk proses pelatihan, pengujian, dan implementasi model pada perangkat \textit{edge}. Proses pelatihan model dilakukan pada komputer dengan GPU agar proses pelatihan dapat berjalan lebih cepat. Sementara itu, proses pengujian efisiensi inferensi dilakukan pada Raspberry Pi 5 sebagai representasi perangkat \textit{edge}.
+    \hspace{\parindent}Penelitian ini menggunakan perangkat keras dan perangkat lunak untuk mendukung proses pelatihan, pengujian, dan implementasi model pada perangkat \textit{edge}. Proses pelatihan dilakukan pada komputer dengan dukungan GPU agar pelatihan model dapat berjalan lebih cepat. Sementara itu, pengujian efisiensi inferensi dilakukan pada Raspberry Pi 5 sebagai representasi perangkat \textit{edge}.
 
     \subsection{Perangkat Keras}
     \begin{subsectioncontent}
         \hspace{\parindent}Perangkat keras yang digunakan dalam penelitian ini adalah sebagai berikut:
 
         \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-            \item Komputer atau laptop untuk pelatihan model.
+            \item Komputer atau laptop untuk proses pelatihan model.
             \item GPU NVIDIA RTX 4060 untuk mempercepat proses pelatihan model.
             \item Raspberry Pi 5 dengan RAM 8 GB sebagai perangkat \textit{edge} untuk pengujian inferensi.
-            \item Media penyimpanan untuk menyimpan dataset, hasil pelatihan, dan model hasil export.
+            \item Media penyimpanan untuk menyimpan dataset, hasil pelatihan, dan model hasil ekspor.
         \end{enumerate}
     \end{subsectioncontent}
 
@@ -96,24 +98,24 @@ tomato-leaf-disease/
 
         \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
             \item Python sebagai bahasa pemrograman utama.
-            \item Ultralytics YOLO untuk pelatihan dan evaluasi model YOLOv8 Nano dan YOLO11 Nano.
-            \item PyTorch sebagai backend pelatihan model.
-            \item CUDA untuk akselerasi pelatihan menggunakan GPU NVIDIA.
             \newpage
+            \item Ultralytics YOLO untuk pelatihan dan evaluasi model YOLOv8 Nano dan YOLO11 Nano.
+            \item PyTorch sebagai \textit{backend} pelatihan model.
+            \item CUDA untuk akselerasi pelatihan menggunakan GPU NVIDIA.
             \item ONNX Runtime untuk menjalankan inferensi model pada perangkat \textit{edge}.
-            \item NumPy, Pandas, dan Scikit-learn untuk pengolahan data dan evaluasi metrik.
+            \item NumPy, Pandas, dan Scikit-learn untuk pengolahan data serta evaluasi metrik.
             \item Sistem operasi Windows pada perangkat pelatihan dan sistem operasi berbasis Linux pada Raspberry Pi 5.
         \end{enumerate}
     \end{subsectioncontent}
 \end{sectioncontent}
 
-\section{Preprocessing Data}
+\section{\textit{Preprocessing} Data}
 \begin{sectioncontent}
-    \hspace{\parindent}Preprocessing dilakukan untuk memastikan data citra siap digunakan dalam proses pelatihan dan pengujian model. Tahapan preprocessing yang dilakukan meliputi pemeriksaan dataset, penyesuaian struktur folder, pembagian dataset, serta penyesuaian ukuran citra.
+    \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan data citra siap digunakan dalam proses pelatihan dan pengujian model. Tahapan ini meliputi pemeriksaan dataset, penyesuaian struktur folder, pembagian dataset, serta penyesuaian ukuran citra.
 
-    Pada penelitian ini, citra akan diproses dengan ukuran masukan sebesar 224 x 224 piksel. Ukuran tersebut digunakan karena sesuai dengan skenario klasifikasi citra pada model YOLO versi klasifikasi. Selain itu, normalisasi nilai piksel dilakukan agar citra dapat diproses oleh model secara konsisten.
+    Pada penelitian ini, citra diproses dengan ukuran masukan 224 x 224 piksel. Ukuran tersebut digunakan karena sesuai dengan skenario klasifikasi citra pada model YOLO versi klasifikasi. Selain itu, normalisasi nilai piksel dilakukan agar citra dapat diproses oleh model secara konsisten.
 
-    Preprocessing dalam penelitian ini meliputi:
+    Tahapan \textit{preprocessing} dalam penelitian ini meliputi:
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Memeriksa jumlah data pada setiap kelas.
@@ -126,25 +128,25 @@ tomato-leaf-disease/
 
 \section{Model yang Digunakan}
 \begin{sectioncontent}
-    \hspace{\parindent}Model yang digunakan dalam penelitian ini adalah YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dipilih karena termasuk dalam varian ringan dari keluarga YOLO, sehingga relevan untuk diuji pada perangkat dengan sumber daya terbatas.
+    \hspace{\parindent}Model yang digunakan dalam penelitian ini adalah YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dipilih karena termasuk varian ringan dari keluarga YOLO, sehingga relevan untuk diuji pada perangkat dengan sumber daya komputasi terbatas.
 
     \subsection{YOLOv8 Nano}
     \begin{subsectioncontent}
-        \hspace{\parindent}YOLOv8 Nano merupakan varian ringan dari YOLOv8 yang dirancang untuk memiliki ukuran model kecil dan waktu inferensi yang cepat. Dalam penelitian ini, YOLOv8 Nano digunakan sebagai salah satu model pembanding untuk mengklasifikasikan penyakit daun tomat.
+        \hspace{\parindent}YOLOv8 Nano merupakan varian ringan dari YOLOv8 yang dirancang untuk memiliki ukuran model kecil dan waktu inferensi yang cepat. Dalam penelitian ini, YOLOv8 Nano digunakan sebagai salah satu model pembanding untuk mengklasifikasikan penyakit daun tomat berbasis citra.
     \end{subsectioncontent}
 
     \subsection{YOLO11 Nano}
     \begin{subsectioncontent}
-        \hspace{\parindent}YOLO11 Nano merupakan varian ringan dari YOLO11 yang digunakan sebagai model pembanding terhadap YOLOv8 Nano. Model ini dipilih karena merupakan generasi yang lebih baru dari keluarga YOLO dan memiliki orientasi pada efisiensi serta performa. Dengan membandingkan YOLOv8 Nano dan YOLO11 Nano, penelitian ini diharapkan dapat mengetahui perbedaan performa kedua model pada tugas klasifikasi penyakit daun tomat.
+        \hspace{\parindent}YOLO11 Nano merupakan varian ringan dari YOLO11 yang digunakan sebagai model pembanding terhadap YOLOv8 Nano. Model ini dipilih karena berasal dari generasi YOLO yang lebih baru dan tetap diarahkan pada keseimbangan antara performa dan efisiensi. Perbandingan antara YOLOv8 Nano dan YOLO11 Nano dilakukan untuk mengetahui perbedaan performa keduanya pada tugas klasifikasi penyakit daun tomat.
     \end{subsectioncontent}
 \end{sectioncontent}
 
 \section{Skenario Pelatihan Model}
 \begin{sectioncontent}
-    \hspace{\parindent}Pelatihan model dilakukan menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam untuk kedua model. Hal ini bertujuan agar perbandingan antara YOLOv8 Nano dan YOLO11 Nano dilakukan secara adil. Parameter pelatihan yang digunakan dapat disesuaikan berdasarkan kemampuan perangkat pelatihan, namun harus tetap sama untuk kedua model.
+    \hspace{\parindent}Pelatihan model dilakukan menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam untuk kedua model. Penggunaan konfigurasi yang sama bertujuan agar perbandingan antara YOLOv8 Nano dan YOLO11 Nano dapat dilakukan secara adil. Parameter utama seperti ukuran citra, jumlah epoch, dan \textit{batch size} dibuat sama pada kedua model.
 
     \newpage
-    Konfigurasi awal pelatihan yang direncanakan adalah sebagai berikut:
+    Konfigurasi pelatihan yang digunakan adalah sebagai berikut:
 
     \begin{table}[H]
         \centering
@@ -161,7 +163,7 @@ tomato-leaf-disease/
             \hline
             Jumlah epoch & 50 \\
             \hline
-            Batch size & Disesuaikan dengan kapasitas memori GPU \\
+            Batch size & 16 \\
             \hline
             Optimizer & Mengikuti konfigurasi pelatihan Ultralytics \\
             \hline
@@ -170,7 +172,7 @@ tomato-leaf-disease/
         \end{tabular}
     \end{table}
 
-    \hspace{\parindent}Contoh perintah pelatihan yang digunakan adalah sebagai berikut:
+    \hspace{\parindent}Perintah pelatihan yang digunakan adalah sebagai berikut:
 
     \begin{verbatim}
 yolo classify train model=yolov8n-cls.pt data=tomato-leaf-disease \
@@ -182,21 +184,21 @@ yolo classify train model=yolo11n-cls.pt data=tomato-leaf-disease \
 epochs=50 imgsz=224 batch=16 device=0
     \end{verbatim}
 
-    Apabila terjadi keterbatasan memori pada perangkat pelatihan, nilai \textit{batch size} dapat diturunkan. Namun, nilai tersebut harus dibuat sama pada kedua model agar hasil perbandingan tetap adil.
+    Kedua model dilatih dengan konfigurasi yang sama agar hasil perbandingan lebih konsisten. Apabila terdapat perbedaan performa pada tahap evaluasi, perbedaan tersebut dapat dianalisis sebagai hasil dari karakteristik masing-masing model, bukan akibat perbedaan konfigurasi pelatihan.
 \end{sectioncontent}
 
 \section{Skenario Pengujian Model}
 \begin{sectioncontent}
-    \hspace{\parindent}Pengujian model dilakukan dalam dua tahap, yaitu pengujian performa klasifikasi dan pengujian efisiensi pada perangkat \textit{edge}. Pengujian performa klasifikasi dilakukan untuk mengetahui kemampuan model dalam mengklasifikasikan citra daun tomat ke dalam kelas yang benar. Pengujian efisiensi dilakukan untuk mengetahui seberapa cepat dan ringan model ketika dijalankan pada Raspberry Pi 5.
+    \hspace{\parindent}Pengujian model dilakukan dalam dua tahap, yaitu pengujian performa klasifikasi dan pengujian efisiensi pada perangkat \textit{edge}. Pengujian performa klasifikasi digunakan untuk mengetahui kemampuan model dalam mengklasifikasikan citra daun tomat ke kelas yang benar. Sementara itu, pengujian efisiensi digunakan untuk mengetahui kecepatan dan kelayakan model ketika dijalankan pada Raspberry Pi 5.
 
     \subsection{Pengujian Klasifikasi}
     \begin{subsectioncontent}
-        \hspace{\parindent}Pengujian klasifikasi dilakukan menggunakan data uji yang tidak digunakan dalam proses pelatihan. Hasil prediksi model dibandingkan dengan label sebenarnya untuk menghitung metrik evaluasi seperti akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Selain itu, \textit{confusion matrix} digunakan untuk melihat kelas mana yang paling sering salah diklasifikasikan oleh model.
+        \hspace{\parindent}Pengujian klasifikasi dilakukan menggunakan data uji yang tidak digunakan dalam proses pelatihan. Hasil prediksi model dibandingkan dengan label sebenarnya untuk menghitung metrik evaluasi, seperti akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Selain itu, \textit{confusion matrix} digunakan untuk melihat pola kesalahan klasifikasi, terutama pada kelas-kelas yang memiliki gejala visual mirip.
     \end{subsectioncontent}
 
     \subsection{Pengujian pada Perangkat \textit{Edge}}
     \begin{subsectioncontent}
-        \hspace{\parindent}Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih akan diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini dilakukan untuk mengukur efisiensi inferensi kedua model.
+        \hspace{\parindent}Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini dilakukan untuk mengukur efisiensi inferensi kedua model pada lingkungan komputasi terbatas.
 
         Parameter yang diamati dalam pengujian pada perangkat \textit{edge} meliputi:
 
@@ -204,7 +206,7 @@ epochs=50 imgsz=224 batch=16 device=0
             \item Waktu inferensi rata-rata per citra.
             \item Nilai FPS (\textit{Frame Per Second}).
             \item Penggunaan memori saat inferensi.
-            \item Ukuran file model hasil export.
+            \item Ukuran file model hasil ekspor.
             \item Stabilitas hasil prediksi pada data uji.
         \end{enumerate}
     \end{subsectioncontent}
@@ -212,22 +214,20 @@ epochs=50 imgsz=224 batch=16 device=0
 
 \section{Metrik Evaluasi}
 \begin{sectioncontent}
-    \hspace{\parindent}Metrik evaluasi digunakan untuk mengukur performa model dari sisi akurasi klasifikasi dan efisiensi inferensi. Pada penelitian ini, metrik evaluasi yang digunakan terdiri dari akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, dan FPS.
+    \hspace{\parindent}Metrik evaluasi digunakan untuk mengukur performa model dari sisi akurasi klasifikasi dan efisiensi inferensi. Pada penelitian ini, metrik evaluasi yang digunakan terdiri dari akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, dan FPS. Karena penelitian ini menggunakan klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} juga dihitung dalam bentuk \textit{macro average} agar performa setiap kelas dapat diperhitungkan secara seimbang.
 
     \subsection{Akurasi}
     \begin{subsectioncontent}
-        \hspace{\parindent}Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Rumus akurasi adalah sebagai berikut:
+        \hspace{\parindent}Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Dalam klasifikasi multikelas, akurasi digunakan untuk mengetahui persentase keseluruhan citra yang berhasil diklasifikasikan dengan benar oleh model. Rumus akurasi adalah sebagai berikut:
 
         \begin{equation}
-            Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+            Accuracy = \frac{Jumlah\ Prediksi\ Benar}{Jumlah\ Seluruh\ Data\ Uji}
         \end{equation}
-
-        Dalam konteks klasifikasi multi-kelas, akurasi digunakan untuk mengetahui persentase keseluruhan citra yang berhasil diklasifikasikan dengan benar oleh model.
     \end{subsectioncontent}
 
     \subsection{\textit{Precision}}
     \begin{subsectioncontent}
-        \hspace{\parindent}\textit{Precision} menunjukkan tingkat ketepatan model dalam memprediksi suatu kelas. Rumus \textit{precision} adalah sebagai berikut:
+        \hspace{\parindent}\textit{Precision} menunjukkan tingkat ketepatan model ketika memprediksi suatu kelas. Nilai ini menggambarkan seberapa banyak prediksi pada suatu kelas yang benar-benar sesuai dengan kelas sebenarnya. Rumus \textit{precision} adalah sebagai berikut:
 
         \begin{equation}
             Precision = \frac{TP}{TP + FP}
@@ -236,7 +236,7 @@ epochs=50 imgsz=224 batch=16 device=0
 
     \subsection{\textit{Recall}}
     \begin{subsectioncontent}
-        \hspace{\parindent}\textit{Recall} menunjukkan kemampuan model dalam menemukan seluruh data yang seharusnya termasuk ke dalam suatu kelas. Rumus \textit{recall} adalah sebagai berikut:
+        \hspace{\parindent}\textit{Recall} menunjukkan kemampuan model dalam menemukan seluruh data yang seharusnya termasuk ke dalam suatu kelas. Nilai ini digunakan untuk melihat seberapa baik model mengenali data dari kelas tertentu. Rumus \textit{recall} adalah sebagai berikut:
 
         \begin{equation}
             Recall = \frac{TP}{TP + FN}
@@ -245,11 +245,30 @@ epochs=50 imgsz=224 batch=16 device=0
 
     \subsection{\textit{F1-score}}
     \begin{subsectioncontent}
-        \hspace{\parindent}\textit{F1-score} merupakan rata-rata harmonik dari \textit{precision} dan \textit{recall}. Rumus \textit{F1-score} adalah sebagai berikut:
+        \hspace{\parindent}\textit{F1-score} merupakan rata-rata harmonik dari \textit{precision} dan \textit{recall}. Metrik ini digunakan untuk memberikan gambaran keseimbangan antara ketepatan prediksi dan kemampuan model dalam menemukan data pada suatu kelas. Rumus \textit{F1-score} adalah sebagai berikut:
 
         \begin{equation}
             F1\text{-}score = 2 \times \frac{Precision \times Recall}{Precision + Recall}
         \end{equation}
+    \end{subsectioncontent}
+
+    \subsection{\textit{Macro Average}}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Pada klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} dapat dihitung untuk setiap kelas. Agar performa seluruh kelas dapat dilihat secara seimbang, penelitian ini menggunakan pendekatan \textit{macro average}. Pendekatan ini menghitung nilai rata-rata dari setiap kelas tanpa memberikan bobot lebih besar pada kelas tertentu.
+
+        \begin{equation}
+            \operatorname{Macro\ Precision} = \frac{1}{K} \sum_{i=1}^{K} \operatorname{Precision}_{i}
+        \end{equation}
+
+        \begin{equation}
+            \operatorname{Macro\ Recall} = \frac{1}{K} \sum_{i=1}^{K} \operatorname{Recall}_{i}
+        \end{equation}
+
+        \begin{equation}
+            \operatorname{Macro\ F1\text{-}score} = \frac{1}{K} \sum_{i=1}^{K} F1_{i}
+        \end{equation}
+
+        \hspace{\parindent}Keterangan $K$ menunjukkan jumlah kelas yang digunakan dalam penelitian. Dengan menggunakan \textit{macro average}, setiap kelas memiliki pengaruh yang sama terhadap nilai akhir, sehingga hasil evaluasi tidak hanya mencerminkan performa pada kelas yang jumlah datanya lebih besar atau lebih mudah dikenali.
     \end{subsectioncontent}
 
     \subsection{Waktu Inferensi}
@@ -271,21 +290,21 @@ epochs=50 imgsz=224 batch=16 device=0
 
 \section{Teknik Analisis Data}
 \begin{sectioncontent}
-    \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan nilai akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, FPS, penggunaan memori, dan ukuran model.
+    \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, FPS, penggunaan memori, dan ukuran model.
 
-    Hasil pengujian kedua model akan disajikan dalam bentuk tabel dan grafik agar perbandingan lebih mudah dianalisis. Model yang memiliki akurasi tinggi dan waktu inferensi rendah akan dianggap lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, maka analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
+    Hasil pengujian kedua model disajikan dalam bentuk tabel dan grafik agar perbandingan lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi dan waktu inferensi lebih rendah dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
 \end{sectioncontent}
 
 \section{Rancangan Hasil Pengujian}
 \begin{sectioncontent}
-    \hspace{\parindent}Rancangan hasil pengujian digunakan untuk menggambarkan bentuk data yang akan dianalisis pada bab hasil dan pembahasan. Perbandingan hasil pengujian kedua model direncanakan disajikan dalam tabel berikut:
+    \hspace{\parindent}Rancangan hasil pengujian digunakan untuk menggambarkan bentuk data yang dianalisis pada bab hasil dan pembahasan. Perbandingan hasil pengujian kedua model disajikan dalam tabel berikut:
 
     \begin{table}[H]
         \centering
         \caption{Rancangan Tabel Perbandingan Akurasi Model}
         \begin{tabular}{|l|c|c|c|c|}
             \hline
-            \textbf{Model} & \textbf{Akurasi} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} \\
+            \textbf{Model} & \textbf{Akurasi} & \textbf{Macro Precision} & \textbf{Macro Recall} & \textbf{Macro F1-score} \\
             \hline
             YOLOv8 Nano & - & - & - & - \\
             \hline
@@ -308,5 +327,5 @@ epochs=50 imgsz=224 batch=16 device=0
         \end{tabular}
     \end{table}
 
-    Tabel tersebut akan digunakan sebagai dasar dalam menentukan model yang lebih optimal. Model yang dipilih bukan hanya berdasarkan akurasi tertinggi, tetapi juga berdasarkan efisiensi inferensi ketika dijalankan pada perangkat \textit{edge}.
+    Tabel tersebut digunakan sebagai dasar untuk membandingkan performa kedua model. Penentuan model yang lebih sesuai tidak hanya didasarkan pada akurasi tertinggi, tetapi juga mempertimbangkan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
 \end{sectioncontent}

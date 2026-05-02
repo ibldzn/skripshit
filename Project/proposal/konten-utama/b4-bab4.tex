@@ -7,46 +7,55 @@
 
 \section{Deskripsi Hasil Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini dilakukan untuk membandingkan performa YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat. Kedua model dilatih menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam agar perbandingan dapat dilakukan secara adil. Setelah proses pelatihan selesai, model terbaik dari masing-masing arsitektur diekspor ke format ONNX untuk diuji pada perangkat \textit{edge} menggunakan Raspberry Pi 5.
+    \hspace{\parindent}Bab ini membahas hasil pelatihan dan pengujian model YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat. Kedua model dilatih menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam. Hal ini dilakukan agar perbandingan performa kedua model dapat dilakukan secara lebih adil, terutama dari sisi akurasi klasifikasi dan efisiensi inferensi.
 
-    Pengujian dilakukan dengan dua fokus utama, yaitu akurasi klasifikasi dan efisiensi inferensi. Akurasi klasifikasi digunakan untuk menilai kemampuan model dalam memprediksi kelas penyakit daun tomat secara benar, sedangkan efisiensi inferensi digunakan untuk menilai kecepatan model ketika dijalankan pada perangkat \textit{edge}. Dengan demikian, model yang dianggap lebih baik tidak hanya dilihat dari nilai akurasi, tetapi juga dari kemampuannya untuk berjalan secara efisien pada perangkat dengan sumber daya terbatas.
+    Setelah proses pelatihan selesai, bobot terbaik dari masing-masing model digunakan untuk proses evaluasi. Model tersebut kemudian diekspor ke format ONNX agar dapat dijalankan pada perangkat \textit{edge}, yaitu Raspberry Pi 5. Dengan demikian, pengujian dalam penelitian ini tidak hanya menilai kemampuan model dalam mengenali kelas penyakit daun tomat, tetapi juga menilai kelayakan model ketika dijalankan pada perangkat dengan sumber daya komputasi terbatas.
+
+    Fokus utama pengujian terdiri dari dua aspek. Aspek pertama adalah performa klasifikasi, yang diukur menggunakan akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{confusion matrix}. Aspek kedua adalah efisiensi inferensi, yang diukur berdasarkan waktu inferensi dan nilai FPS pada Raspberry Pi 5. Kedua aspek tersebut digunakan secara bersamaan untuk menentukan model yang lebih sesuai pada skenario penelitian ini.
 \end{sectioncontent}
 
-\section{Dataset Pengujian}
+\section{Distribusi Dataset Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Dataset pengujian yang digunakan terdiri dari 720 citra daun tomat yang terbagi ke dalam enam kelas. Setiap kelas memiliki jumlah data yang sama, yaitu 120 citra. Data uji ini tidak digunakan dalam proses pelatihan model, sehingga dapat digunakan untuk mengevaluasi performa akhir kedua model secara lebih objektif. Pembagian jumlah data pada masing-masing kelas dapat dilihat pada Tabel \ref{tab:jumlah-data-uji}.
+    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini terdiri dari 7.200 citra daun tomat yang terbagi ke dalam enam kelas. Dataset tersebut dibagi menjadi tiga bagian, yaitu data latih, data validasi, dan data uji.
+    \newpage
+    Data latih digunakan untuk proses pelatihan model, data validasi digunakan untuk memantau performa model selama pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model.
 
     \begin{table}[H]
         \centering
-        \caption{Jumlah Data Uji pada Setiap Kelas}
-        \label{tab:jumlah-data-uji}
-        \begin{tabular}{|l|c|}
+        \caption{Distribusi Dataset Penelitian}
+        \label{tab:distribusi-dataset}
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabularx}{\textwidth}{|X|c|c|c|c|}
             \hline
-            \textbf{Kelas} & \textbf{Jumlah Data Uji} \\
+            \textbf{Kelas} & \textbf{Train} & \textbf{Val} & \textbf{Test} & \textbf{Total} \\
             \hline
-            Tomato Early Blight Leaf & 120 \\
+            Tomato Early Blight & 840 & 240 & 120 & 1200 \\
             \hline
-            Tomato Healthy Leaf & 120 \\
+            Tomato Healthy & 840 & 240 & 120 & 1200 \\
             \hline
-            Tomato Leaf Yellow Curl Virus & 120 \\
+            Tomato Leaf Late Blight & 840 & 240 & 120 & 1200 \\
             \hline
-            Tomato Mold Leaf & 120 \\
+            Tomato Leaf Yellow Curl Virus & 840 & 240 & 120 & 1200 \\
             \hline
-            Tomato Septoria Leaf Spot & 120 \\
+            Tomato Mold Leaf & 840 & 240 & 120 & 1200 \\
             \hline
-            Tomato Leaf Late Blight & 120 \\
+            Tomato Septoria Leaf Spot & 840 & 240 & 120 & 1200 \\
             \hline
-            \textbf{Total} & \textbf{720} \\
+            \textbf{Total} & \textbf{5040} & \textbf{1440} & \textbf{720} & \textbf{7200} \\
             \hline
-        \end{tabular}
+        \end{tabularx}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:jumlah-data-uji}, dataset pengujian yang digunakan bersifat seimbang karena setiap kelas memiliki jumlah citra yang sama. Kondisi ini membantu proses interpretasi hasil evaluasi karena nilai akurasi tidak terlalu dipengaruhi oleh dominasi kelas tertentu. Meskipun demikian, penelitian ini tetap menggunakan metrik \textit{precision}, \textit{recall}, dan \textit{F1-score} untuk melihat performa model secara lebih rinci pada setiap kelas.
+    Berdasarkan Tabel \ref{tab:distribusi-dataset}, dataset penelitian memiliki distribusi yang seimbang pada setiap kelas. Masing-masing kelas terdiri dari 1.200 citra, dengan pembagian 840 citra untuk data latih, 240 citra untuk data validasi, dan 120 citra untuk data uji. Dengan demikian, data uji yang digunakan berjumlah 720 citra dan tidak digunakan dalam proses pelatihan maupun validasi model.
+
+    Distribusi yang seimbang membantu proses evaluasi karena hasil akurasi tidak didominasi oleh kelas tertentu. Meskipun demikian, penelitian ini tetap menggunakan metrik \textit{precision}, \textit{recall}, dan \textit{F1-score} untuk melihat performa model secara lebih rinci pada setiap kelas.
 \end{sectioncontent}
+
+\newpage
 
 \section{Hasil Pelatihan Model}
 \begin{sectioncontent}
-    \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih menggunakan dataset yang sama dengan ukuran citra masukan sebesar 224 x 224 piksel. Untuk menjaga keadilan eksperimen, parameter utama seperti jumlah \textit{epoch}, ukuran citra, dan pembagian dataset dibuat sama pada kedua model.
+    \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih dengan ukuran citra masukan sebesar 224 x 224 piksel. Untuk menjaga konsistensi eksperimen, parameter utama seperti jumlah \textit{epoch}, ukuran citra, dan \textit{batch size} dibuat sama pada kedua model. Konfigurasi pelatihan yang digunakan ditampilkan pada Tabel \ref{tab:konfigurasi-pelatihan-bab4}.
 
     \begin{table}[H]
         \centering
@@ -64,7 +73,7 @@
             \hline
             Jumlah \textit{epoch} & 50 \\
             \hline
-            Batch size & 16 \\
+            \textit{Batch size} & 16 \\
             \hline
             Perangkat pelatihan & NVIDIA RTX 4060 \\
             \hline
@@ -73,9 +82,8 @@
         \end{tabular}
     \end{table}
 
-    Hasil pelatihan dari masing-masing model menghasilkan bobot terbaik yang kemudian digunakan untuk proses validasi dan pengujian. Visualisasi hasil pelatihan, seperti grafik perubahan \textit{loss} dan akurasi selama proses pelatihan, dapat dilihat pada Gambar \ref{fig:training-yolov8} dan Gambar \ref{fig:training-yolo11}.
+    Hasil pelatihan dari masing-masing model menghasilkan bobot terbaik yang kemudian digunakan pada tahap pengujian. Visualisasi proses pelatihan, seperti perubahan nilai \textit{loss} dan akurasi selama pelatihan, ditampilkan pada Gambar \ref{fig:training-yolov8} dan Gambar \ref{fig:training-yolo11}.
 
-    % Siapkan gambar dari folder runs/classify/train*/results.png
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{results-yolov8n.png}
@@ -90,12 +98,14 @@
         \label{fig:training-yolo11}
     \end{figure}
 
-    Gambar hasil pelatihan digunakan untuk melihat perkembangan performa model selama proses pelatihan. Apabila nilai \textit{loss} menurun dan metrik evaluasi meningkat secara stabil, maka proses pelatihan dapat dianggap berjalan dengan baik. Namun, apabila terdapat perbedaan besar antara performa data latih dan data validasi, maka perlu dilakukan analisis lebih lanjut terhadap kemungkinan \textit{overfitting}.
+    Berdasarkan visualisasi hasil pelatihan, nilai \textit{train loss} pada kedua model mengalami penurunan selama proses pelatihan. Hal ini menunjukkan bahwa model mampu mempelajari pola dari data latih. Namun, nilai \textit{validation loss} terlihat lebih fluktuatif dibandingkan \textit{train loss}. Kondisi tersebut menunjukkan bahwa performa model pada data validasi tidak selalu meningkat secara stabil pada setiap \textit{epoch}.
+
+    Fluktuasi pada data validasi perlu diperhatikan karena dapat menjadi indikasi bahwa model mulai mengalami kesulitan dalam melakukan generalisasi terhadap data di luar data latih. Dengan demikian, hasil pelatihan tidak hanya dinilai dari penurunan \textit{train loss}, tetapi juga perlu dilihat dari performa akhir pada data uji. Oleh karena itu, tahap pengujian klasifikasi pada data uji menjadi bagian penting untuk menilai kemampuan akhir kedua model secara lebih objektif.
 \end{sectioncontent}
 
 \section{Hasil Pengujian Klasifikasi}
 \begin{sectioncontent}
-    \hspace{\parindent}Pengujian klasifikasi dilakukan menggunakan data uji yang sama untuk kedua model. Hasil prediksi model dibandingkan dengan label sebenarnya untuk memperoleh nilai akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Pada tahap pengujian, penamaan kelas pada data uji disesuaikan dengan penamaan kelas yang digunakan pada proses pelatihan agar hasil evaluasi tidak dipengaruhi oleh perbedaan nama folder kelas. Ringkasan hasil pengujian klasifikasi dapat dilihat pada Tabel \ref{tab:hasil-klasifikasi}.
+    \hspace{\parindent}Pengujian klasifikasi dilakukan menggunakan data uji yang sama untuk kedua model. Hasil prediksi dari masing-masing model dibandingkan dengan label sebenarnya untuk memperoleh nilai akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Pada tahap pengujian, penamaan kelas pada data uji disesuaikan dengan penamaan kelas yang digunakan saat pelatihan agar hasil evaluasi tidak dipengaruhi oleh perbedaan nama folder kelas. Ringkasan hasil pengujian klasifikasi ditampilkan pada Tabel \ref{tab:hasil-klasifikasi}.
 
     \begin{table}[H]
         \centering
@@ -113,14 +123,16 @@
         \end{tabularx}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:hasil-klasifikasi}, YOLOv8 Nano memperoleh akurasi sebesar 88,47\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 88,06\%. Selisih akurasi kedua model adalah 0,41\%, sehingga dapat dikatakan bahwa performa klasifikasi kedua model relatif sangat berdekatan. Pada skenario pengujian ini, YOLOv8 Nano memberikan hasil klasifikasi yang sedikit lebih tinggi dibandingkan YOLO11 Nano.
+    Berdasarkan Tabel \ref{tab:hasil-klasifikasi}, YOLOv8 Nano memperoleh akurasi sebesar 88,47\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 88,06\%. YOLOv8 Nano berhasil mengklasifikasikan 637 citra dengan benar dari total 720 citra, sedangkan YOLO11 Nano mengklasifikasikan 634 citra dengan benar. Selisih jumlah prediksi benar antara kedua model adalah tiga citra, atau setara dengan selisih akurasi sebesar 0,41\%.
 
-    Selain akurasi, nilai \textit{macro precision}, \textit{macro recall}, dan \textit{macro F1-score} juga menunjukkan bahwa YOLOv8 Nano sedikit lebih unggul. Nilai \textit{macro F1-score} YOLOv8 Nano sebesar 88,63\%, sedangkan YOLO11 Nano sebesar 88,12\%. Karena jumlah data uji pada setiap kelas seimbang, nilai akurasi dan nilai makro dapat digunakan bersama untuk melihat performa keseluruhan model secara lebih objektif.
+    Selisih tersebut menunjukkan bahwa performa klasifikasi kedua model sangat berdekatan. Pada skenario pengujian ini, YOLOv8 Nano memang memperoleh hasil yang sedikit lebih tinggi dibandingkan YOLO11 Nano. Namun, keunggulan tersebut perlu dipahami sebagai keunggulan yang tipis dan kontekstual, karena hasilnya bergantung pada dataset, konfigurasi pelatihan, dan skenario pengujian yang digunakan.
+
+    Selain akurasi, nilai \textit{macro precision}, \textit{macro recall}, dan \textit{macro F1-score} juga menunjukkan pola yang serupa. YOLOv8 Nano memperoleh \textit{macro F1-score} sebesar 88,63\%, sedangkan YOLO11 Nano memperoleh 88,12\%. Karena dataset uji memiliki jumlah data yang seimbang pada setiap kelas, nilai akurasi dan nilai makro dapat digunakan bersama untuk melihat performa keseluruhan model secara lebih adil.
 \end{sectioncontent}
 
 \section{Hasil Evaluasi per Kelas}
 \begin{sectioncontent}
-    \hspace{\parindent}Evaluasi per kelas dilakukan untuk mengetahui performa model pada masing-masing kategori penyakit daun tomat. Hasil evaluasi per kelas untuk YOLOv8 Nano ditampilkan pada Tabel \ref{tab:perkelas-yolov8}, sedangkan hasil evaluasi per kelas untuk YOLO11 Nano ditampilkan pada Tabel \ref{tab:perkelas-yolo11}.
+    \hspace{\parindent}Evaluasi per kelas dilakukan untuk mengetahui performa model pada masing-masing kategori penyakit daun tomat. Analisis ini diperlukan karena dua model dengan akurasi keseluruhan yang hampir sama dapat memiliki perilaku yang berbeda pada kelas tertentu. Hasil evaluasi per kelas untuk YOLOv8 Nano ditampilkan pada Tabel \ref{tab:perkelas-yolov8}, sedangkan hasil evaluasi per kelas untuk YOLO11 Nano ditampilkan pada Tabel \ref{tab:perkelas-yolo11}.
 
     \begin{table}[H]
         \centering
@@ -168,14 +180,16 @@
         \end{tabular}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:perkelas-yolov8} dan Tabel \ref{tab:perkelas-yolo11}, kedua model menunjukkan performa yang cukup baik pada sebagian besar kelas. YOLOv8 Nano memperoleh nilai \textit{recall} tertinggi pada kelas Healthy sebesar 98,33\% dan nilai \textit{precision} tertinggi pada kelas Yellow Curl Virus sebesar 100,00\%. Sementara itu, YOLO11 Nano memperoleh performa yang baik pada kelas Healthy, Septoria Leaf Spot, dan Late Blight.
+    Berdasarkan Tabel \ref{tab:perkelas-yolov8}, YOLOv8 Nano memperoleh performa paling tinggi pada kelas Healthy dan Yellow Curl Virus. Pada kelas Healthy, nilai \textit{recall} mencapai 98,33\%, yang menunjukkan bahwa sebagian besar citra daun sehat berhasil dikenali dengan benar. Pada kelas Yellow Curl Virus, nilai \textit{precision} mencapai 100,00\%, yang berarti seluruh citra yang diprediksi sebagai Yellow Curl Virus oleh model benar-benar berasal dari kelas tersebut.
 
-    Kelas Early Blight menjadi salah satu kelas yang relatif lebih sulit diklasifikasikan oleh kedua model, terutama pada YOLOv8 Nano yang memiliki nilai \textit{precision} lebih rendah dibandingkan kelas lain. Kondisi tersebut menunjukkan bahwa beberapa citra dari kelas lain masih diprediksi sebagai Early Blight. Hal ini dapat disebabkan oleh kemiripan pola visual antara Early Blight dengan beberapa penyakit daun lain, terutama pada tekstur bercak dan perubahan warna daun.
+    Sementara itu, berdasarkan Tabel \ref{tab:perkelas-yolo11}, YOLO11 Nano menunjukkan performa yang cukup kuat pada kelas Septoria Leaf Spot dan Late Blight. Nilai \textit{F1-score} pada kelas Septoria Leaf Spot mencapai 90,08\%, sedangkan pada kelas Late Blight mencapai 86,99\%. YOLO11 Nano juga memperoleh nilai \textit{F1-score} yang lebih tinggi dibandingkan YOLOv8 Nano pada kelas Early Blight, Mold Leaf, Septoria Leaf Spot, dan Late Blight.
+
+    Hasil tersebut menunjukkan bahwa meskipun YOLOv8 Nano sedikit lebih unggul pada nilai rata-rata keseluruhan, YOLO11 Nano tetap memiliki performa yang kompetitif pada beberapa kelas. Dengan kata lain, perbedaan kedua model tidak hanya dapat dilihat dari akurasi total, tetapi juga dari bagaimana masing-masing model mengenali pola visual pada setiap kelas penyakit.
 \end{sectioncontent}
 
-\section{Analisis Confusion Matrix}
+\section{Analisis \textit{Confusion Matrix}}
 \begin{sectioncontent}
-    \hspace{\parindent}\textit{Confusion matrix} digunakan untuk melihat distribusi prediksi benar dan salah pada masing-masing kelas. Untuk memudahkan penyajian tabel, digunakan singkatan kelas sebagai berikut: EB untuk Early Blight, HL untuk Healthy Leaf, YCV untuk Yellow Curl Virus, ML untuk Mold Leaf, SLS untuk Septoria Leaf Spot, dan LB untuk Late Blight.
+    \hspace{\parindent}\textit{Confusion matrix} digunakan untuk melihat distribusi prediksi benar dan salah pada masing-masing kelas. Analisis ini membantu menunjukkan pola kesalahan model, khususnya pada kelas-kelas yang memiliki kemiripan gejala visual. Untuk memudahkan penyajian tabel, digunakan singkatan kelas sebagai berikut: EB untuk Early Blight, HL untuk Healthy Leaf, YCV untuk Yellow Curl Virus, ML untuk Mold Leaf, SLS untuk Septoria Leaf Spot, dan LB untuk Late Blight.
 
     \begin{table}[H]
         \centering
@@ -223,16 +237,33 @@
         \end{tabular}
     \end{table}
 
-    \newpage
+    Berdasarkan Tabel \ref{tab:cm-yolov8}, YOLOv8 Nano menghasilkan prediksi benar tertinggi pada kelas Healthy dengan 118 citra dari 120 citra. Pada kelas lain, kesalahan yang cukup terlihat terjadi pada Yellow Curl Virus yang diprediksi sebagai Early Blight sebanyak 12 citra, Early Blight yang diprediksi sebagai Mold Leaf sebanyak 11 citra, serta Late Blight yang diprediksi sebagai Septoria Leaf Spot sebanyak 10 citra.
 
-    Berdasarkan Tabel \ref{tab:cm-yolov8}, kesalahan prediksi terbesar pada YOLOv8 Nano terjadi pada kelas Yellow Curl Virus yang diprediksi sebagai Early Blight sebanyak 12 citra, kelas Early Blight yang diprediksi sebagai Mold Leaf sebanyak 11 citra, serta kelas Late Blight yang diprediksi sebagai Septoria Leaf Spot sebanyak 10 citra. Pada Tabel \ref{tab:cm-yolo11}, kesalahan prediksi terbesar terjadi pada kelas Yellow Curl Virus yang diprediksi sebagai Early Blight sebanyak 11 citra, serta kelas Late Blight yang diprediksi sebagai Early Blight sebanyak 9 citra.
+    Berdasarkan Tabel \ref{tab:cm-yolo11}, YOLO11 Nano menghasilkan prediksi benar tertinggi pada kelas Healthy sebanyak 111 citra, Septoria Leaf Spot sebanyak 109 citra, dan Late Blight sebanyak 107 citra. Kesalahan yang cukup terlihat terjadi pada Yellow Curl Virus yang diprediksi sebagai Early Blight sebanyak 11 citra, serta Late Blight yang diprediksi sebagai Early Blight sebanyak 9 citra.
 
-    Kesalahan prediksi tersebut menunjukkan bahwa beberapa kelas penyakit daun tomat memiliki kemiripan pola visual. Penyakit seperti Early Blight, Septoria Leaf Spot, Mold Leaf, dan Late Blight sama-sama dapat menampilkan gejala bercak atau perubahan warna pada permukaan daun, sehingga model dapat mengalami kesulitan dalam membedakan kelas-kelas tersebut pada citra tertentu.
+    Pola kesalahan pada kedua model menunjukkan bahwa beberapa kelas penyakit daun tomat memiliki karakteristik visual yang saling berdekatan. Penyakit seperti Early Blight, Septoria Leaf Spot, Mold Leaf, dan Late Blight sama-sama dapat menampilkan gejala berupa bercak, perubahan warna, atau kerusakan jaringan pada permukaan daun. Kemiripan tersebut dapat membuat model kesulitan membedakan kelas tertentu, terutama apabila citra memiliki kondisi visual yang kurang tegas.
 \end{sectioncontent}
 
-\section{Hasil Pengujian Efisiensi pada Perangkat Edge}
+\section{Hasil Pengujian Efisiensi pada Perangkat \textit{Edge}}
 \begin{sectioncontent}
-    \hspace{\parindent}Pengujian efisiensi dilakukan pada Raspberry Pi 5 menggunakan model hasil export dalam format ONNX. Pengujian ini bertujuan untuk mengetahui waktu inferensi dan kemampuan pemrosesan model pada perangkat \textit{edge}. Ringkasan hasil pengujian efisiensi dapat dilihat pada Tabel \ref{tab:efisiensi-edge}.
+    \hspace{\parindent}Pengujian efisiensi dilakukan pada Raspberry Pi 5 menggunakan model hasil ekspor dalam format ONNX. Pengujian ini bertujuan untuk mengetahui seberapa cepat kedua model melakukan inferensi pada perangkat \textit{edge}. Ringkasan hasil pengujian efisiensi ditampilkan pada Tabel \ref{tab:ukuran-model-memori} dan Tabel \ref{tab:efisiensi-edge}.
+
+    \begin{table}[H]
+        \centering
+        \caption{Ukuran Model dan Memori Puncak}
+        \label{tab:ukuran-model-memori}
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Model} & \textbf{Ukuran Model} & \textbf{Memori Puncak} \\
+            \hline
+            YOLOv8 Nano & 5,60 MB & 70,04 MB \\
+            \hline
+            YOLO11 Nano & 5,90 MB & 70,46 MB \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    Berdasarkan Tabel \ref{tab:ukuran-model-memori}, YOLOv8 Nano memiliki ukuran model dan memori puncak yang sedikit lebih rendah dibandingkan YOLO11 Nano. Namun, selisih keduanya relatif kecil, sehingga dari sisi kebutuhan penyimpanan dan memori, kedua model dapat dikatakan memiliki karakteristik yang hampir serupa pada Raspberry Pi 5.
 
     \begin{table}[H]
         \centering
@@ -249,34 +280,42 @@
         \end{tabular}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:efisiensi-edge}, YOLOv8 Nano memiliki rata-rata waktu inferensi sebesar 7,78 ms, sedangkan YOLO11 Nano memiliki rata-rata waktu inferensi sebesar 7,86 ms. Dari sisi FPS, YOLOv8 Nano mencapai 128,52 FPS, sedangkan YOLO11 Nano mencapai 127,18 FPS. Perbedaan waktu inferensi antara kedua model relatif kecil, namun pada skenario pengujian ini YOLOv8 Nano sedikit lebih cepat dibandingkan YOLO11 Nano.
+    Berdasarkan Tabel \ref{tab:efisiensi-edge}, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 7,78 ms, sedangkan YOLO11 Nano memperoleh rata-rata waktu inferensi sebesar 7,86 ms. Selisih waktu inferensi kedua model adalah 0,08 ms. Dari sisi FPS, YOLOv8 Nano mencapai 128,52 FPS, sedangkan YOLO11 Nano mencapai 127,18 FPS.
 
-    Nilai maksimum waktu inferensi pada kedua model lebih tinggi dibandingkan nilai rata-rata dan median. Hal ini dapat terjadi karena adanya variasi beban sistem pada Raspberry Pi saat proses pengujian, seperti aktivitas sistem operasi, proses latar belakang, atau kondisi termal perangkat. Oleh karena itu, nilai rata-rata dan median digunakan secara bersamaan untuk memperoleh gambaran efisiensi inferensi yang lebih seimbang.
+    Hasil tersebut menunjukkan bahwa kedua model memiliki efisiensi inferensi yang sangat berdekatan pada Raspberry Pi 5. YOLOv8 Nano memang sedikit lebih cepat berdasarkan nilai rata-rata dan FPS, tetapi perbedaannya relatif kecil. Oleh karena itu, hasil efisiensi ini lebih tepat dipahami sebagai indikasi bahwa kedua model sama-sama ringan untuk dijalankan pada perangkat \textit{edge}, dengan YOLOv8 Nano memberikan sedikit keunggulan pada skenario pengujian ini.
+
+    Nilai maksimum waktu inferensi pada kedua model terlihat lebih tinggi dibandingkan nilai rata-rata dan median. Kondisi ini dapat terjadi karena adanya variasi beban sistem pada Raspberry Pi selama pengujian, misalnya aktivitas sistem operasi, proses latar belakang, atau kondisi termal perangkat. Oleh sebab itu, nilai rata-rata dan median digunakan bersama untuk memberikan gambaran efisiensi yang lebih seimbang.
 \end{sectioncontent}
 
 \section{Pembahasan}
 \begin{sectioncontent}
-    \hspace{\parindent}Hasil pengujian menunjukkan bahwa YOLOv8 Nano memperoleh performa yang sedikit lebih baik dibandingkan YOLO11 Nano pada dataset dan skenario pengujian yang digunakan. Dari sisi akurasi, YOLOv8 Nano memperoleh nilai 88,47\%, sedangkan YOLO11 Nano memperoleh nilai 88,06\%. Selisih ini menunjukkan bahwa kedua model memiliki kemampuan klasifikasi yang sangat berdekatan, tetapi YOLOv8 Nano memberikan jumlah prediksi benar yang sedikit lebih banyak pada data uji.
+    \hspace{\parindent}Hasil pengujian menunjukkan bahwa YOLOv8 Nano memperoleh performa keseluruhan yang sedikit lebih tinggi dibandingkan YOLO11 Nano pada dataset dan skenario pengujian yang digunakan. Dari sisi akurasi, YOLOv8 Nano memperoleh nilai 88,47\%, sedangkan YOLO11 Nano memperoleh nilai 88,06\%. Selisih 0,41\% menunjukkan bahwa kedua model memiliki kemampuan klasifikasi yang hampir setara. Oleh karena itu, hasil ini tidak dapat langsung diartikan bahwa YOLOv8 Nano selalu lebih baik dibandingkan YOLO11 Nano pada seluruh kondisi, tetapi menunjukkan bahwa YOLOv8 Nano lebih unggul pada skenario penelitian ini.
 
-    Dari sisi evaluasi per kelas, YOLOv8 Nano unggul pada kelas Healthy dan Yellow Curl Virus, terutama karena nilai \textit{recall} pada kelas Healthy dan nilai \textit{precision} pada kelas Yellow Curl Virus cukup tinggi. Sementara itu, YOLO11 Nano menunjukkan performa yang kompetitif pada kelas Early Blight, Septoria Leaf Spot, dan Late Blight. Perbedaan ini memperlihatkan bahwa masing-masing model memiliki karakteristik yang berbeda dalam mengenali pola visual pada citra daun tomat.
+    Dari sisi evaluasi per kelas, kedua model memiliki karakteristik yang berbeda. YOLOv8 Nano unggul pada kelas Healthy dan Yellow Curl Virus. Pada kelas Healthy, model mampu mengenali sebagian besar citra daun sehat dengan benar. Pada kelas Yellow Curl Virus, nilai \textit{precision} yang tinggi menunjukkan bahwa prediksi model pada kelas tersebut sangat tepat. Sementara itu, YOLO11 Nano menunjukkan performa yang kompetitif pada kelas Early Blight, Mold Leaf, Septoria Leaf Spot, dan Late Blight berdasarkan nilai \textit{F1-score}. Hal ini menunjukkan bahwa meskipun YOLOv8 Nano unggul secara rata-rata, YOLO11 Nano tetap memiliki kekuatan pada beberapa kelas tertentu.
 
-    Pada analisis \textit{confusion matrix}, beberapa kelas penyakit masih menunjukkan kesalahan klasifikasi yang cukup terlihat. Pada YOLOv8 Nano, kelas Yellow Curl Virus beberapa kali diprediksi sebagai Early Blight, sedangkan kelas Early Blight beberapa kali diprediksi sebagai Mold Leaf. Pada YOLO11 Nano, kesalahan prediksi juga terjadi pada kelas Yellow Curl Virus dan Late Blight yang diprediksi sebagai Early Blight. Kesalahan ini dapat terjadi karena beberapa penyakit daun tomat memiliki gejala visual yang mirip, seperti bercak pada daun, perubahan warna, dan pola kerusakan pada permukaan daun. Dengan demikian, kesalahan klasifikasi tidak hanya dipengaruhi oleh kemampuan model, tetapi juga oleh tingkat kemiripan visual antar kelas.
+    Analisis \textit{confusion matrix} menunjukkan bahwa kesalahan klasifikasi banyak terjadi pada kelas-kelas yang memiliki kemiripan gejala visual. Pada YOLOv8 Nano, kesalahan cukup besar terjadi ketika Yellow Curl Virus diprediksi sebagai Early Blight dan Early Blight diprediksi sebagai Mold Leaf. Pada YOLO11 Nano, kesalahan juga terlihat pada Yellow Curl Virus dan Late Blight yang diprediksi sebagai Early Blight. Pola ini menunjukkan bahwa kemiripan visual antarpenyakit menjadi salah satu tantangan utama dalam klasifikasi penyakit daun tomat berbasis citra.
 
-    Dari sisi efisiensi inferensi pada Raspberry Pi 5, YOLOv8 Nano juga sedikit lebih unggul dibandingkan YOLO11 Nano. Rata-rata waktu inferensi YOLOv8 Nano sebesar 7,78 ms, sedangkan YOLO11 Nano sebesar 7,86 ms. Perbedaan ini tidak terlalu besar, namun tetap menunjukkan bahwa pada lingkungan pengujian yang digunakan, YOLOv8 Nano mampu memberikan waktu inferensi yang sedikit lebih rendah.
+    \newpage
 
-    Berdasarkan kombinasi antara akurasi dan efisiensi, YOLOv8 Nano dapat dinilai sebagai model yang lebih optimal pada skenario penelitian ini. Namun, hasil tersebut tidak dapat digeneralisasi secara mutlak untuk seluruh dataset atau seluruh perangkat \textit{edge}. Kesimpulan yang dapat diambil adalah bahwa YOLOv8 Nano lebih unggul pada dataset, konfigurasi pelatihan, format model, dan perangkat pengujian yang digunakan dalam penelitian ini.
+    Dari sisi efisiensi, kedua model menunjukkan waktu inferensi yang rendah pada Raspberry Pi 5. YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 7,78 ms, sedangkan YOLO11 Nano memperoleh 7,86 ms. Selisih 0,08 ms menunjukkan bahwa perbedaan efisiensi kedua model sangat kecil. Dengan demikian, kedua model dapat dikatakan layak untuk dijalankan pada perangkat \textit{edge} dalam skenario klasifikasi citra berukuran 224 x 224 piksel.
+
+    Jika akurasi dan efisiensi dipertimbangkan secara bersamaan, YOLOv8 Nano dapat dinilai sebagai model yang lebih sesuai pada skenario penelitian ini. Model tersebut memperoleh akurasi sedikit lebih tinggi dan waktu inferensi sedikit lebih rendah dibandingkan YOLO11 Nano. Namun, kesimpulan ini perlu dibatasi pada dataset, konfigurasi pelatihan, format model, dan perangkat pengujian yang digunakan. Dengan kata lain, hasil penelitian ini menunjukkan keunggulan YOLOv8 Nano secara kontekstual, bukan sebagai kesimpulan mutlak untuk seluruh kasus klasifikasi penyakit daun tomat.
 \end{sectioncontent}
 
 \section{Keterbatasan Hasil Pengujian}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini memiliki beberapa keterbatasan yang perlu diperhatikan dalam interpretasi hasil. Pertama, meskipun dataset pengujian yang digunakan sudah seimbang, penelitian ini masih menggunakan satu dataset utama sehingga hasilnya belum tentu sama apabila diterapkan pada dataset lain dengan kondisi pencahayaan, latar belakang, atau kualitas citra yang berbeda. Kedua, pengujian efisiensi dilakukan pada satu jenis perangkat \textit{edge}, yaitu Raspberry Pi 5, sehingga hasilnya belum tentu sama apabila diuji pada perangkat lain. Ketiga, pengujian dilakukan menggunakan model hasil export dalam format ONNX, sehingga performa dapat dipengaruhi oleh runtime yang digunakan. Keempat, hasil penelitian ini berfokus pada klasifikasi citra, bukan deteksi lokasi penyakit pada bagian daun.
+    \hspace{\parindent}Penelitian ini memiliki beberapa keterbatasan yang perlu diperhatikan. Pertama, dataset pengujian yang digunakan memang seimbang, tetapi masih berasal dari satu dataset utama. Oleh karena itu, hasil yang diperoleh belum tentu sama apabila model diuji pada dataset lain dengan kondisi pencahayaan, latar belakang, resolusi, atau kualitas citra yang berbeda.
 
-    Dengan keterbatasan tersebut, hasil penelitian tetap dapat digunakan sebagai dasar perbandingan antara YOLOv8 Nano dan YOLO11 Nano dalam skenario klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, penelitian lanjutan dapat dilakukan dengan menambah variasi dataset, menguji perangkat \textit{edge} lain, serta membandingkan format model yang berbeda seperti NCNN atau TensorFlow Lite.
+    Kedua, pengujian efisiensi hanya dilakukan pada satu jenis perangkat \textit{edge}, yaitu Raspberry Pi 5 dengan RAM 8 GB. Hasil inferensi dapat berbeda apabila model dijalankan pada perangkat lain dengan spesifikasi CPU, memori, sistem operasi, atau runtime yang berbeda. Ketiga, model diuji dalam format ONNX menggunakan ONNX Runtime. Format model dan runtime yang berbeda, seperti NCNN atau TensorFlow Lite, dapat menghasilkan performa inferensi yang berbeda.
+
+    Keempat, penelitian ini hanya berfokus pada tugas klasifikasi citra. Artinya, model hanya menentukan kelas penyakit dari keseluruhan gambar, tetapi tidak menunjukkan lokasi bagian daun yang terinfeksi. Dengan demikian, penelitian ini belum membahas tugas \textit{object detection}, segmentasi citra, maupun rekomendasi penanganan penyakit tanaman.
+
+    Dengan keterbatasan tersebut, hasil penelitian tetap dapat digunakan sebagai dasar perbandingan antara YOLOv8 Nano dan YOLO11 Nano pada skenario klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, penelitian lanjutan dapat dilakukan dengan menambah variasi dataset, menguji perangkat \textit{edge} lain, membandingkan format model yang berbeda, serta mengevaluasi performa model pada citra lapangan yang lebih beragam.
 \end{sectioncontent}
 
 \section{Ringkasan Hasil}
 \begin{sectioncontent}
-    \hspace{\parindent}Berdasarkan hasil pengujian yang telah dilakukan, dapat dirangkum bahwa YOLOv8 Nano memperoleh akurasi sebesar 88,47\% dengan rata-rata waktu inferensi 7,78 ms, sedangkan YOLO11 Nano memperoleh akurasi sebesar 88,06\% dengan rata-rata waktu inferensi 7,86 ms. Dari hasil tersebut, YOLOv8 Nano menunjukkan performa yang sedikit lebih baik dibandingkan YOLO11 Nano pada skenario penelitian ini.
+    \hspace{\parindent}Berdasarkan hasil pengujian yang telah dilakukan, YOLOv8 Nano memperoleh akurasi sebesar 88,47\% dengan rata-rata waktu inferensi 7,78 ms. Sementara itu, YOLO11 Nano memperoleh akurasi sebesar 88,06\% dengan rata-rata waktu inferensi 7,86 ms. Hasil tersebut menunjukkan bahwa YOLOv8 Nano memiliki performa yang sedikit lebih baik dibandingkan YOLO11 Nano pada skenario penelitian ini.
 
-    Secara umum, kedua model mampu menjalankan klasifikasi penyakit daun tomat dengan akurasi di atas 88\% dan waktu inferensi di bawah 10 ms pada Raspberry Pi 5. Hal ini menunjukkan bahwa kedua model layak dipertimbangkan untuk implementasi klasifikasi citra pada perangkat \textit{edge}. Namun, berdasarkan hasil pengujian yang diperoleh, YOLOv8 Nano menjadi model yang lebih direkomendasikan dalam penelitian ini karena memberikan keseimbangan yang sedikit lebih baik antara akurasi dan efisiensi inferensi.
+    Secara umum, kedua model mampu melakukan klasifikasi penyakit daun tomat dengan akurasi di atas 88\% dan waktu inferensi di bawah 10 ms pada Raspberry Pi 5. Hal ini menunjukkan bahwa YOLOv8 Nano dan YOLO11 Nano sama-sama layak dipertimbangkan untuk implementasi klasifikasi citra pada perangkat \textit{edge}. Namun, berdasarkan kombinasi hasil akurasi dan efisiensi inferensi, YOLOv8 Nano menjadi model yang lebih direkomendasikan dalam penelitian ini karena memberikan keseimbangan yang sedikit lebih baik pada dataset, konfigurasi, dan perangkat pengujian yang digunakan.
 \end{sectioncontent}
