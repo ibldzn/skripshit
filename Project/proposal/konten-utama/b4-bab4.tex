@@ -7,7 +7,7 @@
 
 \section{Deskripsi Hasil Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Bab ini membahas hasil pelatihan dan pengujian model YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat. Kedua model dilatih menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam. Hal ini dilakukan agar perbandingan performa kedua model dapat dilakukan secara lebih adil, terutama dari sisi akurasi klasifikasi dan efisiensi inferensi.
+    \hspace{\parindent}Bab ini membahas hasil pelatihan dan pengujian model YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat. Kedua model dilatih menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam. Konfigurasi tersebut dibuat seragam agar perbandingan performa kedua model lebih adil, terutama dari sisi akurasi klasifikasi dan efisiensi inferensi.
 
     Setelah proses pelatihan selesai, bobot terbaik dari masing-masing model digunakan untuk proses evaluasi. Model tersebut kemudian diekspor ke format ONNX agar dapat dijalankan pada perangkat \textit{edge}, yaitu Raspberry Pi 5. Dengan demikian, pengujian dalam penelitian ini tidak hanya menilai kemampuan model dalam mengenali kelas penyakit daun tomat, tetapi juga menilai kelayakan model ketika dijalankan pada perangkat dengan sumber daya komputasi terbatas.
 
@@ -18,7 +18,7 @@
 \begin{sectioncontent}
     \hspace{\parindent}Dataset yang digunakan dalam penelitian ini terdiri dari 7.200 citra daun tomat yang terbagi ke dalam enam kelas. Dataset tersebut dibagi menjadi tiga bagian, yaitu data latih, data validasi, dan data uji.
     \newpage
-    Data latih digunakan untuk proses pelatihan model, data validasi digunakan untuk memantau performa model selama pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model.
+    Data latih digunakan untuk melatih model, data validasi untuk memantau performa selama pelatihan, dan data uji untuk mengevaluasi performa akhir model.
 
     \begin{table}[H]
         \centering

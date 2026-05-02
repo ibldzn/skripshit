@@ -7,7 +7,7 @@
 
 \section{Jenis Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini menggunakan pendekatan eksperimen komparatif. Pendekatan tersebut digunakan karena penelitian ini membandingkan dua model \textit{deep learning}, yaitu YOLOv8 Nano dan YOLO11 Nano, pada tugas klasifikasi penyakit daun tomat. Perbandingan dilakukan berdasarkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
+    \hspace{\parindent}Penelitian ini menggunakan pendekatan eksperimen komparatif. Pendekatan ini dipilih karena penelitian membandingkan dua model \textit{deep learning}, yaitu YOLOv8 Nano dan YOLO11 Nano, pada tugas klasifikasi penyakit daun tomat. Perbandingan dilakukan berdasarkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
 
     Eksperimen dilakukan dengan menggunakan dataset dan konfigurasi pengujian yang sama untuk kedua model. Dengan cara tersebut, perbedaan hasil yang diperoleh dapat lebih diarahkan pada perbedaan performa model, bukan pada perbedaan data atau skenario pengujian. Hasil dari penelitian ini kemudian digunakan untuk menentukan model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}.
 \end{sectioncontent}
@@ -42,6 +42,7 @@
 \begin{sectioncontent}
     \hspace{\parindent}Dataset yang digunakan dalam penelitian ini merupakan dataset publik citra penyakit daun tomat. Dataset tersebut berisi gambar daun tomat yang telah dikelompokkan ke dalam beberapa kelas penyakit dan kelas daun sehat. Penggunaan dataset publik dipilih agar penelitian dapat dilakukan dengan data yang telah tersedia, memiliki label kelas yang jelas, serta dapat disusun sesuai kebutuhan tugas klasifikasi citra.
 
+    \newpage
     Dataset disusun ke dalam format direktori yang sesuai dengan kebutuhan tugas klasifikasi pada Ultralytics YOLO. Struktur dataset terdiri dari tiga bagian utama, yaitu data latih, data validasi, dan data uji. Setiap bagian memiliki subdirektori berdasarkan nama kelas.
 
     \begin{verbatim}
@@ -198,7 +199,7 @@ epochs=50 imgsz=224 batch=16 device=0
 
     \subsection{Pengujian pada Perangkat \textit{Edge}}
     \begin{subsectioncontent}
-        \hspace{\parindent}Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini dilakukan untuk mengukur efisiensi inferensi kedua model pada lingkungan komputasi terbatas.
+        \hspace{\parindent}Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini mengukur efisiensi inferensi kedua model pada lingkungan komputasi terbatas.
 
         Parameter yang diamati dalam pengujian pada perangkat \textit{edge} meliputi:
 
@@ -221,7 +222,7 @@ epochs=50 imgsz=224 batch=16 device=0
         \hspace{\parindent}Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Dalam klasifikasi multikelas, akurasi digunakan untuk mengetahui persentase keseluruhan citra yang berhasil diklasifikasikan dengan benar oleh model. Rumus akurasi adalah sebagai berikut:
 
         \begin{equation}
-            Accuracy = \frac{Jumlah\ Prediksi\ Benar}{Jumlah\ Seluruh\ Data\ Uji}
+            Accuracy = \frac{\text{Jumlah Prediksi Benar}}{\text{Jumlah Seluruh Data Uji}}
         \end{equation}
     \end{subsectioncontent}
 
@@ -281,7 +282,7 @@ epochs=50 imgsz=224 batch=16 device=0
         \hspace{\parindent}\textit{Frame Per Second} atau FPS menunjukkan jumlah citra yang dapat diproses oleh model dalam satu detik. FPS dihitung berdasarkan waktu inferensi rata-rata menggunakan rumus berikut:
 
         \begin{equation}
-            FPS = \frac{1000}{Average\ Inference\ Time\ (ms)}
+            FPS = \frac{1000}{\text{Average Inference Time (ms)}}
         \end{equation}
 
         Semakin tinggi nilai FPS, semakin baik kemampuan model dalam memproses citra secara cepat pada perangkat \textit{edge}.
@@ -292,7 +293,7 @@ epochs=50 imgsz=224 batch=16 device=0
 \begin{sectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, FPS, penggunaan memori, dan ukuran model.
 
-    Hasil pengujian kedua model disajikan dalam bentuk tabel dan grafik agar perbandingan lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi dan waktu inferensi lebih rendah dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
+    Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi dan waktu inferensi lebih rendah dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
 \end{sectioncontent}
 
 \section{Rancangan Hasil Pengujian}
@@ -318,7 +319,7 @@ epochs=50 imgsz=224 batch=16 device=0
         \caption{Rancangan Tabel Perbandingan Efisiensi pada Perangkat Edge}
         \begin{tabular}{|l|c|c|c|c|}
             \hline
-            \textbf{Model} & \textbf{Waktu Inferensi} & \textbf{FPS} & \textbf{Memori} & \textbf{Ukuran Model} \\
+            \textbf{Model} & \textbf{Waktu Inferensi} & \textbf{FPS} & \textbf{Memori Puncak} & \textbf{Ukuran Model} \\
             \hline
             YOLOv8 Nano & - & - & - & - \\
             \hline
