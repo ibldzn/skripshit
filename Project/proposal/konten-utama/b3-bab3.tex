@@ -86,8 +86,7 @@ tomato-leaf-disease/
         \hspace{\parindent}Perangkat keras yang digunakan dalam penelitian ini adalah sebagai berikut:
 
         \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-            \item Komputer atau laptop untuk proses pelatihan model.
-            \item GPU NVIDIA RTX 4060 untuk mempercepat proses pelatihan model.
+            \item \textit{Desktop PC} dengan spesifikasi prosesor AMD Ryzen 5, RAM 16 GB, dan GPU NVIDIA RTX 4060 untuk pelatihan model.
             \item Raspberry Pi 5 dengan RAM 8 GB sebagai perangkat \textit{edge} untuk pengujian inferensi.
             \item Media penyimpanan untuk menyimpan dataset, hasil pelatihan, dan model hasil ekspor.
         \end{enumerate}
@@ -168,7 +167,7 @@ tomato-leaf-disease/
             \hline
             Optimizer & Mengikuti konfigurasi pelatihan Ultralytics \\
             \hline
-            Perangkat pelatihan & Komputer dengan GPU NVIDIA RTX 4060 \\
+            Perangkat pelatihan & Desktop PC dengan GPU NVIDIA RTX 4060 \\
             \hline
         \end{tabular}
     \end{table}
@@ -292,6 +291,8 @@ epochs=50 imgsz=224 batch=16 device=0
 \section{Teknik Analisis Data}
 \begin{sectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, FPS, penggunaan memori, dan ukuran model.
+
+    \newpage
 
     Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi dan waktu inferensi lebih rendah dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
 \end{sectioncontent}
