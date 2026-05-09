@@ -151,37 +151,32 @@ tomato-leaf-disease/
     \begin{table}[H]
         \centering
         \caption{Konfigurasi Pelatihan Model}
+        \label{tab:konfigurasi-pelatihan}
         \begin{tabular}{|l|l|}
             \hline
-            \textbf{Parameter} & \textbf{Nilai} \\
-            \hline
-            Model 1 & YOLOv8 Nano Classification \\
-            \hline
-            Model 2 & YOLO11 Nano Classification \\
-            \hline
-            Ukuran citra & 224 x 224 piksel \\
-            \hline
-            Jumlah epoch & 50 \\
-            \hline
-            Batch size & 16 \\
-            \hline
-            Optimizer & Mengikuti konfigurasi pelatihan Ultralytics \\
-            \hline
-            Perangkat pelatihan & Desktop PC dengan GPU NVIDIA RTX 4060 \\
-            \hline
+            \textbf{Parameter} & \textbf{Nilai} \\ \hline
+                Model 1 & YOLOv8 Nano Classification \\ \hline
+                Model 2 & YOLO11 Nano Classification \\ \hline
+                Ukuran citra & 224 x 224 piksel \\ \hline
+                Jumlah epoch & 50 \\ \hline
+                Batch size & 16 \\ \hline
+                Workers & 2 \\ \hline
+                Cache & False \\ \hline
+                Seed & 210703 \\ \hline
+                Perangkat pelatihan & Desktop PC dengan GPU NVIDIA RTX 4060 \\ \hline
         \end{tabular}
     \end{table}
 
-    \hspace{\parindent}Perintah pelatihan yang digunakan adalah sebagai berikut:
+    Perintah pelatihan yang digunakan adalah sebagai berikut:
 
     \begin{verbatim}
-yolo classify train model=yolov8n-cls.pt data=tomato-leaf-disease \
-epochs=50 imgsz=224 batch=16 device=0
-    \end{verbatim}
+    yolo classify train model=yolov8n-cls.pt \
+    data=tomato-leaf-disease epochs=50 imgsz=224 batch=16 \
+    device=0 workers=2 cache=False seed=210703
 
-    \begin{verbatim}
-yolo classify train model=yolo11n-cls.pt data=tomato-leaf-disease \
-epochs=50 imgsz=224 batch=16 device=0
+    yolo classify train model=yolo11n-cls.pt \
+    data=tomato-leaf-disease epochs=50 imgsz=224 batch=16 \
+    device=0 workers=2 cache=False seed=210703
     \end{verbatim}
 
     Kedua model dilatih dengan konfigurasi yang sama agar hasil perbandingan lebih konsisten. Apabila terdapat perbedaan performa pada tahap evaluasi, perbedaan tersebut dapat dianalisis sebagai hasil dari karakteristik masing-masing model, bukan akibat perbedaan konfigurasi pelatihan.
@@ -273,7 +268,7 @@ epochs=50 imgsz=224 batch=16 device=0
 
     \subsection{Waktu Inferensi}
     \begin{subsectioncontent}
-        \hspace{\parindent}Waktu inferensi menunjukkan waktu yang dibutuhkan model untuk memproses satu citra dan menghasilkan prediksi. Semakin rendah waktu inferensi, semakin cepat model dalam melakukan klasifikasi. Metrik ini penting karena penelitian dilakukan pada perangkat \textit{edge} yang memiliki keterbatasan sumber daya komputasi.
+        \hspace{\parindent}Waktu inferensi menunjukkan waktu yang dibutuhkan model untuk memproses satu citra dan menghasilkan prediksi. Semakin rendah waktu inferensi, semakin cepat model dalam melakukan klasifikasi.
     \end{subsectioncontent}
 
     \subsection{\textit{Frame Per Second}}
