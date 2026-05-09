@@ -40,9 +40,16 @@
 
 \section{Dataset Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini merupakan dataset publik citra penyakit daun tomat. Dataset tersebut berisi gambar daun tomat yang telah dikelompokkan ke dalam beberapa kelas penyakit dan kelas daun sehat. Penggunaan dataset publik dipilih agar penelitian dapat dilakukan dengan data yang telah tersedia, memiliki label kelas yang jelas, serta dapat disusun sesuai kebutuhan tugas klasifikasi citra.
+    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini adalah \textit{Tomato Leaf Disease Classification Dataset in Pakistan} \citep{malik2026dataset} yang tersedia secara publik. Dataset ini terdiri dari 7.200 citra daun tomat yang dikumpulkan dari kondisi pertanian lapangan di Pakistan. Citra pada dataset tersebut mencakup enam kelas, yaitu \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}.
 
     \newpage
+
+    Dataset yang digunakan dalam penelitian ini telah tersedia dalam struktur data latih, data validasi, dan data uji. Oleh karena itu, penelitian ini mengikuti struktur pembagian dataset awal tanpa melakukan pembagian ulang. Penggunaan struktur awal tersebut dipilih agar eksperimen tetap konsisten dengan susunan dataset yang telah tersedia.
+
+    Struktur direktori dataset disesuaikan dengan format klasifikasi citra pada Ultralytics YOLO, yaitu terdiri dari folder \textit{train}, \textit{val}, dan \textit{test}. Setiap folder memiliki subdirektori berdasarkan nama kelas. Data latih digunakan untuk proses pelatihan model, data validasi digunakan untuk memantau performa model selama pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model.
+
+    Karena penelitian ini mengikuti pembagian dataset awal, parameter \textit{random seed} tidak digunakan untuk proses pembagian data. Dengan demikian, aspek yang dijaga dalam penelitian ini adalah penggunaan dataset, struktur data, dan konfigurasi pelatihan yang sama untuk YOLOv8 Nano dan YOLO11 Nano.
+
     Dataset disusun ke dalam format direktori yang sesuai dengan kebutuhan tugas klasifikasi pada Ultralytics YOLO. Struktur dataset terdiri dari tiga bagian utama, yaitu data latih, data validasi, dan data uji. Setiap bagian memiliki subdirektori berdasarkan nama kelas.
 
     \begin{verbatim}
@@ -72,8 +79,6 @@ tomato-leaf-disease/
     |-- Tomato_Septoria_leaf_spot/
     \end{verbatim}
 
-    \newpage
-
     Pembagian dataset dilakukan dengan memperhatikan proporsi data pada setiap kelas. Data latih digunakan untuk melatih model, data validasi digunakan untuk memantau performa model selama proses pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model. Data uji tidak digunakan dalam proses pelatihan maupun pemilihan parameter model agar hasil evaluasi lebih objektif.
 \end{sectioncontent}
 
@@ -98,7 +103,6 @@ tomato-leaf-disease/
 
         \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
             \item Python sebagai bahasa pemrograman utama.
-            \newpage
             \item Ultralytics YOLO untuk pelatihan dan evaluasi model YOLOv8 Nano dan YOLO11 Nano.
             \item PyTorch sebagai \textit{backend} pelatihan model.
             \item CUDA untuk akselerasi pelatihan menggunakan GPU NVIDIA.
@@ -111,19 +115,11 @@ tomato-leaf-disease/
 
 \section{\textit{Preprocessing} Data}
 \begin{sectioncontent}
-    \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan data citra siap digunakan dalam proses pelatihan dan pengujian model. Tahapan ini meliputi pemeriksaan dataset, penyesuaian struktur folder, pembagian dataset, serta penyesuaian ukuran citra.
+    \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan citra dapat digunakan pada proses pelatihan, evaluasi, dan inferensi model. Pada tahap pelatihan, preprocessing mengikuti mekanisme yang digunakan oleh Ultralytics YOLO untuk tugas klasifikasi citra. Citra diproses dengan ukuran masukan 224 x 224 piksel sesuai dengan konfigurasi pelatihan yang digunakan.
 
-    Pada penelitian ini, citra diproses dengan ukuran masukan 224 x 224 piksel. Ukuran tersebut digunakan karena sesuai dengan skenario klasifikasi citra pada model YOLO versi klasifikasi. Selain itu, normalisasi nilai piksel dilakukan agar citra dapat diproses oleh model secara konsisten.
+    Tahapan \textit{preprocessing} dalam penelitian ini meliputi pemeriksaan struktur folder dataset, pemeriksaan jumlah data pada setiap kelas, penyesuaian ukuran citra menjadi 224 x 224 piksel, serta normalisasi nilai piksel sesuai kebutuhan model. Dataset yang digunakan sudah memiliki struktur \textit{train}, \textit{val}, dan \textit{test}, sehingga penelitian ini tidak melakukan pembagian ulang dataset.
 
-    Tahapan \textit{preprocessing} dalam penelitian ini meliputi:
-
-    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Memeriksa jumlah data pada setiap kelas.
-        \item Menghapus atau memisahkan citra yang rusak, tidak terbaca, atau tidak sesuai.
-        \item Menyusun dataset ke dalam struktur folder \textit{train}, \textit{val}, dan \textit{test}.
-        \item Mengubah ukuran citra menjadi 224 x 224 piksel saat proses pelatihan dan inferensi.
-        \item Melakukan normalisasi nilai piksel sesuai kebutuhan model.
-    \end{enumerate}
+    Pada tahap pengujian inferensi menggunakan model ONNX, preprocessing dilakukan secara manual melalui script benchmark. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
 \end{sectioncontent}
 
 \section{Model yang Digunakan}
@@ -143,10 +139,7 @@ tomato-leaf-disease/
 
 \section{Skenario Pelatihan Model}
 \begin{sectioncontent}
-    \hspace{\parindent}Pelatihan model dilakukan menggunakan dataset yang sama dan konfigurasi pelatihan yang dibuat seragam untuk kedua model. Penggunaan konfigurasi yang sama bertujuan agar perbandingan antara YOLOv8 Nano dan YOLO11 Nano dapat dilakukan secara adil. Parameter utama seperti ukuran citra, jumlah epoch, dan \textit{batch size} dibuat sama pada kedua model.
-
-    \newpage
-    Konfigurasi pelatihan yang digunakan adalah sebagai berikut:
+    \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih menggunakan dataset, ukuran citra, jumlah epoch, batch size, dan perangkat pelatihan yang sama. Penggunaan konfigurasi yang sama bertujuan agar perbandingan hasil lebih diarahkan pada perbedaan karakteristik model, bukan pada perbedaan skenario pelatihan. Konfigurasi pelatihan yang digunakan ditampilkan pada Tabel \ref{tab:konfigurasi-pelatihan}.
 
     \begin{table}[H]
         \centering
@@ -162,7 +155,6 @@ tomato-leaf-disease/
                 Batch size & 16 \\ \hline
                 Workers & 2 \\ \hline
                 Cache & False \\ \hline
-                Seed & 210703 \\ \hline
                 Perangkat pelatihan & Desktop PC dengan GPU NVIDIA RTX 4060 \\ \hline
         \end{tabular}
     \end{table}
@@ -172,11 +164,11 @@ tomato-leaf-disease/
     \begin{verbatim}
     yolo classify train model=yolov8n-cls.pt \
     data=tomato-leaf-disease epochs=50 imgsz=224 batch=16 \
-    device=0 workers=2 cache=False seed=210703
+    device=0 workers=2 cache=False
 
     yolo classify train model=yolo11n-cls.pt \
     data=tomato-leaf-disease epochs=50 imgsz=224 batch=16 \
-    device=0 workers=2 cache=False seed=210703
+    device=0 workers=2 cache=False
     \end{verbatim}
 
     Kedua model dilatih dengan konfigurasi yang sama agar hasil perbandingan lebih konsisten. Apabila terdapat perbedaan performa pada tahap evaluasi, perbedaan tersebut dapat dianalisis sebagai hasil dari karakteristik masing-masing model, bukan akibat perbedaan konfigurasi pelatihan.
@@ -202,7 +194,6 @@ tomato-leaf-disease/
             \item Nilai FPS (\textit{Frame Per Second}).
             \item Penggunaan memori saat inferensi.
             \item Ukuran file model hasil ekspor.
-            \item Stabilitas hasil prediksi pada data uji.
         \end{enumerate}
     \end{subsectioncontent}
 \end{sectioncontent}
@@ -286,8 +277,6 @@ tomato-leaf-disease/
 \section{Teknik Analisis Data}
 \begin{sectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, FPS, penggunaan memori, dan ukuran model.
-
-    \newpage
 
     Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi dan waktu inferensi lebih rendah dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
 \end{sectioncontent}
