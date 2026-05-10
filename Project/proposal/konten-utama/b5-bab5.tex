@@ -1,46 +1,29 @@
-%==================================================================
-% Ini adalah bab 5
-% Silahkan edit sesuai kebutuhan, baik menambah atau mengurangi \section, \subsection
-%==================================================================
-
 \chapter[KESIMPULAN DAN SARAN]{\\ KESIMPULAN DAN SARAN}
 
 \section{Kesimpulan}
 \begin{sectioncontent}
-    \hspace{\parindent}Bagian kesimpulan menyajikan ringkasan dari temuan dan hasil yang diperoleh selama pelaksanaan proyek. Kesimpulan ini menjawab tujuan proyek dan masalah yang telah diidentifikasi di awal laporan, serta mengonfirmasi pencapaian yang telah diraih berdasarkan hasil implementasi dan pengujian. Kesimpulan harus ditarik secara objektif, didasarkan pada data dan hasil yang telah diperoleh, serta tidak memasukkan opini atau asumsi yang tidak didukung oleh hasil pengujian.
-    
-    Kesimpulan harus dibuat dengan singkat dan jelas, mencakup poin-poin utama yang berhasil dicapai dalam proyek, seperti:
-    \begin{enumerate}[leftmargin=0.5cm,label=\alph*.]
-        \item Capaian utama yang menunjukkan bahwa proyek berhasil memenuhi spesifikasi yang ditetapkan
-        \item Efektivitas sistem dalam menjalankan fungsinya berdasarkan hasil pengujian
-        \item Kesesuaian hasil proyek dengan teori dan standar yang telah diuraikan sebelumnya
+    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+        \item YOLOv8 Nano dan YOLO11 Nano berhasil diterapkan untuk klasifikasi penyakit daun tomat pada enam kelas, yaitu Tomato Early Blight, Tomato Healthy, Tomato Leaf Late Blight, Tomato Leaf Yellow Curl Virus, Tomato Mold Leaf, dan Tomato Septoria Leaf Spot. Dataset yang digunakan berjumlah 7.200 citra, dengan data uji sebanyak 720 citra yang terbagi seimbang pada setiap kelas.
+
+        \item Berdasarkan hasil pengujian klasifikasi, YOLOv8 Nano memperoleh akurasi sebesar 88,47\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 88,06\%. Dari sisi metrik makro, YOLOv8 Nano memperoleh \textit{macro F1-score} sebesar 88,63\%, sedangkan YOLO11 Nano memperoleh 88,12\%. Hasil ini menunjukkan bahwa performa kedua model cukup berdekatan, tetapi YOLOv8 Nano sedikit lebih unggul pada skenario penelitian ini.
+
+        \item Berdasarkan hasil pengujian pada Raspberry Pi 5, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 7,78 ms dengan FPS sebesar 128,52. Sementara itu, YOLO11 Nano memperoleh rata-rata waktu inferensi sebesar 7,86 ms dengan FPS sebesar 127,18. Dari sisi ukuran model dan penggunaan memori, YOLOv8 Nano juga sedikit lebih ringan dibandingkan YOLO11 Nano.
+
+        \item Berdasarkan kombinasi hasil akurasi, \textit{macro F1-score}, waktu inferensi, FPS, ukuran model, dan penggunaan memori, YOLOv8 Nano menjadi model yang lebih direkomendasikan pada penelitian ini. Namun, rekomendasi tersebut berlaku pada dataset, konfigurasi pelatihan, format ONNX, dan perangkat Raspberry Pi 5 yang digunakan, sehingga hasilnya tidak dapat digeneralisasi secara mutlak untuk seluruh kondisi.
     \end{enumerate}
-
-    Selain itu, kesimpulan juga membahas keterkaitan dengan hasil-hasil penelitian atau proyek serupa yang telah dilakukan sebelumnya, untuk menunjukkan kontribusi dan relevansi dari proyek ini dalam konteks yang lebih luas. Bagian ini juga bisa mencakup hal-hal baru yang ditemukan selama proyek yang dapat memberikan kontribusi positif dalam pengembangan teknologi atau aplikasi di masa mendatang.
-    
-    Secara keseluruhan, kesimpulan harus memberikan gambaran yang menyeluruh mengenai efektivitas, pencapaian, dan kontribusi proyek terhadap bidang yang diteliti, sekaligus merangkum seluruh hasil dengan ringkas namun komprehensif.
 \end{sectioncontent}
-
 
 \section{Saran}
 \begin{sectioncontent}
-    \hspace{\parindent}Bagian saran menyajikan rekomendasi untuk pengembangan lebih lanjut yang dapat dilakukan berdasarkan temuan dan hasil yang diperoleh dalam proyek ini. Saran diberikan untuk membantu pembaca memahami langkah-langkah tambahan atau perbaikan yang dapat dilakukan untuk menyempurnakan proyek ini atau untuk membuka peluang penelitian atau pengembangan lebih lanjut.
-    Saran yang diberikan sebaiknya mencakup hal-hal berikut:
-    \begin{enumerate}[leftmargin=0.5cm,label=\alph*.]
-        \item Pengembangan lanjutan pada sistem atau perangkat, seperti peningkatan teknologi atau penambahan fitur yang belum sempat diimplementasikan dalam proyek ini.
-        \item Pengujian lebih lanjut di berbagai kondisi atau lingkungan yang berbeda, untuk memastikan sistem mampu beradaptasi dalam berbagai situasi dan meningkatkan keandalannya.
-        \item Penelitian tambahan untuk menggali aspek-aspek yang belum sepenuhnya terjawab dalam proyek ini atau untuk memvalidasi hasil yang telah diperoleh.
-        \item Pengembangan aplikasi sistem yang lebih luas di bidang lain yang relevan, agar hasil proyek ini dapat memberikan manfaat yang lebih besar di luar bidang awal yang menjadi fokus.
+    \hspace{\parindent}Berdasarkan hasil penelitian dan keterbatasan yang ditemukan, terdapat beberapa saran untuk pengembangan penelitian selanjutnya, yaitu sebagai berikut:
+
+    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+        \item Penelitian selanjutnya dapat menggunakan dataset yang lebih bervariasi, terutama citra daun tomat yang diambil langsung dari kondisi lapangan dengan variasi pencahayaan, latar belakang, sudut pengambilan, jarak kamera, dan kualitas citra yang berbeda. Hal ini diperlukan untuk menguji kemampuan generalisasi model pada kondisi yang lebih nyata.
+
+        \item Pengujian dapat dilakukan pada beberapa jenis perangkat \textit{edge} lain, seperti Raspberry Pi versi berbeda, NVIDIA Jetson Nano, Orange Pi, atau perangkat sejenis. Dengan begitu, performa model dapat dibandingkan pada perangkat dengan karakteristik komputasi yang berbeda.
+
+        \item Penelitian selanjutnya dapat membandingkan beberapa format model hasil ekspor, seperti ONNX, NCNN, TensorFlow Lite, atau format lain yang mendukung perangkat \textit{edge}. Perbandingan ini penting karena runtime dan format model dapat memengaruhi waktu inferensi, penggunaan memori, dan stabilitas performa.
+
+        \item Pengembangan penelitian dapat dilanjutkan ke tugas \textit{object detection} atau segmentasi citra agar sistem tidak hanya mampu menentukan jenis penyakit, tetapi juga dapat menunjukkan lokasi bagian daun yang terindikasi penyakit. Selain itu, sistem juga dapat dikembangkan menjadi aplikasi berbasis kamera agar lebih mendekati penggunaan langsung di lapangan.
     \end{enumerate}
-    
-    Selain itu, saran juga dapat mencakup rekomendasi untuk mengatasi keterbatasan yang ditemui selama proyek, seperti:
-    \begin{enumerate}[leftmargin=0.5cm,label=\alph*.]
-        \item Penyempurnaan metode atau pendekatan yang digunakan, jika ditemukan kelemahan dalam tahap implementasi atau pengujian
-        \item Peningkatan perangkat keras atau perangkat lunak untuk meningkatkan performa sistem secara keseluruhan
-        \item Pemanfaatan teknologi atau metode baru yang relevan untuk memperbaiki atau menambah kapabilitas sistem
-    \end{enumerate}
-    
-    Saran harus dibahas dalam konteks tujuan proyek dan masalah yang diidentifikasi, serta didasarkan pada hasil yang diperoleh. Rekomendasi juga perlu realistis dan dapat diimplementasikan dalam kondisi praktis, agar memberikan panduan yang bermanfaat bagi pengembangan lebih lanjut atau implementasi yang lebih luas.
-    
-    Secara keseluruhan, saran ini bertujuan untuk memberikan arah bagi pengembangan proyek atau penelitian selanjutnya, sekaligus menunjukkan bagaimana hasil dari proyek ini dapat dioptimalkan dan memberikan kontribusi yang lebih besar dalam bidang yang terkait.
 \end{sectioncontent}
