@@ -250,11 +250,11 @@
 
     \begin{table}[H]
         \centering
-        \caption{Ukuran Model dan Memori Puncak}
+        \caption{Ukuran Model dan Memori Puncak Teramati}
         \label{tab:ukuran-model-memori}
         \begin{tabular}{|l|c|c|}
             \hline
-            \textbf{Model} & \textbf{Ukuran Model} & \textbf{Memori Puncak} \\
+            \textbf{Model} & \textbf{Ukuran Model} & \textbf{Memori Puncak Teramati} \\
             \hline
             YOLOv8 Nano & 5,60 MB & 70,04 MB \\
             \hline
@@ -271,7 +271,7 @@
         \label{tab:efisiensi-edge}
         \begin{tabular}{|l|c|c|c|c|c|}
             \hline
-            \textbf{Model} & \textbf{Rata-rata} & \textbf{Median} & \textbf{Minimum} & \textbf{Maksimum} & \textbf{FPS} \\
+            \textbf{Model} & \textbf{Rata-rata} & \textbf{Median} & \textbf{Minimum} & \textbf{Maksimum} & \textbf{FPS \textit{Inference-Only}} \\
             \hline
             YOLOv8 Nano & 7,78 ms & 7,53 ms & 7,43 ms & 22,10 ms & 128,52 \\
             \hline
@@ -284,7 +284,7 @@
 
     Nilai FPS tersebut diperoleh dari pengujian inferensi model pada data uji, sehingga belum merepresentasikan keseluruhan pipeline sistem nyata yang melibatkan kamera, akuisisi citra, preprocessing tambahan, dan tampilan antarmuka.
 
-    Hasil tersebut menunjukkan bahwa kedua model memiliki efisiensi inferensi yang sangat berdekatan pada Raspberry Pi 5. YOLOv8 Nano memang sedikit lebih cepat berdasarkan nilai rata-rata dan FPS, tetapi perbedaannya relatif kecil. Oleh karena itu, hasil efisiensi ini lebih tepat dipahami sebagai indikasi bahwa kedua model sama-sama ringan untuk dijalankan pada perangkat \textit{edge}, dengan YOLOv8 Nano memberikan sedikit keunggulan pada skenario pengujian ini.
+    Dari hasil tersebut, efisiensi kedua model pada Raspberry Pi 5 terlihat hampir setara. YOLOv8 Nano memang sedikit lebih cepat berdasarkan nilai rata-rata dan FPS, tetapi perbedaannya relatif kecil. Oleh karena itu, hasil efisiensi ini lebih tepat dipahami sebagai indikasi bahwa kedua model sama-sama ringan untuk dijalankan pada perangkat \textit{edge}, dengan YOLOv8 Nano memberikan sedikit keunggulan pada skenario pengujian ini.
 
     Nilai maksimum waktu inferensi pada kedua model terlihat lebih tinggi dibandingkan nilai rata-rata dan median. Kondisi ini dapat terjadi karena adanya variasi beban sistem pada Raspberry Pi selama pengujian, misalnya aktivitas sistem operasi, proses latar belakang, atau kondisi termal perangkat. Oleh sebab itu, nilai rata-rata dan median digunakan bersama untuk memberikan gambaran efisiensi yang lebih seimbang.
 \end{sectioncontent}
@@ -331,7 +331,7 @@
 \begin{subsectioncontent}
     \hspace{\parindent}Dari sisi ukuran model, YOLOv8 Nano memiliki ukuran sebesar 5,60 MB, sedangkan YOLO11 Nano memiliki ukuran sebesar 5,90 MB. Selisih ukuran keduanya relatif kecil, sehingga keduanya masih dapat dikategorikan sebagai model ringan untuk kebutuhan klasifikasi citra pada perangkat \textit{edge}. Ukuran model yang kecil menjadi penting karena perangkat \textit{edge} umumnya memiliki keterbatasan penyimpanan dan sumber daya komputasi.
 
-    Penggunaan memori puncak juga menunjukkan hasil yang berdekatan. YOLOv8 Nano menggunakan memori puncak sebesar 70,04 MB, sedangkan YOLO11 Nano menggunakan 70,46 MB. Selisih tersebut tidak terlalu besar, sehingga dari sisi kebutuhan memori, kedua model sama-sama dapat dijalankan pada Raspberry Pi 5.
+    \textit{Peak} RSS yang ter\textit{sampling} selama pengujian juga menunjukkan hasil yang berdekatan. YOLOv8 Nano menggunakan memori puncak sebesar 70,04 MB, sedangkan YOLO11 Nano menggunakan 70,46 MB. Selisih tersebut tidak terlalu besar, sehingga dari sisi kebutuhan memori, kedua model sama-sama dapat dijalankan pada Raspberry Pi 5.
 
     Meskipun perbedaan ukuran model dan penggunaan memori tidak besar, YOLOv8 Nano memiliki ukuran file dan penggunaan memori yang sedikit lebih rendah pada skenario pengujian ini. Hasil tersebut sejalan dengan hasil efisiensi inferensi yang menunjukkan bahwa YOLOv8 Nano memiliki waktu inferensi sedikit lebih rendah dibandingkan YOLO11 Nano.
 \end{subsectioncontent}

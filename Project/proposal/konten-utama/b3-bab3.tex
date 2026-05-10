@@ -27,7 +27,7 @@
         \item Melakukan studi literatur mengenai penyakit daun tomat, klasifikasi citra, model YOLO, dan perangkat \textit{edge}.
         \item Mengumpulkan dataset citra penyakit daun tomat dari sumber publik.
         \item Memeriksa struktur dataset dan jumlah data pada setiap kelas.
-        \item Membagi dataset ke dalam data latih, data validasi, dan data uji.
+        \item Memeriksa pembagian dataset awal yang telah tersedia dalam struktur data latih, data validasi, dan data uji.
         \item Melakukan \textit{preprocessing} dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
         \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama.
         \item Mengevaluasi performa klasifikasi model menggunakan data validasi dan data uji.
@@ -79,7 +79,7 @@ tomato-leaf-disease/
     |-- Tomato_Septoria_leaf_spot/
     \end{verbatim}
 
-    Pembagian dataset dilakukan dengan memperhatikan proporsi data pada setiap kelas. Data latih digunakan untuk melatih model, data validasi digunakan untuk memantau performa model selama proses pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model. Data uji tidak digunakan dalam proses pelatihan maupun pemilihan parameter model agar hasil evaluasi lebih objektif.
+    Pembagian dataset pada sumber data telah disusun dengan proporsi yang seimbang pada setiap kelas. Dalam penelitian ini, pembagian tersebut digunakan sebagaimana struktur awal dataset tanpa proses pembagian ulang.
 \end{sectioncontent}
 
 \section{Perangkat Keras dan Perangkat Lunak}
@@ -195,6 +195,10 @@ tomato-leaf-disease/
             \item Penggunaan memori saat inferensi.
             \item Ukuran file model hasil ekspor.
         \end{enumerate}
+
+        Pengujian dilakukan dengan ukuran \textit{batch} 1 menggunakan ONNX Runtime dengan CPUExecutionProvider. Sebelum pengukuran utama, dilakukan proses warm-up sebanyak 10 citra untuk membantu menstabilkan waktu inferensi. Script benchmark mencatat waktu \textit{preprocessing}, waktu inferensi, waktu \textit{postprocessing}, dan waktu total \textit{pipeline}. Namun, metrik utama yang digunakan dalam perbandingan efisiensi adalah waktu inferensi model dan FPS \textit{inference-only}, karena keduanya lebih langsung merepresentasikan performa komputasi model.
+
+        Penggunaan memori diamati menggunakan nilai \textit{Resident Set Size} (RSS) dari proses Python selama benchmark berjalan. Nilai memori puncak yang dilaporkan merupakan RSS puncak yang tersampling selama proses pengujian, bukan pengukuran memori perangkat secara keseluruhan.
     \end{subsectioncontent}
 \end{sectioncontent}
 
@@ -304,7 +308,7 @@ tomato-leaf-disease/
         \caption{Rancangan Tabel Perbandingan Efisiensi pada Perangkat Edge}
         \begin{tabular}{|l|c|c|c|c|}
             \hline
-            \textbf{Model} & \textbf{Waktu Inferensi} & \textbf{FPS} & \textbf{Memori Puncak} & \textbf{Ukuran Model} \\
+            \textbf{Model} & \textbf{Waktu Inferensi} & \textbf{FPS} & \textbf{Memori Puncak Teramati} & \textbf{Ukuran Model} \\
             \hline
             YOLOv8 Nano & - & - & - & - \\
             \hline
