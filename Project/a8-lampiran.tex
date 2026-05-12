@@ -5,6 +5,7 @@
 %% DILARANG EDIT BAGIAN INI
 \appendix
 \chapter*{LAMPIRAN 1 \\ KODE PROGRAM}
+\addlampiran
 \addcontentsline{toc}{chapter}{LAMPIRAN 1 KODE PROGRAM}
 %% DILARANG EDIT BAGIAN INI
 
@@ -14,10 +15,27 @@
 \section*{Kode Benchmarking Model YOLOv8 Nano dan YOLO11 Nano}
 \lstinputlisting[language=Python, label=lst:python_file]{kode/benchmark.py}
 \addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Kode Benchmarking Model YOLOv8 Nano dan YOLO11 Nano}
-% \lstinputlisting[language=yaml, label=lst:yolo11n_args]{kode/yolo11n-cls_args.yml}
-% \addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Kode Konfigurasi Pelatihan YOLO11 Nano}
-% \lstinputlisting[language=yaml, label=lst:yolov8n_args]{kode/yolov8n-cls_args.yml}
-% \addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Kode Konfigurasi Pelatihan YOLOv8 Nano}
+
+\phantomsection
+\section*{Daftar Kelas Dataset}
+\lstinputlisting[label=lst:classes]{kode/classes.txt}
+\addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Daftar Kelas Dataset}
+
+\phantomsection
+\section*{Kode Konfigurasi Pelatihan YOLOv8 Nano}
+{\renewcommand{\YAMLkeystyle}{\color{black}\ttfamily\fontsize{5}{5.5}\selectfont}%
+\renewcommand{\YAMLvaluestyle}{\color{codepurple}\ttfamily\fontsize{5}{5.5}\selectfont}%
+\renewcommand{\YAMLcolonstyle}{\color{magenta}\mdseries}%
+\lstinputlisting[language=yaml, breaklines=false, keywordstyle=\color{magenta}\ttfamily\fontsize{5}{5.5}\selectfont, label=lst:yolov8n_args]{kode/yolov8n-cls_args.yml}}
+\addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Kode Konfigurasi Pelatihan YOLOv8 Nano}
+
+\phantomsection
+\section*{Kode Konfigurasi Pelatihan YOLO11 Nano}
+{\renewcommand{\YAMLkeystyle}{\color{black}\ttfamily\fontsize{5}{5.5}\selectfont}%
+\renewcommand{\YAMLvaluestyle}{\color{codepurple}\ttfamily\fontsize{5}{5.5}\selectfont}%
+\renewcommand{\YAMLcolonstyle}{\color{magenta}\mdseries}%
+\lstinputlisting[language=yaml, breaklines=false, keywordstyle=\color{magenta}\ttfamily\fontsize{5}{5.5}\selectfont, label=lst:yolo11n_args]{kode/yolo11n-cls_args.yml}}
+\addcontentsline{toc}{section}{\protect\numberline{}Lampiran 1. Kode Konfigurasi Pelatihan YOLO11 Nano}
 %% edit bagian ini
 
 % %% DILARANG EDIT BAGIAN INI

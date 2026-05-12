@@ -332,6 +332,25 @@
 \regtotcounter{table}       % Counter untuk tabel
 \regtotcounter{figure}      % Counter untuk gambar
 
+% Counter kumulatif untuk tabel dan gambar ber-caption
+\newcounter{totaltable}
+\regtotcounter{totaltable}
+
+\newcounter{totalfigure}
+\regtotcounter{totalfigure}
+
+\makeatletter
+\AtBeginDocument{%
+	\pretocmd{\caption}{%
+		\ifx\@captype\@undefined
+		\else
+			\ifdefstring{\@captype}{table}{\stepcounter{totaltable}}{}%
+			\ifdefstring{\@captype}{figure}{\stepcounter{totalfigure}}{}%
+		\fi
+	}{}{}%
+}
+\makeatother
+
 % Counter custom untuk lampiran dan pustaka
 \newcounter{lampiran}
 \regtotcounter{lampiran}

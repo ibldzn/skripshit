@@ -269,9 +269,11 @@
         \centering
         \caption{Perbandingan Efisiensi Inferensi pada Raspberry Pi 5}
         \label{tab:efisiensi-edge}
+        \small
+        \renewcommand{\arraystretch}{1.5}
         \begin{tabular}{|l|c|c|c|c|c|}
             \hline
-            \textbf{Model} & \textbf{Rata-rata} & \textbf{Median} & \textbf{Minimum} & \textbf{Maksimum} & \textbf{FPS \textit{Inference-Only}} \\
+            \textbf{Model} & \textbf{Rata-rata} & \textbf{Median} & \textbf{Minimum} & \textbf{Maksimum} & \raisebox{-0.25ex}{\textbf{\shortstack[c]{FPS\\\textit{Inference-Only}}}} \\
             \hline
             YOLOv8 Nano & 7,78 ms & 7,53 ms & 7,43 ms & 22,10 ms & 128,52 \\
             \hline
@@ -339,6 +341,10 @@
 \subsection{Perbandingan YOLOv8 Nano dan YOLO11 Nano}
 \begin{subsectioncontent}
     \hspace{\parindent}Secara keseluruhan, YOLOv8 Nano menunjukkan hasil yang sedikit lebih tinggi dibandingkan YOLO11 Nano pada penelitian ini. YOLOv8 Nano unggul tipis dari sisi akurasi, \textit{macro F1-score}, rata-rata waktu inferensi, FPS, ukuran model, dan penggunaan memori puncak. Namun, selisih antara kedua model tidak besar, sehingga hasil ini perlu dibaca secara hati-hati.
+
+    Hasil penelitian ini tidak sepenuhnya mengikuti pola yang dilaporkan pada beberapa penelitian terdahulu. Pada sejumlah penelitian sebelumnya, YOLO11 dilaporkan memperoleh performa lebih tinggi dibandingkan YOLOv8 pada skenario penyakit daun tomat \citep{ramos2025comprehensive,majid2025comparative}. Namun, pada penelitian ini YOLOv8 Nano justru memperoleh akurasi dan efisiensi \textit{inference} yang sedikit lebih baik dibandingkan YOLO11 Nano. Perbedaan tersebut menunjukkan bahwa performa model tidak dapat digeneralisasi hanya berdasarkan versi arsitektur. Hasil akhir tetap dipengaruhi oleh jenis tugas, karakteristik \textit{dataset}, ukuran model, konfigurasi pelatihan, format ekspor, serta perangkat yang digunakan untuk pengujian.
+
+    Dalam konteks model ringan, temuan ini masih sejalan dengan arah penelitian sebelumnya yang menekankan pentingnya evaluasi langsung pada perangkat target. Model berbasis YOLOv8n masih digunakan sebagai dasar pengembangan sistem deteksi penyakit daun tomat yang ringan, sedangkan penelitian berbasis YOLO11n pada skenario \textit{edge deployment} menunjukkan bahwa evaluasi model perlu mempertimbangkan \textit{latency}, \textit{frame rate}, penggunaan memori, dan efisiensi komputasi \citep{he2025ltyolo,sun2025yoloplnet}. Oleh karena itu, hasil penelitian ini lebih tepat dipahami sebagai perbandingan kontekstual antara YOLOv8 Nano dan YOLO11 Nano pada tugas \textit{image classification}, format ONNX, dan perangkat Raspberry Pi 5, bukan sebagai kesimpulan bahwa salah satu model selalu lebih unggul pada seluruh kondisi.
 
     YOLO11 Nano sebagai model yang lebih baru tidak otomatis selalu menghasilkan performa yang lebih tinggi pada semua dataset. Performa model dapat dipengaruhi oleh karakteristik dataset, jumlah kelas, kemiripan visual antar kelas, konfigurasi pelatihan, format hasil ekspor, dan runtime yang digunakan pada perangkat \textit{edge}. Pada dataset penelitian ini, YOLOv8 Nano menunjukkan hasil yang sedikit lebih tinggi, tetapi YOLO11 Nano tetap menunjukkan performa yang kompetitif.
 

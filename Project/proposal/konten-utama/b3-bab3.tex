@@ -48,7 +48,7 @@
 
     Struktur direktori dataset disesuaikan dengan format klasifikasi citra pada Ultralytics YOLO, yaitu terdiri dari folder \textit{train}, \textit{val}, dan \textit{test}. Setiap folder memiliki subdirektori berdasarkan nama kelas. Data latih digunakan untuk proses pelatihan model, data validasi digunakan untuk memantau performa model selama pelatihan, sedangkan data uji digunakan untuk mengevaluasi performa akhir model.
 
-    Karena penelitian ini mengikuti pembagian dataset awal, parameter \textit{random seed} tidak digunakan untuk proses pembagian data. Dengan demikian, aspek yang dijaga dalam penelitian ini adalah penggunaan dataset, struktur data, dan konfigurasi pelatihan yang sama untuk YOLOv8 Nano dan YOLO11 Nano.
+    Penelitian ini tidak menentukan seed untuk pembagian dataset karena struktur train, val, dan test telah tersedia dari dataset awal. Pada proses pelatihan, konfigurasi mengikuti parameter default Ultralytics yang tercatat pada file konfigurasi hasil training.
 
     Dataset disusun ke dalam format direktori yang sesuai dengan kebutuhan tugas klasifikasi pada Ultralytics YOLO. Struktur dataset terdiri dari tiga bagian utama, yaitu data latih, data validasi, dan data uji. Setiap bagian memiliki subdirektori berdasarkan nama kelas.
 
@@ -116,6 +116,8 @@ tomato-leaf-disease/
 \section{\textit{Preprocessing} Data}
 \begin{sectioncontent}
     \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan citra dapat digunakan pada proses pelatihan, evaluasi, dan inferensi model. Pada tahap pelatihan, preprocessing mengikuti mekanisme yang digunakan oleh Ultralytics YOLO untuk tugas klasifikasi citra. Citra diproses dengan ukuran masukan 224 x 224 piksel sesuai dengan konfigurasi pelatihan yang digunakan.
+
+    \newpage
 
     Tahapan \textit{preprocessing} dalam penelitian ini meliputi pemeriksaan struktur folder dataset, pemeriksaan jumlah data pada setiap kelas, penyesuaian ukuran citra menjadi 224 x 224 piksel, serta normalisasi nilai piksel sesuai kebutuhan model. Dataset yang digunakan sudah memiliki struktur \textit{train}, \textit{val}, dan \textit{test}, sehingga penelitian ini tidak melakukan pembagian ulang dataset.
 
@@ -292,29 +294,29 @@ tomato-leaf-disease/
     \begin{table}[H]
         \centering
         \caption{Rancangan Tabel Perbandingan Akurasi Model}
-        \begin{tabular}{|l|c|c|c|c|}
+        \begin{tabularx}{\linewidth}{|l|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
             \hline
-            \textbf{Model} & \textbf{Akurasi} & \textbf{Macro Precision} & \textbf{Macro Recall} & \textbf{Macro F1-score} \\
+            \textbf{Model} & \textbf{Akurasi} & \textbf{\shortstack{Macro\\Precision}} & \textbf{\shortstack{Macro\\Recall}} & \textbf{\shortstack{Macro\\F1-score}} \\
             \hline
             YOLOv8 Nano & - & - & - & - \\
             \hline
             YOLO11 Nano & - & - & - & - \\
             \hline
-        \end{tabular}
+        \end{tabularx}
     \end{table}
 
     \begin{table}[H]
         \centering
         \caption{Rancangan Tabel Perbandingan Efisiensi pada Perangkat Edge}
-        \begin{tabular}{|l|c|c|c|c|}
+        \begin{tabularx}{\linewidth}{|l|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
             \hline
-            \textbf{Model} & \textbf{Waktu Inferensi} & \textbf{FPS} & \textbf{Memori Puncak Teramati} & \textbf{Ukuran Model} \\
+            \textbf{Model} & \textbf{\shortstack{Waktu\\Inferensi}} & \textbf{FPS} & \textbf{\shortstack{Memori\\Puncak\\Teramati}} & \textbf{\shortstack{Ukuran\\Model}} \\
             \hline
             YOLOv8 Nano & - & - & - & - \\
             \hline
             YOLO11 Nano & - & - & - & - \\
             \hline
-        \end{tabular}
+        \end{tabularx}
     \end{table}
 
     Tabel tersebut digunakan sebagai dasar untuk membandingkan performa kedua model. Penentuan model yang lebih sesuai tidak hanya didasarkan pada akurasi tertinggi, tetapi juga mempertimbangkan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
