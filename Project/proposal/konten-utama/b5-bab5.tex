@@ -5,25 +5,29 @@
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item YOLOv8 Nano dan YOLO11 Nano berhasil diterapkan untuk klasifikasi penyakit daun tomat pada enam kelas, yaitu Tomato Early Blight, Tomato Healthy, Tomato Leaf Late Blight, Tomato Leaf Yellow Curl Virus, Tomato Mold Leaf, dan Tomato Septoria Leaf Spot. Dataset yang digunakan berjumlah 7.200 citra, dengan data uji sebanyak 720 citra yang terbagi seimbang pada setiap kelas.
 
-        \item Berdasarkan hasil pengujian klasifikasi, YOLOv8 Nano memperoleh akurasi sebesar 88,47\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 88,06\%. Dari sisi metrik makro, YOLOv8 Nano memperoleh \textit{macro F1-score} sebesar 88,63\%, sedangkan YOLO11 Nano memperoleh 88,12\%. Hasil ini menunjukkan bahwa performa kedua model cukup berdekatan, tetapi YOLOv8 Nano sedikit lebih unggul pada skenario penelitian ini.
+        \item Berdasarkan rata-rata hasil pengujian dari 20 seed, YOLOv8 Nano memperoleh akurasi sebesar 88,32\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 87,81\%. YOLOv8 Nano juga memperoleh \textit{macro F1-score} sebesar 88,33\%, sedangkan YOLO11 Nano memperoleh 87,89\%. Secara deskriptif, YOLOv8 Nano sedikit lebih tinggi, tetapi hasil uji Wilcoxon Signed-Rank menunjukkan bahwa perbedaan akurasi kedua model tidak signifikan secara statistik dengan nilai \textit{p-value} sebesar 0,2706.
 
-        \item Berdasarkan hasil pengujian pada Raspberry Pi 5, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 7,78 ms dengan FPS sebesar 128,52. Sementara itu, YOLO11 Nano memperoleh rata-rata waktu inferensi sebesar 7,86 ms dengan FPS sebesar 127,18. Dari sisi ukuran model dan penggunaan memori, YOLOv8 Nano juga sedikit lebih ringan dibandingkan YOLO11 Nano.
+        \item Berdasarkan hasil pengujian pada Raspberry Pi 5, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 8,43 ms, sedangkan YOLO11 Nano memperoleh 8,50 ms. Pada waktu total \textit{pipeline}, YOLOv8 Nano memperoleh 9,79 ms, sedangkan YOLO11 Nano memperoleh 9,85 ms. Hasil uji Wilcoxon menunjukkan bahwa perbedaan waktu inferensi signifikan secara statistik, meskipun selisih praktis antara kedua model tetap kecil.
 
-        \item Berdasarkan kombinasi hasil akurasi, \textit{macro F1-score}, waktu inferensi, FPS, ukuran model, dan penggunaan memori, YOLOv8 Nano menjadi model yang lebih direkomendasikan pada penelitian ini. Namun, rekomendasi tersebut berlaku pada dataset, konfigurasi pelatihan, format ONNX, dan perangkat Raspberry Pi 5 yang digunakan, sehingga hasilnya tidak dapat digeneralisasi secara mutlak untuk seluruh kondisi.
+        \item Dari sisi ukuran model dan penggunaan memori, YOLOv8 Nano lebih ringan dibandingkan YOLO11 Nano. YOLOv8 Nano memiliki ukuran model sebesar 5,53 MB, sedangkan YOLO11 Nano sebesar 5,90 MB. Memori puncak teramati pada YOLOv8 Nano juga sedikit lebih rendah, yaitu 72,31 MB dibandingkan YOLO11 Nano sebesar 72,72 MB.
+
+        \item Berdasarkan kombinasi hasil akurasi, efisiensi inferensi, ukuran model, dan penggunaan memori, YOLOv8 Nano lebih direkomendasikan untuk skenario penelitian ini apabila prioritas utama adalah model yang ringan dan efisien pada perangkat \textit{edge}. Namun, dari sisi akurasi, kedua model lebih tepat dinyatakan memiliki performa yang sebanding, karena perbedaannya tidak signifikan secara statistik.
     \end{enumerate}
 \end{sectioncontent}
 
 \section{Saran}
 \begin{sectioncontent}
-    \hspace{\parindent}Berdasarkan hasil penelitian dan keterbatasan yang ditemukan, terdapat beberapa saran untuk pengembangan penelitian selanjutnya, yaitu sebagai berikut:
+    \hspace{\parindent}Berdasarkan hasil penelitian dan keterbatasan yang ditemukan, terdapat beberapa saran untuk pengembangan penelitian selanjutnya.
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Penelitian selanjutnya dapat menggunakan dataset yang lebih bervariasi, terutama citra daun tomat yang diambil langsung dari kondisi lapangan dengan variasi pencahayaan, latar belakang, sudut pengambilan, jarak kamera, dan kualitas citra yang berbeda. Hal ini diperlukan untuk menguji kemampuan generalisasi model pada kondisi yang lebih nyata.
+        \item Penelitian selanjutnya dapat menggunakan dataset tambahan dari kondisi lapangan yang lebih beragam, misalnya citra dengan variasi pencahayaan, sudut pengambilan gambar, latar belakang, dan kualitas kamera yang berbeda. Hal ini penting untuk melihat kemampuan generalisasi model pada kondisi nyata.
 
-        \item Pengujian dapat dilakukan pada beberapa jenis perangkat \textit{edge} lain, seperti Raspberry Pi versi berbeda, NVIDIA Jetson Nano, Orange Pi, atau perangkat sejenis. Dengan begitu, performa model dapat dibandingkan pada perangkat dengan karakteristik komputasi yang berbeda.
+        \item Penelitian berikutnya dapat menguji model pada perangkat \textit{edge} lain, seperti Raspberry Pi dengan spesifikasi berbeda, Jetson Nano, atau perangkat berbasis NPU. Dengan begitu, performa model dapat dibandingkan pada perangkat yang memiliki karakteristik komputasi berbeda.
 
-        \item Penelitian selanjutnya dapat membandingkan beberapa format model hasil ekspor, seperti ONNX, NCNN, TensorFlow Lite, atau format lain yang mendukung perangkat \textit{edge}. Perbandingan ini penting karena runtime dan format model dapat memengaruhi waktu inferensi, penggunaan memori, dan stabilitas performa.
+        \item Pengujian dapat diperluas dengan membandingkan format model dan runtime inferensi lain, seperti NCNN, TensorFlow Lite, atau OpenVINO. Perbedaan format dan runtime dapat memengaruhi waktu inferensi, penggunaan memori, dan kemudahan implementasi pada perangkat \textit{edge}.
 
-        \item Pengembangan penelitian dapat dilanjutkan ke tugas \textit{object detection} atau segmentasi citra agar sistem tidak hanya mampu menentukan jenis penyakit, tetapi juga dapat menunjukkan lokasi bagian daun yang terindikasi penyakit. Selain itu, sistem juga dapat dikembangkan menjadi aplikasi berbasis kamera agar lebih mendekati penggunaan langsung di lapangan.
+        \item Penelitian selanjutnya dapat mempertimbangkan jumlah seed yang lebih banyak atau menambahkan analisis statistik lain sebagai pembanding. Hal ini dapat membantu melihat kestabilan performa model secara lebih kuat, terutama apabila selisih performa antar model sangat kecil.
+
+        \item Penelitian ini masih berfokus pada klasifikasi citra, sehingga model hanya menentukan jenis penyakit dari keseluruhan gambar. Untuk pengembangan selanjutnya, penelitian dapat diarahkan ke tugas \textit{object detection} atau segmentasi agar sistem tidak hanya mengenali jenis penyakit, tetapi juga menunjukkan lokasi bagian daun yang terinfeksi.
     \end{enumerate}
 \end{sectioncontent}

@@ -33,7 +33,7 @@
 
     Kajian lain tentang model ringan menunjukkan bahwa varian nano dari keluarga YOLO masih relevan untuk penerapan pada perangkat dengan sumber daya terbatas. Pengembangan model ringan berbasis YOLOv8n pada deteksi penyakit daun tomat menunjukkan pentingnya keseimbangan antara akurasi dan efisiensi komputasi. Sementara itu, penelitian berbasis YOLO11n pada skenario \textit{edge deployment} juga menekankan bahwa model untuk perangkat terbatas perlu dievaluasi secara langsung pada perangkat target, bukan hanya berdasarkan hasil pelatihan atau pengujian di komputer utama \citep{he2025ltyolo,sun2025yoloplnet}.
 
-    Berdasarkan kajian terhadap penelitian terdahulu, dapat disimpulkan bahwa klasifikasi penyakit daun tomat berbasis citra telah terbukti layak dilakukan menggunakan \textit{deep learning}. Selain itu, ketersediaan dataset publik mendukung pelaksanaan penelitian secara lebih terukur. Namun, aspek efisiensi implementasi pada perangkat \textit{edge} masih menjadi isu penting yang belum selalu dibahas secara mendalam. Penelitian yang secara khusus membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge} juga masih relatif terbatas. Oleh karena itu, penelitian ini diarahkan untuk mengisi celah tersebut dengan membandingkan dua model ringan dari keluarga YOLO berdasarkan akurasi klasifikasi dan efisiensi komputasi.
+    Berdasarkan kajian terhadap penelitian terdahulu, dapat disimpulkan bahwa klasifikasi penyakit daun tomat berbasis citra telah terbukti layak dilakukan menggunakan \textit{deep learning}. Selain itu, ketersediaan dataset publik mendukung pelaksanaan penelitian secara lebih terukur. Namun, aspek efisiensi implementasi pada perangkat \textit{edge} masih menjadi isu penting yang belum selalu dibahas secara mendalam. Penelitian yang secara khusus membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge} juga masih relatif terbatas. Selain itu, perbandingan model yang hanya bertumpu pada satu kali pelatihan dapat kurang mewakili kestabilan performa karena hasil pelatihan \textit{deep learning} dapat berubah mengikuti variasi \textit{seed}. Oleh karena itu, penelitian ini diarahkan untuk mengisi celah tersebut dengan membandingkan dua model ringan dari keluarga YOLO berdasarkan akurasi klasifikasi, efisiensi komputasi, kestabilan hasil, dan signifikansi perbedaan performa.
 \end{sectioncontent}
 
 \section{Landasan Teori}
@@ -72,8 +72,6 @@
 \begin{subsectioncontent}
     \hspace{\parindent}Komputasi \textit{edge} adalah pendekatan pemrosesan data yang dilakukan lebih dekat dengan sumber data atau lokasi tempat data dihasilkan. Pada pendekatan ini, inferensi model dapat dijalankan secara lokal tanpa selalu bergantung pada server pusat atau komputasi awan. Keunggulan utama dari pendekatan ini adalah latensi yang lebih rendah, respons yang lebih cepat, serta potensi pengurangan komunikasi data ke server eksternal \citep{singh2023edge,gill2025taxonomy,xu2025edge}.
 
-    \newpage
-
     Dalam penelitian ini, perangkat \textit{edge} digunakan sebagai media implementasi untuk menguji efisiensi model klasifikasi. Raspberry Pi 5 dipilih karena merupakan platform komputasi lokal yang mendukung CPU \textit{quad-core} Arm Cortex-A76 2.4 GHz dan varian RAM hingga 16 GB, termasuk versi 8 GB yang digunakan dalam penelitian ini \citep{raspberrypi5,raspberrypi5brief}. Pengujian pada perangkat \textit{edge} penting dilakukan karena model yang akurat belum tentu layak digunakan pada sistem nyata apabila waktu inferensinya terlalu tinggi atau penggunaan sumber dayanya terlalu besar.
 \end{subsectioncontent}
 
@@ -91,14 +89,15 @@
     Efisiensi menjadi aspek penting ketika model diterapkan pada perangkat \textit{edge}. Efisiensi dapat dinilai melalui beberapa indikator, seperti waktu inferensi, penggunaan memori, ukuran model, dan penggunaan sumber daya komputasi lain yang relevan. Dalam penelitian ini, akurasi dan efisiensi digunakan sebagai dua dasar utama untuk menentukan model yang lebih sesuai diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge} \citep{singh2023edge,gill2025taxonomy,xu2025edge,majeed2024edge}.
 \end{subsectioncontent}
 
-\newpage
+\subsection{Uji Wilcoxon Signed-Rank}
+\begin{subsectioncontent}
+    \hspace{\parindent}Uji Wilcoxon Signed-Rank merupakan uji statistik nonparametrik yang digunakan untuk membandingkan dua kelompok data yang saling berpasangan \citep{wilcoxon1945individual}. Uji ini sesuai digunakan ketika data berasal dari dua perlakuan atau dua model yang diuji pada kondisi yang sama, tetapi peneliti tidak ingin bergantung pada asumsi bahwa selisih data harus berdistribusi normal.
+
+    Dalam penelitian ini, hasil pengujian YOLOv8 Nano dan YOLO11 Nano dipasangkan berdasarkan variasi \textit{seed} yang sama. Dengan demikian, uji Wilcoxon Signed-Rank digunakan untuk membantu melihat apakah perbedaan performa kedua model cukup kuat secara statistik atau hanya muncul sebagai variasi dari proses pelatihan. Meskipun demikian, hasil uji statistik tetap perlu dibaca bersama dengan nilai rata-rata metrik, arah selisih, dan aspek efisiensi agar interpretasi penelitian tidak hanya berhenti pada kesimpulan signifikan atau tidak signifikan.
+\end{subsectioncontent}
 
 \section{Kerangka Pemikiran}
 \begin{sectioncontent}
-    % \hspace{\parindent}Kerangka pemikiran dalam penelitian ini disusun untuk menggambarkan alur hubungan antara permasalahan, dasar teori, model yang digunakan, proses pengujian, hingga penentuan model yang lebih sesuai. Penelitian ini berangkat dari permasalahan penyakit daun tomat yang membutuhkan proses identifikasi yang cepat dan konsisten. Pendekatan berbasis citra dan \textit{deep learning} dipilih karena mampu mempelajari pola visual pada daun, sedangkan perangkat \textit{edge} digunakan untuk menilai kelayakan model pada lingkungan komputasi terbatas.
-
-    % Berdasarkan kajian pustaka dan landasan teori, YOLOv8 Nano dan YOLO11 Nano dipilih sebagai dua model ringan yang akan dibandingkan. Kedua model dilatih dan diuji menggunakan dataset yang sama, kemudian hasilnya dianalisis berdasarkan akurasi klasifikasi dan efisiensi inferensi. Alur kerangka pemikiran dalam penelitian ini ditunjukkan pada Gambar \ref{fig:kerangka-pemikiran}.
-
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth,height=0.8\textheight]{kerangka-pemikiran.png}

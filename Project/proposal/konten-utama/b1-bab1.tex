@@ -22,7 +22,7 @@
 
     Berdasarkan penelusuran awal terhadap penelitian terdahulu, kajian mengenai penyakit daun tomat berbasis \textit{deep learning} sudah cukup banyak dilakukan. Namun, penelitian yang secara khusus membandingkan YOLOv8 Nano dan YOLO11 Nano untuk tugas klasifikasi penyakit daun tomat pada perangkat \textit{edge} masih relatif terbatas. Padahal, pembandingan tersebut penting untuk mengetahui model mana yang lebih sesuai digunakan pada perangkat dengan sumber daya komputasi terbatas. Dalam penelitian ini, Raspberry Pi 5 dengan RAM 8 GB digunakan sebagai perangkat \textit{edge} untuk menguji implementasi dan efisiensi model \citep{raspberrypi5,raspberrypi5brief}.
 
-    Berdasarkan uraian tersebut, penelitian ini mengangkat judul \textbf{\judulid}. Fokus utama penelitian ini adalah membandingkan YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat berbasis citra, dengan mempertimbangkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi komputasi pada perangkat \textit{edge}. Melalui penelitian ini, diharapkan dapat diperoleh gambaran mengenai model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat di lingkungan komputasi terbatas.
+    Berdasarkan uraian tersebut, penelitian ini mengangkat judul \textbf{\judulid}. Fokus utama penelitian ini adalah membandingkan YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat berbasis citra, dengan mempertimbangkan dua aspek utama, yaitu akurasi klasifikasi dan efisiensi komputasi pada perangkat \textit{edge}. Perbandingan dilakukan melalui beberapa variasi \textit{seed} agar hasil pengujian tidak hanya bergantung pada satu proses pelatihan. Selain itu, uji Wilcoxon Signed-Rank digunakan untuk melihat apakah perbedaan performa kedua model pada hasil pengujian berpasangan cukup kuat secara statistik. Melalui penelitian ini, diharapkan dapat diperoleh gambaran mengenai model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat di lingkungan komputasi terbatas.
 \end{sectioncontent}
 
 \newpage
@@ -36,19 +36,21 @@
         \item Pendekatan berbasis citra dan \textit{deep learning} telah menunjukkan potensi dalam klasifikasi penyakit daun tomat, tetapi performa dan efisiensinya tetap bergantung pada model yang digunakan.
         \item Implementasi model klasifikasi pada perangkat \textit{edge} membutuhkan model yang tidak hanya akurat, tetapi juga efisien dari sisi waktu inferensi dan penggunaan sumber daya komputasi.
         \item Penelitian yang secara spesifik membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge} masih relatif terbatas.
+        \item Perbandingan performa model yang hanya didasarkan pada satu kali pelatihan berpotensi kurang mewakili kestabilan hasil, karena proses pelatihan model \textit{deep learning} dapat dipengaruhi oleh variasi \textit{seed} dan kondisi eksperimen.
     \end{enumerate}
 \end{subsectioncontent}
 
 \subsection{Batasan Masalah}
 \begin{subsectioncontent}
-    \hspace{\parindent}Agar pembahasan lebih terarah, batasan masalah dalam penelitian ini ditetapkan sebagai berikut:
-
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Penelitian difokuskan pada tugas \textit{image classification} untuk menentukan kelas penyakit daun tomat dari citra.
         \item Model yang dibandingkan dibatasi pada dua model, yaitu YOLOv8 Nano dan YOLO11 Nano.
         \item Data masukan yang digunakan berupa citra daun tomat yang telah memiliki label sesuai dengan kelas penyakit pada dataset penelitian.
         \item Pengujian implementasi model dilakukan pada perangkat \textit{edge} berupa Raspberry Pi 5 dengan RAM 8 GB.
-        \item Penelitian ini menggunakan dataset publik yang telah disusun ke dalam pembagian data latih, data validasi, dan data uji. Variasi kualitas citra seperti pencahayaan, sudut pengambilan, dan latar belakang tidak diposisikan sebagai variabel bebas dalam penelitian ini.        \item Aspek yang dibandingkan dibatasi pada akurasi dan efisiensi model, dengan indikator berupa akurasi klasifikasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, serta penggunaan sumber daya yang relevan.
+        \item Penelitian ini menggunakan dataset publik yang telah disusun ke dalam pembagian data latih, data validasi, dan data uji. Variasi kualitas citra seperti pencahayaan, sudut pengambilan, dan latar belakang tidak diposisikan sebagai variabel bebas dalam penelitian ini.
+        \item Pelatihan model dilakukan menggunakan konfigurasi yang sama dengan variasi \textit{seed} untuk melihat kestabilan performa kedua model pada skenario eksperimen yang digunakan.
+        \item Aspek yang dibandingkan dibatasi pada akurasi dan efisiensi model, dengan indikator berupa akurasi klasifikasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, \textit{total pipeline time}, \textit{frame per second}, ukuran model, serta penggunaan sumber daya yang relevan.
+        \item Uji Wilcoxon Signed-Rank digunakan untuk menganalisis signifikansi perbedaan performa kedua model berdasarkan pasangan hasil pengujian pada variasi \textit{seed} yang sama.
         \item Penelitian ini tidak membahas \textit{object detection}, segmentasi citra, maupun rekomendasi penanganan penyakit tanaman, melainkan berfokus pada klasifikasi penyakit daun tomat berbasis citra.
     \end{enumerate}
 \end{subsectioncontent}
@@ -59,32 +61,30 @@
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Bagaimana perbandingan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi penyakit daun tomat yang digunakan?
+        \item Apakah perbedaan performa YOLOv8 Nano dan YOLO11 Nano signifikan secara statistik berdasarkan hasil pengujian berpasangan pada variasi \textit{seed} yang digunakan?
         \item Bagaimana perbandingan efisiensi YOLOv8 Nano dan YOLO11 Nano ketika dijalankan pada perangkat \textit{edge} berupa Raspberry Pi 5 8 GB?
         \item Model manakah yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}?
     \end{enumerate}
 \end{subsectioncontent}
 
-\newpage
-
 \section{Tujuan dan Manfaat Penelitian}
 
 \subsection{Tujuan}
 \begin{subsectioncontent}
-    \hspace{\parindent}Tujuan dari penelitian ini adalah sebagai berikut:
-
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Menerapkan YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat berbasis citra.
         \item Membandingkan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi penyakit daun tomat.
+        \item Menganalisis signifikansi perbedaan performa YOLOv8 Nano dan YOLO11 Nano berdasarkan hasil pengujian berpasangan pada variasi \textit{seed} yang digunakan.
         \item Menganalisis efisiensi kedua model ketika dijalankan pada perangkat \textit{edge} berupa Raspberry Pi 5 8 GB berdasarkan metrik pengujian yang digunakan.
         \item Menggunakan pembagian dataset dan konfigurasi pengujian yang konsisten agar perbandingan kedua model dilakukan pada kondisi data yang sama.
         \item Menentukan model yang lebih sesuai untuk implementasi klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}.
     \end{enumerate}
 \end{subsectioncontent}
 
+\newpage
+
 \subsection{Manfaat}
 \begin{subsectioncontent}
-    \hspace{\parindent}Manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
-
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item \textbf{Manfaat teoritis}\par
         Penelitian ini diharapkan dapat menambah referensi ilmiah mengenai penerapan \textit{deep learning}, khususnya model keluarga YOLO, pada klasifikasi penyakit daun tomat berbasis citra. Selain itu, penelitian ini juga dapat memberikan gambaran mengenai hubungan antara akurasi model, efisiensi komputasi, dan penerapannya pada perangkat \textit{edge}.
@@ -93,7 +93,7 @@
         Penelitian ini diharapkan dapat menjadi bahan pertimbangan dalam pemilihan model untuk pengembangan sistem klasifikasi penyakit daun tomat yang ringan, cepat, dan dapat dijalankan secara lokal pada perangkat dengan sumber daya terbatas.
 
         \item \textbf{Manfaat metodologis}\par
-        Penelitian ini diharapkan dapat memberikan gambaran mengenai pentingnya penggunaan dataset yang terstruktur, pembagian data yang konsisten, serta konfigurasi pengujian yang seragam agar evaluasi model klasifikasi berbasis citra dapat dilakukan secara lebih adil dan objektif.
+        Penelitian ini diharapkan dapat memberikan gambaran mengenai pentingnya penggunaan dataset yang terstruktur, konfigurasi pengujian yang seragam, variasi \textit{seed}, serta uji statistik dalam evaluasi model klasifikasi berbasis citra. Dengan pendekatan tersebut, perbandingan model tidak hanya didasarkan pada satu hasil pelatihan, tetapi juga mempertimbangkan kestabilan dan signifikansi perbedaan performa.
     \end{enumerate}
 \end{subsectioncontent}
 
@@ -101,13 +101,13 @@
 \begin{sistematika}
     \babsistematika{I}{PENDAHULUAN}{Berisi latar belakang masalah, identifikasi masalah, batasan masalah, rumusan masalah, tujuan penelitian, manfaat penelitian, serta sistematika penulisan.}
 
-    \babsistematika{II}{LANDASAN TEORI DAN KERANGKA PEMIKIRAN}{Menjelaskan teori-teori yang mendukung penelitian, meliputi konsep penyakit daun tomat, klasifikasi citra, \textit{deep learning}, model YOLO, perangkat \textit{edge}, kualitas citra, penelitian terdahulu, dan kerangka pemikiran penelitian.}
-
-    \babsistematika{III}{METODE PENELITIAN}{Menjelaskan tahapan penelitian yang dilakukan, mulai dari pengumpulan dataset, penentuan kelas penyakit, pembagian dataset, preprocessing, pelatihan model, implementasi pada perangkat edge, hingga pengujian dan evaluasi.}
-
-    \babsistematika{IV}{HASIL DAN PEMBAHASAN}{Menyajikan hasil pelatihan dan pengujian model, analisis perbandingan akurasi dan efisiensi, serta pembahasan hasil penelitian berdasarkan rumusan masalah.}
-
     \newpage
 
-    \babsistematika{V}{KESIMPULAN DAN SARAN}{Berisi kesimpulan dari hasil penelitian yang telah dilakukan serta saran untuk pengembangan penelitian selanjutnya.}
+    \babsistematika{II}{LANDASAN TEORI DAN KERANGKA PEMIKIRAN}{Menjelaskan teori-teori yang mendukung penelitian, meliputi konsep penyakit daun tomat, klasifikasi citra, \textit{deep learning}, model YOLO, perangkat \textit{edge}, kualitas citra, metrik evaluasi, uji Wilcoxon Signed-Rank, penelitian terdahulu, dan kerangka pemikiran penelitian.}
+
+    \babsistematika{III}{METODE PENELITIAN}{Menjelaskan tahapan penelitian yang dilakukan, mulai dari pengumpulan dataset, penentuan kelas penyakit, pembagian dataset, preprocessing, pelatihan model dengan variasi \textit{seed}, implementasi pada perangkat \textit{edge}, pengujian model, hingga analisis data menggunakan metrik evaluasi dan uji Wilcoxon Signed-Rank.}
+
+    \babsistematika{IV}{HASIL DAN PEMBAHASAN}{Menyajikan hasil pelatihan dan pengujian model, analisis perbandingan akurasi dan efisiensi, hasil uji signifikansi statistik, serta pembahasan hasil penelitian berdasarkan rumusan masalah.}
+
+    \babsistematika{V}{PENUTUP}{Berisi kesimpulan dari hasil penelitian serta saran untuk pengembangan atau penelitian berikutnya.}
 \end{sistematika}

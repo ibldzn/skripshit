@@ -18,6 +18,7 @@ import onnxruntime as ort
 import psutil
 from PIL import Image
 
+
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 
 
@@ -125,9 +126,7 @@ def collect_images(test_dir: Path) -> list[tuple[Path, str]]:
     return images
 
 
-def validate_dataset_classes(
-    class_names: list[str], images: list[tuple[Path, str]]
-) -> None:
+def validate_dataset_classes(class_names: list[str], images: list[tuple[Path, str]]) -> None:
     dataset_classes = sorted({true_class for _, true_class in images})
     class_file_classes = sorted(class_names)
 
@@ -173,7 +172,9 @@ def to_probabilities(output: np.ndarray) -> np.ndarray:
         x = x.reshape(-1)
 
     looks_like_prob = (
-        np.all(x >= 0.0) and np.all(x <= 1.0) and np.isclose(np.sum(x), 1.0, atol=1e-3)
+        np.all(x >= 0.0)
+        and np.all(x <= 1.0)
+        and np.isclose(np.sum(x), 1.0, atol=1e-3)
     )
 
     if looks_like_prob:
@@ -425,8 +426,9 @@ def main() -> None:
     model_size_mb = model_path.stat().st_size / (1024 * 1024)
 
     wall_time_sec = wall_end - wall_start
-    cpu_time_delta_sec = (cpu_times_after.user + cpu_times_after.system) - (
-        cpu_times_before.user + cpu_times_before.system
+    cpu_time_delta_sec = (
+        (cpu_times_after.user + cpu_times_after.system)
+        - (cpu_times_before.user + cpu_times_before.system)
     )
 
     # Bisa >100% kalau proses pakai beberapa core.
