@@ -1,0 +1,7 @@
+true_class,Tomato_Early_blight_leaf,Tomato_Healthy_leaf,Tomato_leaf_late_blight,Tomato_leaf_yellow_curl_virus,Tomato_mold_leaf,Tomato_Septoria_leaf_spot
+Tomato_Early_blight_leaf,98,0,6,1,11,4
+Tomato_Healthy_leaf,0,119,0,0,0,1
+Tomato_leaf_late_blight,7,3,98,0,1,11
+Tomato_leaf_yellow_curl_virus,0,0,0,119,0,1
+Tomato_mold_leaf,11,4,6,0,93,6
+Tomato_Septoria_leaf_spot,6,0,1,4,4,105

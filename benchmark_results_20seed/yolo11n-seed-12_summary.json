@@ -1,0 +1,57 @@
+{
+  "model": "exported-onnx-20seed/yolo11n-seed-12.onnx",
+  "model_size_mb": 5.895237922668457,
+  "test_dir": "dataset/test",
+  "total_images": 720,
+  "correct": 632,
+  "accuracy": 0.8777777777777778,
+  "img_size": 224,
+  "warmup": 10,
+  "provider": "CPUExecutionProvider",
+  "intra_op_num_threads": 4,
+  "inter_op_num_threads": 1,
+  "batch_size": 1,
+  "preprocess_ms": {
+    "avg": 1.173958765135871,
+    "median": 1.1262121200561523,
+    "min": 1.0051918029785156,
+    "max": 2.266961097717285,
+    "p95": 1.522862434387207
+  },
+  "inference_ms": {
+    "avg": 8.739700147840711,
+    "median": 8.274874687194824,
+    "min": 7.631278038024902,
+    "max": 25.74594497680664,
+    "p95": 11.155247688293457
+  },
+  "postprocess_ms": {
+    "avg": 0.17458818091286554,
+    "median": 0.1657238006591797,
+    "min": 0.14731502532958984,
+    "max": 0.8723392486572266,
+    "p95": 0.206390380859375
+  },
+  "total_pipeline_ms": {
+    "avg": 10.091208702988094,
+    "median": 9.572680950164795,
+    "min": 8.894472122192383,
+    "max": 27.854351043701172,
+    "p95": 12.916796684265137
+  },
+  "fps_inference_only": 114.42040151080775,
+  "fps_total_pipeline": 99.09615680665601,
+  "rss_before_mb": 71.921875,
+  "rss_after_mb": 72.90625,
+  "rss_delta_mb": 0.984375,
+  "rss_peak_sampled_mb": 72.734375,
+  "rss_average_sampled_mb": 72.48112072039943,
+  "wall_time_sec": 7.273304262198508,
+  "process_cpu_percent_total": 395.9685854156004,
+  "process_cpu_percent_normalized": 98.9921463539001,
+  "output_files": {
+    "per_image_csv": "benchmark_results_20seed/yolo11n-seed-12_per_image.csv",
+    "confusion_matrix_csv": "benchmark_results_20seed/yolo11n-seed-12_confusion_matrix.csv",
+    "summary_json": "benchmark_results_20seed/yolo11n-seed-12_summary.json"
+  }
+}

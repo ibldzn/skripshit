@@ -1,0 +1,47 @@
+{
+  "available": true,
+  "alternative": "two-sided",
+  "zero_method": "wilcox",
+  "metrics": {
+    "accuracy": {
+      "statistic": 75.5,
+      "p_value": 0.2705513549176771,
+      "n_pairs": 20,
+      "yolov8n_mean": 0.8831944444444444,
+      "yolo11n_mean": 0.8780555555555556,
+      "mean_diff_yolov8n_minus_yolo11n": 0.005138888888888887
+    },
+    "inference_ms_avg": {
+      "statistic": 34.0,
+      "p_value": 0.006389617919921875,
+      "n_pairs": 20,
+      "yolov8n_mean": 8.429653429653909,
+      "yolo11n_mean": 8.502498938639958,
+      "mean_diff_yolov8n_minus_yolo11n": -0.07284550898604927
+    },
+    "total_pipeline_ms_avg": {
+      "statistic": 52.0,
+      "p_value": 0.04844093322753906,
+      "n_pairs": 20,
+      "yolov8n_mean": 9.793527029355367,
+      "yolo11n_mean": 9.848207207454575,
+      "mean_diff_yolov8n_minus_yolo11n": -0.054680178099208464
+    },
+    "fps_total_pipeline": {
+      "statistic": 52.0,
+      "p_value": 0.04844093322753906,
+      "n_pairs": 20,
+      "yolov8n_mean": 102.28982277946557,
+      "yolo11n_mean": 101.72314715840152,
+      "mean_diff_yolov8n_minus_yolo11n": 0.5666756210640493
+    },
+    "model_size_mb": {
+      "statistic": 0.0,
+      "p_value": 7.74421643104407e-06,
+      "n_pairs": 20,
+      "yolov8n_mean": 5.5311479568481445,
+      "yolo11n_mean": 5.895237922668457,
+      "mean_diff_yolov8n_minus_yolo11n": -0.3640899658203125
+    }
+  }
+}
