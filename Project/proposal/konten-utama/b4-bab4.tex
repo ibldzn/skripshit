@@ -5,7 +5,7 @@
 
 \chapter[HASIL DAN PEMBAHASAN]{\\ HASIL DAN PEMBAHASAN}
 
-\section{Deskripsi Hasil Penelitian}
+\section{Hasil}
 \begin{sectioncontent}
     \hspace{\parindent}Hasil pelatihan dan pengujian model YOLOv8 Nano serta YOLO11 Nano disajikan untuk melihat performa keduanya pada tugas klasifikasi penyakit daun tomat. Agar perbandingan lebih adil, kedua model dilatih menggunakan dataset yang sama, konfigurasi pelatihan yang seragam, dan variasi seed yang sama. Analisis difokuskan pada dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi.
 
@@ -509,14 +509,14 @@
     Temuan ini memperlihatkan bahwa versi model yang lebih baru belum tentu otomatis lebih unggul pada setiap dataset. Pengujian langsung tetap diperlukan untuk mengetahui bagaimana model bekerja pada dataset dan perangkat yang digunakan.
 \end{subsectioncontent}
 
-\subsection{Implikasi terhadap Pengujian pada Perangkat Edge}
-\begin{subsectioncontent}
+\section{Implikasi Penelitian}
+\begin{sectioncontent}
     \hspace{\parindent}Hasil pengujian menunjukkan bahwa kedua model mampu melakukan klasifikasi penyakit daun tomat dengan waktu total \textit{pipeline} rata-rata di bawah 10 ms pada Raspberry Pi 5. Hal ini menunjukkan bahwa YOLOv8 Nano dan YOLO11 Nano sama-sama memiliki karakteristik yang ringan untuk skenario klasifikasi citra pada perangkat \textit{edge}. Dengan waktu inferensi yang rendah, kedua model menunjukkan potensi untuk digunakan pada sistem klasifikasi yang membutuhkan respons cepat.
 
     Pada skenario penelitian ini, YOLOv8 Nano lebih menarik apabila prioritas utama adalah efisiensi, ukuran model, dan penggunaan memori yang sedikit lebih rendah. Namun, apabila fokus utama hanya pada akurasi, hasil penelitian ini tidak menunjukkan perbedaan yang signifikan antara kedua model. Dengan kata lain, pemilihan model perlu disesuaikan dengan prioritas implementasi.
 
     Pengujian pada Raspberry Pi 5 juga memperlihatkan bahwa performa model pada perangkat \textit{edge} tidak hanya dipengaruhi oleh arsitektur model, tetapi juga oleh format model, runtime inferensi, dan kondisi perangkat saat pengujian. Oleh karena itu, evaluasi pada perangkat target menjadi bagian penting dalam penelitian yang berfokus pada implementasi \textit{edge}.
-\end{subsectioncontent}
+\end{sectioncontent}
 
 \section{Keterbatasan Hasil Pengujian}
 \begin{sectioncontent}
