@@ -14,32 +14,52 @@
     Hasil dari penelitian ini digunakan untuk menentukan model yang lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Penentuan tersebut tidak hanya didasarkan pada nilai akurasi, tetapi juga mempertimbangkan waktu inferensi, FPS, ukuran model, dan penggunaan memori pada perangkat pengujian.
 \end{sectioncontent}
 
+\section{Analisa Kebutuhan}
+\begin{sectioncontent}
+    \hspace{\parindent}Analisa kebutuhan dilakukan untuk menentukan kebutuhan data, model, perangkat keras, dan perangkat lunak yang digunakan dalam penelitian. Kebutuhan tersebut disusun agar proses pelatihan, pengujian, dan analisis hasil dapat berjalan sesuai dengan tujuan penelitian.
+
+    \subsection{Kebutuhan Data}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Data yang dibutuhkan dalam penelitian ini adalah citra daun tomat yang telah dikelompokkan berdasarkan kelas penyakit dan kelas daun sehat. Dataset perlu memiliki struktur data latih, data validasi, dan data uji agar dapat digunakan pada proses pelatihan, validasi, dan evaluasi model klasifikasi.
+    \end{subsectioncontent}
+
+    \subsection{Kebutuhan Model}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Model yang dibutuhkan dalam penelitian ini adalah model klasifikasi citra yang ringan dan sesuai untuk pengujian pada perangkat \textit{edge}. Berdasarkan kebutuhan tersebut, penelitian ini menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi sebagai model yang dibandingkan.
+    \end{subsectioncontent}
+
+    \subsection{Perangkat Keras}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Perangkat keras yang digunakan dalam penelitian ini adalah sebagai berikut:
+
+        \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+            \item \textit{Desktop PC} dengan spesifikasi prosesor AMD Ryzen 5, RAM 16 GB, dan GPU NVIDIA RTX 4060 untuk pelatihan model.
+            \item Raspberry Pi 5 dengan RAM 8 GB sebagai perangkat \textit{edge} untuk pengujian inferensi.
+            \item Media penyimpanan untuk menyimpan dataset, hasil pelatihan, dan model hasil ekspor.
+        \end{enumerate}
+    \end{subsectioncontent}
+
+    \subsection{Perangkat Lunak}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Perangkat lunak yang digunakan dalam penelitian ini adalah sebagai berikut:
+
+        \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+            \item Python sebagai bahasa pemrograman utama.
+            \item Ultralytics YOLO untuk pelatihan dan evaluasi model YOLOv8 Nano dan YOLO11 Nano.
+            \item PyTorch sebagai \textit{backend} pelatihan model.
+            \item CUDA untuk akselerasi pelatihan menggunakan GPU NVIDIA.
+            \item ONNX Runtime untuk menjalankan inferensi model pada perangkat \textit{edge}.
+            \item NumPy, Pandas, dan Scikit-learn untuk pengolahan data serta evaluasi metrik.
+            \item SciPy untuk melakukan uji Wilcoxon Signed-Rank.
+            \item Sistem operasi Windows pada perangkat pelatihan dan sistem operasi berbasis Linux pada Raspberry Pi 5.
+        \end{enumerate}
+    \end{subsectioncontent}
+\end{sectioncontent}
 \section{Objek Penelitian}
 \begin{sectioncontent}
     \hspace{\parindent}Objek dalam penelitian ini adalah citra daun tomat yang terdiri dari beberapa kelas penyakit dan satu kelas daun sehat. Citra tersebut digunakan sebagai data masukan untuk proses klasifikasi menggunakan model YOLOv8 Nano dan YOLO11 Nano. Penelitian ini berfokus pada tugas \textit{image classification}, sehingga keluaran model berupa label kelas dari keseluruhan citra, bukan lokasi objek atau area penyakit pada citra.
 
-    \newpage
-
     Kelas yang digunakan dalam penelitian ini terdiri dari \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}. Penentuan kelas tersebut disesuaikan dengan struktur dataset publik yang digunakan dalam penelitian.
-\end{sectioncontent}
-
-\section{Tahapan Penelitian}
-\begin{sectioncontent}
-    \hspace{\parindent}Tahapan penelitian disusun agar proses eksperimen dapat dilakukan secara sistematis, mulai dari studi literatur, persiapan dataset, pelatihan model, hingga analisis hasil pengujian. Secara umum, tahapan penelitian ini adalah sebagai berikut:
-
-    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item Melakukan studi literatur mengenai penyakit daun tomat, klasifikasi citra, model YOLO, dan perangkat \textit{edge}.
-        \item Mengumpulkan dataset citra penyakit daun tomat dari sumber publik.
-        \item Memeriksa struktur dataset dan jumlah data pada setiap kelas.
-        \item Memeriksa pembagian dataset awal yang telah tersedia dalam struktur data latih, data validasi, dan data uji.
-        \item Melakukan \textit{preprocessing} dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
-        \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama pada beberapa variasi seed.
-        \item Mengevaluasi performa klasifikasi model menggunakan data uji yang sama untuk setiap model dan setiap seed.
-        \item Mengekspor model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
-        \item Menjalankan pengujian inferensi model pada Raspberry Pi 5.
-        \item Menganalisis perbandingan akurasi dan efisiensi kedua model secara deskriptif dan menggunakan uji Wilcoxon Signed-Rank.
-        \item Menarik kesimpulan berdasarkan hasil pengujian yang diperoleh.
-    \end{enumerate}
 \end{sectioncontent}
 
 \section{Dataset Penelitian}
@@ -83,43 +103,28 @@ tomato-leaf-disease/
 
     Pembagian dataset pada sumber data telah disusun dengan proporsi yang seimbang pada setiap kelas. Dalam penelitian ini, pembagian tersebut digunakan sebagaimana struktur awal dataset tanpa proses pembagian ulang.
 \end{sectioncontent}
-
-\section{Perangkat Keras dan Perangkat Lunak}
+\section{Perancangan Penelitian}
 \begin{sectioncontent}
-    \hspace{\parindent}Penelitian ini menggunakan perangkat keras dan perangkat lunak untuk mendukung proses pelatihan, pengujian, dan implementasi model pada perangkat \textit{edge}. Proses pelatihan dilakukan pada komputer dengan dukungan GPU agar pelatihan model dapat berjalan lebih cepat. Sementara itu, pengujian efisiensi inferensi dilakukan pada Raspberry Pi 5 sebagai representasi perangkat \textit{edge}.
+    \hspace{\parindent}Perancangan penelitian disusun agar proses eksperimen dapat dilakukan secara sistematis, mulai dari studi literatur, persiapan dataset, pelatihan model, hingga analisis hasil pengujian. Secara umum, tahapan penelitian ini adalah sebagai berikut:
 
-    \subsection{Perangkat Keras}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Perangkat keras yang digunakan dalam penelitian ini adalah sebagai berikut:
-
-        \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-            \item \textit{Desktop PC} dengan spesifikasi prosesor AMD Ryzen 5, RAM 16 GB, dan GPU NVIDIA RTX 4060 untuk pelatihan model.
-            \item Raspberry Pi 5 dengan RAM 8 GB sebagai perangkat \textit{edge} untuk pengujian inferensi.
-            \item Media penyimpanan untuk menyimpan dataset, hasil pelatihan, dan model hasil ekspor.
-        \end{enumerate}
-    \end{subsectioncontent}
-
-    \subsection{Perangkat Lunak}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Perangkat lunak yang digunakan dalam penelitian ini adalah sebagai berikut:
-
-        \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-            \item Python sebagai bahasa pemrograman utama.
-            \item Ultralytics YOLO untuk pelatihan dan evaluasi model YOLOv8 Nano dan YOLO11 Nano.
-            \item PyTorch sebagai \textit{backend} pelatihan model.
-            \item CUDA untuk akselerasi pelatihan menggunakan GPU NVIDIA.
-            \item ONNX Runtime untuk menjalankan inferensi model pada perangkat \textit{edge}.
-            \item NumPy, Pandas, dan Scikit-learn untuk pengolahan data serta evaluasi metrik.
-            \item SciPy untuk melakukan uji Wilcoxon Signed-Rank.
-            \newpage
-            \item Sistem operasi Windows pada perangkat pelatihan dan sistem operasi berbasis Linux pada Raspberry Pi 5.
-        \end{enumerate}
-    \end{subsectioncontent}
+    \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
+        \item Melakukan studi literatur mengenai penyakit daun tomat, klasifikasi citra, model YOLO, dan perangkat \textit{edge}.
+        \item Mengumpulkan dataset citra penyakit daun tomat dari sumber publik.
+        \item Memeriksa struktur dataset dan jumlah data pada setiap kelas.
+        \item Memeriksa pembagian dataset awal yang telah tersedia dalam struktur data latih, data validasi, dan data uji.
+        \item Melakukan \textit{preprocessing} dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
+        \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama pada beberapa variasi seed.
+        \item Mengevaluasi performa klasifikasi model menggunakan data uji yang sama untuk setiap model dan setiap seed.
+        \item Mengekspor model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
+        \item Menjalankan pengujian inferensi model pada Raspberry Pi 5.
+        \item Menganalisis perbandingan akurasi dan efisiensi kedua model secara deskriptif dan menggunakan uji Wilcoxon Signed-Rank.
+        \item Menarik kesimpulan berdasarkan hasil pengujian yang diperoleh.
+    \end{enumerate}
 \end{sectioncontent}
 
 \section{\textit{Preprocessing} Data}
 \begin{sectioncontent}
-    \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan citra dapat digunakan pada proses pelatihan, evaluasi, dan inferensi model. Pada tahap pelatihan, preprocessing mengikuti mekanisme yang digunakan oleh Ultralytics YOLO untuk tugas klasifikasi citra. Citra diproses dengan ukuran masukan 224 x 224 piksel sesuai dengan konfigurasi pelatihan yang digunakan.
+    \hspace{\parindent}\textit{Preprocessing} dilakukan untuk memastikan citra dapat digunakan pada proses pelatihan, evaluasi, dan inferensi model. Pada tahap pelatihan, \textit{preprocessing} mengikuti mekanisme yang digunakan oleh Ultralytics YOLO untuk tugas klasifikasi citra. Citra diproses dengan ukuran masukan 224 x 224 piksel sesuai dengan konfigurasi pelatihan yang digunakan.
 
     Tahapan \textit{preprocessing} dalam penelitian ini meliputi pemeriksaan struktur folder dataset, pemeriksaan jumlah data pada setiap kelas, penyesuaian ukuran citra menjadi 224 x 224 piksel, serta normalisasi nilai piksel sesuai kebutuhan model. Dataset yang digunakan sudah memiliki struktur \textit{train}, \textit{val}, dan \textit{test}, sehingga penelitian ini tidak melakukan pembagian ulang dataset.
 
@@ -140,7 +145,6 @@ tomato-leaf-disease/
         \hspace{\parindent}YOLO11 Nano merupakan varian ringan dari YOLO11 yang digunakan sebagai model pembanding terhadap YOLOv8 Nano. Model ini dipilih karena berasal dari generasi YOLO yang lebih baru dan tetap diarahkan pada keseimbangan antara performa dan efisiensi. Perbandingan antara YOLOv8 Nano dan YOLO11 Nano dilakukan untuk mengetahui perbedaan performa keduanya pada tugas klasifikasi penyakit daun tomat.
     \end{subsectioncontent}
 \end{sectioncontent}
-
 \section{Skenario Pelatihan Model}
 \begin{sectioncontent}
     \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih menggunakan dataset, ukuran citra, jumlah epoch, batch size, dan perangkat pelatihan yang sama. Penggunaan konfigurasi yang sama bertujuan agar perbandingan hasil lebih diarahkan pada perbedaan karakteristik model, bukan pada perbedaan skenario pelatihan.
@@ -184,7 +188,6 @@ tomato-leaf-disease/
 
     Kedua model dilatih dengan konfigurasi yang sama agar hasil perbandingan lebih konsisten. Apabila terdapat perbedaan performa pada tahap evaluasi, perbedaan tersebut dapat dianalisis sebagai hasil dari karakteristik masing-masing model, dengan tetap mempertimbangkan variasi hasil akibat perbedaan seed.
 \end{sectioncontent}
-
 \section{Skenario Pengujian Model}
 \begin{sectioncontent}
     \hspace{\parindent}Pengujian model dilakukan dalam dua tahap, yaitu pengujian performa klasifikasi dan pengujian efisiensi pada perangkat \textit{edge}. Pengujian performa klasifikasi digunakan untuk mengetahui kemampuan model dalam mengklasifikasikan citra daun tomat ke kelas yang benar. Sementara itu, pengujian efisiensi digunakan untuk mengetahui kecepatan dan kelayakan model ketika dijalankan pada Raspberry Pi 5.
@@ -213,7 +216,6 @@ tomato-leaf-disease/
         Penggunaan memori diamati menggunakan nilai \textit{Resident Set Size} (RSS) dari proses Python selama benchmark berjalan. Nilai memori puncak yang dilaporkan merupakan RSS puncak yang tersampling selama proses pengujian, bukan pengukuran memori perangkat secara keseluruhan.
     \end{subsectioncontent}
 \end{sectioncontent}
-
 \section{Metrik Evaluasi}
 \begin{sectioncontent}
     \hspace{\parindent}Metrik evaluasi digunakan untuk mengukur performa model dari sisi akurasi klasifikasi dan efisiensi inferensi. Pada penelitian ini, metrik evaluasi yang digunakan terdiri dari akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, FPS, penggunaan memori, dan ukuran model. Karena penelitian ini menggunakan klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} juga dihitung dalam bentuk \textit{macro average} agar performa setiap kelas dapat diperhitungkan secara seimbang.
@@ -294,8 +296,7 @@ tomato-leaf-disease/
         \hspace{\parindent}Penggunaan memori digunakan untuk melihat kebutuhan sumber daya model ketika dijalankan pada Raspberry Pi 5. Nilai yang diamati adalah \textit{Resident Set Size} (RSS) puncak yang tersampling selama proses pengujian. Sementara itu, ukuran model menunjukkan besar file model hasil ekspor dalam format ONNX. Kedua metrik ini digunakan sebagai pertimbangan tambahan karena perangkat \textit{edge} umumnya memiliki keterbatasan penyimpanan dan memori.
     \end{subsectioncontent}
 \end{sectioncontent}
-
-\section{Teknik Analisis Data}
+\section{Teknik Analisis}
 \begin{sectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, waktu total \textit{pipeline}, FPS, penggunaan memori, dan ukuran model.
 
@@ -305,7 +306,6 @@ tomato-leaf-disease/
 
     Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi, waktu inferensi lebih rendah, dan ukuran model lebih kecil dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
 \end{sectioncontent}
-
 \section{Rancangan Hasil Pengujian}
 \begin{sectioncontent}
     \hspace{\parindent}Rancangan hasil pengujian digunakan untuk menggambarkan bentuk data yang dianalisis pada bab hasil dan pembahasan. Perbandingan hasil pengujian kedua model disajikan dalam tabel berikut:
@@ -351,4 +351,60 @@ tomato-leaf-disease/
     \end{table}
 
     Tabel tersebut digunakan sebagai dasar untuk membandingkan performa kedua model. Penentuan model yang lebih sesuai tidak hanya didasarkan pada akurasi tertinggi, tetapi juga mempertimbangkan efisiensi inferensi dan hasil uji statistik ketika model dijalankan pada perangkat \textit{edge}.
+\end{sectioncontent}
+\section{Jadwal dan Biaya Penelitian}
+\begin{sectioncontent}
+    \hspace{\parindent}Jadwal dan biaya penelitian disusun untuk menggambarkan rencana pelaksanaan penelitian serta kebutuhan pendukung yang digunakan selama penelitian berlangsung. Jadwal penelitian mencakup proses studi literatur, persiapan dataset, pelatihan model, pengujian model, analisis hasil, dan penyusunan laporan. Biaya penelitian disusun berdasarkan kebutuhan yang berkaitan dengan penggunaan data, perangkat, koneksi internet, dan penyimpanan hasil eksperimen.
+
+    \subsection{Jadwal Penelitian}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Rancangan jadwal penelitian ditampilkan pada Tabel \ref{tab:jadwal-penelitian}.
+
+        \begin{table}[H]
+            \centering
+            \caption{Jadwal Penelitian}
+            \label{tab:jadwal-penelitian}
+            \begin{tabularx}{\linewidth}{|l|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+                \hline
+                \textbf{Kegiatan} & \textbf{Bulan 1} & \textbf{Bulan 2} & \textbf{Bulan 3} & \textbf{Bulan 4} \\
+                \hline
+                Studi literatur & Ya & - & - & - \\
+                \hline
+                Persiapan dataset & Ya & Ya & - & - \\
+                \hline
+                Pelatihan model & - & Ya & Ya & - \\
+                \hline
+                Pengujian model & - & - & Ya & - \\
+                \hline
+                Analisis hasil pengujian & - & - & Ya & Ya \\
+                \hline
+                Penyusunan laporan & Ya & Ya & Ya & Ya \\
+                \hline
+            \end{tabularx}
+        \end{table}
+    \end{subsectioncontent}
+
+    \subsection{Biaya Penelitian}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Dataset yang digunakan dalam penelitian ini merupakan dataset publik, sehingga tidak memerlukan biaya pembelian data. Perangkat pelatihan dan perangkat \textit{edge} digunakan untuk mendukung proses pelatihan dan pengujian model. Rancangan biaya penelitian ditampilkan pada Tabel \ref{tab:biaya-penelitian}.
+
+        \begin{table}[H]
+            \centering
+            \caption{Rancangan Biaya Penelitian}
+            \label{tab:biaya-penelitian}
+            \begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{1cm}|X|>{\raggedleft\arraybackslash}p{4cm}|}
+                \hline
+                \textbf{No.} & \textbf{Kebutuhan} & \textbf{Estimasi Biaya} \\
+                \hline
+                1 & Dataset publik & Rp0 \\
+                \hline
+                2 & Koneksi internet & Rp300.000 \\
+                \hline
+                3 & Perangkat pelatihan (PC) & Rp12.000.000 \\
+                \hline
+                4 & Penggunaan Raspberry Pi 5 sebagai perangkat \textit{edge} & Rp2.500.000 \\
+                \hline
+            \end{tabularx}
+        \end{table}
+    \end{subsectioncontent}
 \end{sectioncontent}
