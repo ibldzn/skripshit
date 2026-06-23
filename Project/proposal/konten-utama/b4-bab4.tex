@@ -128,7 +128,7 @@
 
     Untuk memperlihatkan sebaran hasil pada setiap percobaan, perbandingan akurasi masing-masing seed ditampilkan pada Tabel \ref{tab:perbandingan-akurasi-seed}. Selisih pada tabel dihitung dari akurasi YOLOv8 Nano dikurangi akurasi YOLO11 Nano. Dengan demikian, nilai positif menunjukkan bahwa YOLOv8 Nano memperoleh akurasi lebih tinggi, sedangkan nilai negatif menunjukkan bahwa YOLO11 Nano memperoleh akurasi lebih tinggi.
 
-    \begin{table}[htbp]
+    \begin{table}[H]
         \centering
         \caption{Perbandingan Akurasi YOLOv8 Nano dan YOLO11 Nano pada Setiap Seed}
         \label{tab:perbandingan-akurasi-seed}
@@ -289,7 +289,7 @@
 
 \section{Hasil Pengujian Efisiensi pada Perangkat \textit{Edge}}
 \begin{sectioncontent}
-    \hspace{\parindent}Pengujian efisiensi dilakukan pada Raspberry Pi 5 menggunakan model hasil ekspor dalam format ONNX. Pengujian ini bertujuan untuk mengetahui seberapa cepat kedua model melakukan inferensi pada perangkat \textit{edge}. Ringkasan hasil pengujian efisiensi ditampilkan pada Tabel \ref{tab:ukuran-model-memori} dan Tabel \ref{tab:efisiensi-edge}.
+    \hspace{\parindent}Pengujian efisiensi dilakukan pada Raspberry Pi 5 menggunakan model hasil ekspor dalam format ONNX. Pengujian ini dilakukan untuk melihat seberapa cepat kedua model menjalankan proses inferensi pada perangkat \textit{edge}. Ringkasan hasil pengujian efisiensi ditampilkan pada Tabel \ref{tab:ukuran-model-memori} dan Tabel \ref{tab:efisiensi-edge}.
 
     \begin{table}[H]
         \centering
@@ -306,7 +306,7 @@
         \end{tabular}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:ukuran-model-memori}, YOLOv8 Nano memiliki ukuran model dan memori puncak yang sedikit lebih rendah dibandingkan YOLO11 Nano. Selisih ukuran model kedua model adalah sekitar 0,36 MB, sedangkan selisih memori puncak teramati sekitar 0,41 MB. Selisih tersebut tidak besar, tetapi tetap relevan untuk perangkat \textit{edge} yang umumnya memiliki sumber daya terbatas.
+    Berdasarkan Tabel \ref{tab:ukuran-model-memori}, YOLOv8 Nano memiliki ukuran model dan memori puncak yang sedikit lebih rendah dibandingkan YOLO11 Nano. Selisih ukuran model kedua model adalah sekitar 0,36 MB, sedangkan selisih memori puncak teramati sekitar 0,41 MB. Selisih tersebut tidak besar, tetapi tetap perlu diperhatikan karena pengujian dilakukan pada perangkat \textit{edge} yang memiliki sumber daya lebih terbatas dibandingkan komputer desktop.
 
     \begin{table}[H]
         \centering
@@ -327,51 +327,96 @@
 
     Berdasarkan Tabel \ref{tab:efisiensi-edge}, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 8,43 ms, sedangkan YOLO11 Nano memperoleh 8,50 ms. Selisih waktu inferensi kedua model adalah 0,07 ms. Pada waktu total \textit{pipeline}, YOLOv8 Nano memperoleh rata-rata 9,79 ms, sedangkan YOLO11 Nano memperoleh 9,85 ms.
 
-    Dari sisi FPS, YOLOv8 Nano memperoleh 118,84 FPS berdasarkan waktu inferensi dan 102,29 FPS berdasarkan waktu total \textit{pipeline}. Sementara itu, YOLO11 Nano memperoleh 117,84 FPS berdasarkan waktu inferensi dan 101,72 FPS berdasarkan waktu total \textit{pipeline}. Nilai ini menunjukkan bahwa kedua model sama-sama dapat berjalan dengan cepat pada Raspberry Pi 5. Namun, YOLOv8 Nano tetap menunjukkan efisiensi yang sedikit lebih baik pada rata-rata 20 seed.
+    Dari sisi FPS, YOLOv8 Nano memperoleh 118,84 FPS berdasarkan waktu inferensi dan 102,29 FPS berdasarkan waktu total \textit{pipeline}. Sementara itu, YOLO11 Nano memperoleh 117,84 FPS berdasarkan waktu inferensi dan 101,72 FPS berdasarkan waktu total \textit{pipeline}. Hasil ini menunjukkan bahwa kedua model sama-sama dapat berjalan dengan cepat pada Raspberry Pi 5. Namun, secara rata-rata, YOLOv8 Nano masih menunjukkan efisiensi yang sedikit lebih baik.
 
-    Detail hasil efisiensi pada setiap seed ditampilkan pada Tabel \ref{tab:perbandingan-efisiensi-seed}. Tabel ini digunakan untuk menunjukkan bahwa perbandingan efisiensi tidak hanya dilihat dari nilai rata-rata, tetapi juga dari pola hasil pada setiap pasangan seed.
+    Untuk melihat pola hasil pada setiap percobaan, detail waktu inferensi masing-masing seed ditampilkan pada Tabel \ref{tab:perbandingan-inferensi-seed}. Tabel ini memperlihatkan waktu inferensi kedua model pada pasangan seed yang sama, sehingga perbandingan tidak hanya bergantung pada nilai rata-rata.
 
     \begin{table}[H]
         \centering
-        \caption{Perbandingan Efisiensi Inferensi YOLOv8 Nano dan YOLO11 Nano pada Setiap Seed}
-        \label{tab:perbandingan-efisiensi-seed}
-        \scriptsize
+        \caption{Perbandingan Waktu Inferensi YOLOv8 Nano dan YOLO11 Nano pada Setiap Seed}
+        \label{tab:perbandingan-inferensi-seed}
+        \small
         \renewcommand{\arraystretch}{1.2}
-        \resizebox{\textwidth}{!}{%
-        \begin{tabular}{|c|c|c|c|c|c|c|}
+        \setlength{\tabcolsep}{5pt}
+        \begin{tabularx}{\textwidth}{|c|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
             \hline
-            \textbf{Seed} & \textbf{Inferensi YOLOv8n (ms)} & \textbf{Inferensi YOLO11n (ms)} & \textbf{Pipeline YOLOv8n (ms)} & \textbf{Pipeline YOLO11n (ms)} & \textbf{FPS YOLOv8n} & \textbf{FPS YOLO11n} \\
+            \textbf{Seed} & \textbf{\shortstack{Inferensi\\YOLOv8n (ms)}} & \textbf{\shortstack{Inferensi\\YOLO11n (ms)}} & \textbf{Lebih Cepat} \\
             \hline
-            1 & 7,774 & 7,955 & 9,052 & 9,222 & 110,47 & 108,43 \\
-            2 & 7,756 & 7,862 & 9,026 & 9,135 & 110,79 & 109,47 \\
-            3 & 7,903 & 7,924 & 9,176 & 9,235 & 108,98 & 108,28 \\
-            4 & 7,961 & 7,936 & 9,282 & 9,209 & 107,73 & 108,59 \\
-            5 & 8,229 & 8,269 & 9,532 & 9,579 & 104,91 & 104,40 \\
-            6 & 8,287 & 8,268 & 9,602 & 9,576 & 104,15 & 104,43 \\
-            7 & 8,320 & 8,344 & 9,653 & 9,671 & 103,60 & 103,40 \\
-            8 & 8,392 & 8,381 & 9,746 & 9,714 & 102,61 & 102,94 \\
-            9 & 8,373 & 8,556 & 9,744 & 9,905 & 102,63 & 100,96 \\
-            10 & 8,519 & 8,404 & 9,876 & 9,725 & 101,26 & 102,82 \\
-            11 & 8,453 & 8,598 & 9,816 & 9,939 & 101,87 & 100,62 \\
-            12 & 8,489 & 8,740 & 9,825 & 10,091 & 101,78 & 99,10 \\
-            13 & 8,583 & 8,657 & 9,948 & 10,013 & 100,52 & 99,87 \\
-            14 & 8,638 & 8,630 & 10,031 & 9,999 & 99,69 & 100,01 \\
-            15 & 8,770 & 8,917 & 10,190 & 10,305 & 98,13 & 97,04 \\
-            16 & 8,918 & 8,832 & 10,347 & 10,224 & 96,65 & 97,80 \\
-            17 & 8,733 & 8,948 & 10,152 & 10,363 & 98,50 & 96,50 \\
-            18 & 8,834 & 8,879 & 10,327 & 10,277 & 96,83 & 97,31 \\
-            19 & 8,782 & 8,898 & 10,230 & 10,306 & 97,75 & 97,03 \\
-            20 & 8,880 & 9,053 & 10,314 & 10,475 & 96,96 & 95,46 \\
+            1 & 7,774 & 7,955 & YOLOv8n \\
+            2 & 7,756 & 7,862 & YOLOv8n \\
+            3 & 7,903 & 7,924 & YOLOv8n \\
+            4 & 7,961 & 7,936 & YOLO11n \\
+            5 & 8,229 & 8,269 & YOLOv8n \\
+            6 & 8,287 & 8,268 & YOLO11n \\
+            7 & 8,320 & 8,344 & YOLOv8n \\
+            8 & 8,392 & 8,381 & YOLO11n \\
+            9 & 8,373 & 8,556 & YOLOv8n \\
+            10 & 8,519 & 8,404 & YOLO11n \\
+            11 & 8,453 & 8,598 & YOLOv8n \\
+            12 & 8,489 & 8,740 & YOLOv8n \\
+            13 & 8,583 & 8,657 & YOLOv8n \\
+            14 & 8,638 & 8,630 & YOLO11n \\
+            15 & 8,770 & 8,917 & YOLOv8n \\
+            16 & 8,918 & 8,832 & YOLO11n \\
+            17 & 8,733 & 8,948 & YOLOv8n \\
+            18 & 8,834 & 8,879 & YOLOv8n \\
+            19 & 8,782 & 8,898 & YOLOv8n \\
+            20 & 8,880 & 9,053 & YOLOv8n \\
             \hline
-            \textbf{Rata-rata} & \textbf{8,430} & \textbf{8,502} & \textbf{9,794} & \textbf{9,848} & \textbf{102,29} & \textbf{101,72} \\
+            \textbf{Rata-rata} & \textbf{8,430} & \textbf{8,502} & \textbf{YOLOv8n} \\
             \hline
-        \end{tabular}%
-        }
+        \end{tabularx}
     \end{table}
 
-    Berdasarkan Tabel \ref{tab:perbandingan-efisiensi-seed}, YOLOv8 Nano cenderung memperoleh waktu inferensi dan total \textit{pipeline} yang lebih rendah pada sebagian besar seed. Namun, selisih waktu antara kedua model tetap kecil. Karena itu, hasil ini lebih tepat dibaca sebagai keunggulan efisiensi yang tipis, bukan perbedaan performa yang sangat jauh.
+    Berdasarkan Tabel \ref{tab:perbandingan-inferensi-seed}, YOLOv8 Nano memperoleh waktu inferensi lebih rendah pada 14 seed, sedangkan YOLO11 Nano lebih rendah pada 6 seed. Pola ini menunjukkan bahwa YOLOv8 Nano cenderung lebih cepat dalam proses inferensi. Namun, selisih waktunya tetap kecil, sehingga keunggulan tersebut lebih tepat dibaca sebagai perbedaan efisiensi yang tipis.
 
-    Nilai FPS tersebut diperoleh dari pengujian model pada data uji dalam lingkungan benchmark, sehingga belum merepresentasikan keseluruhan sistem nyata yang melibatkan kamera, akuisisi citra, preprocessing tambahan, tampilan antarmuka, atau proses lain di luar inferensi model.
+    Selain waktu inferensi, pengujian juga melihat waktu total \textit{pipeline} dan FPS. Detail hasil pengujian tersebut ditampilkan pada Tabel \ref{tab:perbandingan-pipeline-fps-seed}. Nilai FPS pada tabel ini dihitung berdasarkan waktu total \textit{pipeline}, sehingga hasilnya menggambarkan kecepatan proses pengujian secara lebih lengkap dibandingkan waktu inferensi saja.
+
+    \begin{table}[H]
+        \centering
+        \caption{Perbandingan Total Pipeline dan FPS YOLOv8 Nano dan YOLO11 Nano pada Setiap Seed}
+        \label{tab:perbandingan-pipeline-fps-seed}
+        \footnotesize
+        \renewcommand{\arraystretch}{1.2}
+        \setlength{\tabcolsep}{4pt}
+        \begin{tabularx}{\textwidth}{|c|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+            \hline
+            \textbf{Seed} &
+            \textbf{\shortstack{Pipeline\\YOLOv8n\\(ms)}} &
+            \textbf{\shortstack{Pipeline\\YOLO11n\\(ms)}} &
+            \textbf{\shortstack{FPS\\YOLOv8n}} &
+            \textbf{\shortstack{FPS\\YOLO11n}} &
+            \textbf{\shortstack{Lebih\\Efisien}} \\
+            \hline
+            1 & 9,052 & 9,222 & 110,47 & 108,43 & YOLOv8n \\
+            2 & 9,026 & 9,135 & 110,79 & 109,47 & YOLOv8n \\
+            3 & 9,176 & 9,235 & 108,98 & 108,28 & YOLOv8n \\
+            4 & 9,282 & 9,209 & 107,73 & 108,59 & YOLO11n \\
+            5 & 9,532 & 9,579 & 104,91 & 104,40 & YOLOv8n \\
+            6 & 9,602 & 9,576 & 104,15 & 104,43 & YOLO11n \\
+            7 & 9,653 & 9,671 & 103,60 & 103,40 & YOLOv8n \\
+            8 & 9,746 & 9,714 & 102,61 & 102,94 & YOLO11n \\
+            9 & 9,744 & 9,905 & 102,63 & 100,96 & YOLOv8n \\
+            10 & 9,876 & 9,725 & 101,26 & 102,82 & YOLO11n \\
+            11 & 9,816 & 9,939 & 101,87 & 100,62 & YOLOv8n \\
+            12 & 9,825 & 10,091 & 101,78 & 99,10 & YOLOv8n \\
+            13 & 9,948 & 10,013 & 100,52 & 99,87 & YOLOv8n \\
+            14 & 10,031 & 9,999 & 99,69 & 100,01 & YOLO11n \\
+            15 & 10,190 & 10,305 & 98,13 & 97,04 & YOLOv8n \\
+            16 & 10,347 & 10,224 & 96,65 & 97,80 & YOLO11n \\
+            17 & 10,152 & 10,363 & 98,50 & 96,50 & YOLOv8n \\
+            18 & 10,327 & 10,277 & 96,83 & 97,31 & YOLO11n \\
+            19 & 10,230 & 10,306 & 97,75 & 97,03 & YOLOv8n \\
+            20 & 10,314 & 10,475 & 96,96 & 95,46 & YOLOv8n \\
+            \hline
+            \textbf{Rata-rata} & \textbf{9,794} & \textbf{9,848} & \textbf{102,29} & \textbf{101,72} & \textbf{YOLOv8n} \\
+            \hline
+        \end{tabularx}
+    \end{table}
+
+    Berdasarkan Tabel \ref{tab:perbandingan-pipeline-fps-seed}, YOLOv8 Nano memperoleh total \textit{pipeline} yang lebih rendah pada 13 seed, sedangkan YOLO11 Nano lebih rendah pada 7 seed. Hasil ini masih sejalan dengan pengujian waktu inferensi, yaitu YOLOv8 Nano cenderung sedikit lebih efisien. Meski begitu, selisih antara kedua model tetap kecil, sehingga kedua model dapat dikatakan sama-sama layak dijalankan pada Raspberry Pi 5 dari sisi kecepatan.
+
+    Nilai FPS tersebut diperoleh dari pengujian model pada data uji dalam lingkungan benchmark. Oleh karena itu, hasil ini belum merepresentasikan keseluruhan sistem nyata yang melibatkan kamera, akuisisi citra, preprocessing tambahan, tampilan antarmuka, atau proses lain di luar inferensi model.
 \end{sectioncontent}
 
 \section{Hasil Uji Wilcoxon Signed-Rank}

@@ -2,6 +2,7 @@
 
 \section{Kesimpulan}
 \begin{sectioncontent}
+    \hspace{\parindent}Berdasarkan hasil penelitian dan pengujian yang telah dilakukan, dapat disimpulkan bahwa perbandingan YOLOv8 Nano dan YOLO11 Nano menunjukkan hasil yang cukup berdekatan, terutama dari sisi akurasi klasifikasi. Namun, terdapat beberapa perbedaan pada aspek efisiensi, ukuran model, dan penggunaan memori ketika kedua model dijalankan pada perangkat \textit{edge}. Adapun kesimpulan dari penelitian ini adalah sebagai berikut.
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item YOLOv8 Nano dan YOLO11 Nano berhasil diterapkan untuk klasifikasi penyakit daun tomat pada enam kelas, yaitu Tomato Early Blight, Tomato Healthy, Tomato Leaf Late Blight, Tomato Leaf Yellow Curl Virus, Tomato Mold Leaf, dan Tomato Septoria Leaf Spot. Dataset yang digunakan berjumlah 7.200 citra, dengan data uji sebanyak 720 citra yang terbagi seimbang pada setiap kelas.
 
@@ -17,7 +18,7 @@
 
 \section{Saran}
 \begin{sectioncontent}
-    \hspace{\parindent}Berdasarkan hasil penelitian dan keterbatasan yang ditemukan, terdapat beberapa saran untuk pengembangan penelitian selanjutnya.
+    \hspace{\parindent}Berdasarkan hasil penelitian yang telah diperoleh, terdapat beberapa hal yang dapat dikembangkan pada penelitian selanjutnya. Saran ini berkaitan dengan perluasan dataset, pengujian pada perangkat lain, penggunaan format model yang berbeda, serta pengembangan tugas klasifikasi ke pendekatan yang lebih detail. Adapun saran yang dapat diberikan adalah sebagai berikut.
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Penelitian selanjutnya dapat menggunakan dataset tambahan dari kondisi lapangan yang lebih beragam, misalnya citra dengan variasi pencahayaan, sudut pengambilan gambar, latar belakang, dan kualitas kamera yang berbeda. Hal ini penting untuk melihat kemampuan generalisasi model pada kondisi nyata.
@@ -26,7 +27,7 @@
 
         \item Pengujian dapat diperluas dengan membandingkan format model dan runtime inferensi lain, seperti NCNN, TensorFlow Lite, atau OpenVINO. Perbedaan format dan runtime dapat memengaruhi waktu inferensi, penggunaan memori, dan kemudahan implementasi pada perangkat \textit{edge}.
 
-        \item Penelitian selanjutnya dapat mempertimbangkan jumlah seed yang lebih banyak atau menambahkan analisis statistik lain sebagai pembanding. Hal ini dapat membantu melihat kestabilan performa model secara lebih kuat, terutama apabila selisih performa antar model sangat kecil.
+        \item Penelitian selanjutnya dapat menambahkan pendekatan evaluasi lain, seperti variasi pembagian dataset atau analisis statistik tambahan sebagai pembanding. Hal ini dapat membantu melihat kestabilan performa model secara lebih kuat, terutama apabila selisih performa antar model sangat kecil.
 
         \item Penelitian ini masih berfokus pada klasifikasi citra, sehingga model hanya menentukan jenis penyakit dari keseluruhan gambar. Untuk pengembangan selanjutnya, penelitian dapat diarahkan ke tugas \textit{object detection} atau segmentasi agar sistem tidak hanya mengenali jenis penyakit, tetapi juga menunjukkan lokasi bagian daun yang terinfeksi.
     \end{enumerate}
