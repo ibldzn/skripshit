@@ -31,17 +31,21 @@
 
 \subsection{Identifikasi Masalah}
 \begin{subsectioncontent}
+    \hspace{\parindent}Berdasarkan latar belakang yang telah diuraikan, terdapat beberapa permasalahan yang menjadi dasar dilakukannya penelitian ini. Permasalahan tersebut berkaitan dengan proses identifikasi penyakit daun tomat, pemanfaatan model \textit{deep learning}, serta kebutuhan implementasi model yang efisien pada perangkat \textit{edge}. Adapun identifikasi masalah dalam penelitian ini adalah sebagai berikut.
+
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Identifikasi penyakit daun tomat secara manual masih bergantung pada pengamatan visual manusia, sehingga hasilnya dapat dipengaruhi oleh pengalaman, ketelitian, dan konsistensi pengamat.
         \item Pendekatan berbasis citra dan \textit{deep learning} telah menunjukkan potensi dalam klasifikasi penyakit daun tomat, tetapi performa dan efisiensinya tetap bergantung pada model yang digunakan.
         \item Implementasi model klasifikasi pada perangkat \textit{edge} membutuhkan model yang tidak hanya akurat, tetapi juga efisien dari sisi waktu inferensi dan penggunaan sumber daya komputasi.
         \item Penelitian yang secara spesifik membandingkan YOLOv8 Nano dan YOLO11 Nano untuk klasifikasi penyakit daun tomat pada perangkat \textit{edge} masih relatif terbatas.
-        \item Perbandingan performa model yang hanya didasarkan pada satu kali pelatihan berpotensi kurang mewakili kestabilan hasil, karena proses pelatihan model \textit{deep learning} dapat dipengaruhi oleh variasi \textit{seed} dan kondisi eksperimen.
+        \item Perbandingan performa antara YOLOv8 Nano dan YOLO11 Nano perlu dilakukan dengan mempertimbangkan kestabilan hasil dari beberapa kali pelatihan, karena performa model \textit{deep learning} dapat dipengaruhi oleh variasi \textit{seed} selama proses pelatihan.
     \end{enumerate}
 \end{subsectioncontent}
 
-\subsection{Batasan Masalah}
+\subsection{Ruang Lingkup Masalah}
 \begin{subsectioncontent}
+    \hspace{\parindent}Ruang lingkup masalah dalam penelitian ini digunakan untuk memperjelas batasan pembahasan agar penelitian tetap terarah dan sesuai dengan tujuan yang ingin dicapai. Batasan ini meliputi jenis tugas yang dilakukan, model yang dibandingkan, data yang digunakan, perangkat pengujian, serta aspek-aspek yang menjadi dasar evaluasi. Dengan adanya ruang lingkup ini, pembahasan penelitian difokuskan pada perbandingan performa YOLOv8 Nano dan YOLO11 Nano dalam klasifikasi penyakit daun tomat pada perangkat \textit{edge}. Adapun ruang lingkup masalah dalam penelitian ini adalah sebagai berikut.
+
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Penelitian difokuskan pada tugas \textit{image classification} untuk menentukan kelas penyakit daun tomat dari citra.
         \item Model yang dibandingkan dibatasi pada dua model, yaitu YOLOv8 Nano dan YOLO11 Nano.
@@ -57,7 +61,7 @@
 
 \subsection{Rumusan Masalah}
 \begin{subsectioncontent}
-    \hspace{\parindent}Berdasarkan identifikasi dan batasan masalah yang telah dijelaskan, rumusan masalah dalam penelitian ini adalah sebagai berikut:
+    \hspace{\parindent}Berdasarkan identifikasi dan ruang lingkup masalah yang telah dijelaskan, rumusan masalah dalam penelitian ini adalah sebagai berikut:
 
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Bagaimana perbandingan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi penyakit daun tomat yang digunakan?
@@ -71,6 +75,8 @@
 
 \subsection{Tujuan}
 \begin{subsectioncontent}
+    \hspace{\parindent}Tujuan penelitian ini disusun berdasarkan permasalahan yang telah diidentifikasi sebelumnya. Secara umum, penelitian ini bertujuan untuk membandingkan performa YOLOv8 Nano dan YOLO11 Nano dalam klasifikasi penyakit daun tomat, baik dari sisi hasil klasifikasi maupun efisiensi ketika dijalankan pada perangkat \textit{edge}. Adapun tujuan dari penelitian ini adalah sebagai berikut.
+
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item Menerapkan YOLOv8 Nano dan YOLO11 Nano pada tugas klasifikasi penyakit daun tomat berbasis citra.
         \item Membandingkan akurasi YOLOv8 Nano dan YOLO11 Nano pada dataset klasifikasi penyakit daun tomat.
@@ -81,10 +87,10 @@
     \end{enumerate}
 \end{subsectioncontent}
 
-\newpage
-
 \subsection{Manfaat}
 \begin{subsectioncontent}
+    \hspace{\parindent}Penelitian ini diharapkan dapat memberikan manfaat dari sisi teoritis, praktis, dan metodologis. Manfaat tersebut berkaitan dengan pengembangan kajian klasifikasi citra menggunakan \textit{deep learning}, pemilihan model yang sesuai untuk perangkat dengan sumber daya terbatas, serta penerapan skenario evaluasi yang lebih stabil melalui penggunaan variasi \textit{seed}. Adapun manfaat dari penelitian ini adalah sebagai berikut.
+
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
         \item \textbf{Manfaat teoritis}\par
         Penelitian ini diharapkan dapat menambah referensi ilmiah mengenai penerapan \textit{deep learning}, khususnya model keluarga YOLO, pada klasifikasi penyakit daun tomat berbasis citra. Selain itu, penelitian ini juga dapat memberikan gambaran mengenai hubungan antara akurasi model, efisiensi komputasi, dan penerapannya pada perangkat \textit{edge}.
@@ -99,9 +105,7 @@
 
 \section{Sistematika Penulisan}
 \begin{sistematika}
-    \babsistematika{I}{PENDAHULUAN}{Berisi latar belakang masalah, identifikasi masalah, batasan masalah, rumusan masalah, tujuan penelitian, manfaat penelitian, serta sistematika penulisan.}
-
-    \newpage
+    \babsistematika{I}{PENDAHULUAN}{Berisi latar belakang masalah, identifikasi masalah, ruang lingkup masalah, rumusan masalah, tujuan penelitian, manfaat penelitian, serta sistematika penulisan.}
 
     \babsistematika{II}{LANDASAN TEORI DAN KERANGKA PEMIKIRAN}{Menjelaskan teori-teori yang mendukung penelitian, meliputi konsep penyakit daun tomat, klasifikasi citra, \textit{deep learning}, model YOLO, perangkat \textit{edge}, kualitas citra, metrik evaluasi, uji Wilcoxon Signed-Rank, penelitian terdahulu, dan kerangka pemikiran penelitian.}
 
