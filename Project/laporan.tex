@@ -81,11 +81,20 @@
 		% \include{b6-bab6} %HANYA TUTORIAL HAPUS SAAT PENULISAN
 	\end{spacing}
 }
+
+% ==================================================================
+% MENONAKTIFKAN NOMOR HALAMAN DAN TITIK-TITIK DI DAFTAR ISI
+% ==================================================================
+\addtocontents{toc}{\protect\cftpagenumbersoff{chapter}}
+\addtocontents{toc}{\protect\cftpagenumbersoff{section}}
+\addtocontents{toc}{\protect\cftpagenumbersoff{subsection}}
+\addtocontents{toc}{\protect\cftpagenumbersoff{subsubsection}}
+
 \input{untouch/xx-daftarpustaka}
 
-% \begin{spacing}{1.5}
-% 	\include{a9-daftarriwayathidup}
-% \end{spacing}
+\begin{spacing}{1.5}
+	\include{a9-daftarriwayathidup}
+\end{spacing}
 
 \input{a8-lampiran}
 \end{document}
