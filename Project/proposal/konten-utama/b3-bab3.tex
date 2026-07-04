@@ -131,20 +131,6 @@ tomato-leaf-disease/
     Pada tahap pengujian inferensi menggunakan model ONNX, preprocessing dilakukan secara manual melalui script benchmark. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
 \end{sectioncontent}
 
-\section{Model yang Digunakan}
-\begin{sectioncontent}
-    \hspace{\parindent}Model yang digunakan dalam penelitian ini adalah YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dipilih karena termasuk varian ringan dari keluarga YOLO, sehingga relevan untuk diuji pada perangkat dengan sumber daya komputasi terbatas.
-
-    \subsection{YOLOv8 Nano}
-    \begin{subsectioncontent}
-        \hspace{\parindent}YOLOv8 Nano merupakan varian ringan dari YOLOv8 yang dirancang untuk memiliki ukuran model kecil dan waktu inferensi yang cepat. Dalam penelitian ini, YOLOv8 Nano digunakan sebagai salah satu model pembanding untuk mengklasifikasikan penyakit daun tomat berbasis citra.
-    \end{subsectioncontent}
-
-    \subsection{YOLO11 Nano}
-    \begin{subsectioncontent}
-        \hspace{\parindent}YOLO11 Nano merupakan varian ringan dari YOLO11 yang digunakan sebagai model pembanding terhadap YOLOv8 Nano. Model ini dipilih karena berasal dari generasi YOLO yang lebih baru dan tetap diarahkan pada keseimbangan antara performa dan efisiensi. Perbandingan antara YOLOv8 Nano dan YOLO11 Nano dilakukan untuk mengetahui perbedaan performa keduanya pada tugas klasifikasi penyakit daun tomat.
-    \end{subsectioncontent}
-\end{sectioncontent}
 \section{Skenario Pelatihan Model}
 \begin{sectioncontent}
     \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih menggunakan dataset, ukuran citra, jumlah epoch, batch size, dan perangkat pelatihan yang sama. Penggunaan konfigurasi yang sama bertujuan agar perbandingan hasil lebih diarahkan pada perbedaan karakteristik model, bukan pada perbedaan skenario pelatihan.
@@ -216,86 +202,16 @@ tomato-leaf-disease/
         Penggunaan memori diamati menggunakan nilai \textit{Resident Set Size} (RSS) dari proses Python selama benchmark berjalan. Nilai memori puncak yang dilaporkan merupakan RSS puncak yang tersampling selama proses pengujian, bukan pengukuran memori perangkat secara keseluruhan.
     \end{subsectioncontent}
 \end{sectioncontent}
+
 \section{Metrik Evaluasi}
 \begin{sectioncontent}
-    \hspace{\parindent}Metrik evaluasi digunakan untuk mengukur performa model dari sisi akurasi klasifikasi dan efisiensi inferensi. Pada penelitian ini, metrik evaluasi yang digunakan terdiri dari akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, waktu inferensi, FPS, penggunaan memori, dan ukuran model. Karena penelitian ini menggunakan klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} juga dihitung dalam bentuk \textit{macro average} agar performa setiap kelas dapat diperhitungkan secara seimbang.
+    \hspace{\parindent}Metrik evaluasi pada penelitian ini digunakan untuk mengukur dua aspek utama, yaitu performa klasifikasi dan efisiensi inferensi. Rumus dasar metrik evaluasi klasifikasi, termasuk akurasi, \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{macro average}, telah dijelaskan pada Bab II. Pada Bab III, bagian ini difokuskan pada penerapan metrik tersebut dalam proses pengujian.
 
-    \subsection{Akurasi}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Dalam klasifikasi multikelas, akurasi digunakan untuk mengetahui persentase keseluruhan citra yang berhasil diklasifikasikan dengan benar oleh model. Rumus akurasi adalah sebagai berikut:
+    Metrik performa klasifikasi yang digunakan meliputi akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Akurasi digunakan untuk melihat ketepatan model secara keseluruhan, sedangkan \textit{macro precision}, \textit{macro recall}, dan \textit{macro F1-score} digunakan untuk melihat performa model secara lebih seimbang pada seluruh kelas. \textit{Confusion matrix} digunakan untuk melihat pola kesalahan klasifikasi, terutama pada kelas penyakit yang memiliki kemiripan gejala visual.
 
-        \begin{equation}
-            Accuracy = \frac{\text{Jumlah Prediksi Benar}}{\text{Jumlah Seluruh Data Uji}}
-        \end{equation}
-    \end{subsectioncontent}
-
-    \subsection{\textit{Precision}}
-    \begin{subsectioncontent}
-        \hspace{\parindent}\textit{Precision} menunjukkan tingkat ketepatan model ketika memprediksi suatu kelas. Nilai ini menggambarkan seberapa banyak prediksi pada suatu kelas yang benar-benar sesuai dengan kelas sebenarnya. Rumus \textit{precision} adalah sebagai berikut:
-
-        \begin{equation}
-            Precision = \frac{TP}{TP + FP}
-        \end{equation}
-    \end{subsectioncontent}
-
-    \subsection{\textit{Recall}}
-    \begin{subsectioncontent}
-        \hspace{\parindent}\textit{Recall} menunjukkan kemampuan model dalam menemukan seluruh data yang seharusnya termasuk ke dalam suatu kelas. Nilai ini digunakan untuk melihat seberapa baik model mengenali data dari kelas tertentu. Rumus \textit{recall} adalah sebagai berikut:
-
-        \begin{equation}
-            Recall = \frac{TP}{TP + FN}
-        \end{equation}
-    \end{subsectioncontent}
-
-    \subsection{\textit{F1-score}}
-    \begin{subsectioncontent}
-        \hspace{\parindent}\textit{F1-score} merupakan rata-rata harmonik dari \textit{precision} dan \textit{recall}. Metrik ini digunakan untuk memberikan gambaran keseimbangan antara ketepatan prediksi dan kemampuan model dalam menemukan data pada suatu kelas. Rumus \textit{F1-score} adalah sebagai berikut:
-
-        \begin{equation}
-            F1\text{-}score = 2 \times \frac{Precision \times Recall}{Precision + Recall}
-        \end{equation}
-    \end{subsectioncontent}
-
-    \subsection{\textit{Macro Average}}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Pada klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} dapat dihitung untuk setiap kelas. Agar performa seluruh kelas dapat dilihat secara seimbang, penelitian ini menggunakan pendekatan \textit{macro average}. Pendekatan ini menghitung nilai rata-rata dari setiap kelas tanpa memberikan bobot lebih besar pada kelas tertentu.
-
-        \begin{equation}
-            \operatorname{Macro\ Precision} = \frac{1}{K} \sum_{i=1}^{K} \operatorname{Precision}_{i}
-        \end{equation}
-
-        \begin{equation}
-            \operatorname{Macro\ Recall} = \frac{1}{K} \sum_{i=1}^{K} \operatorname{Recall}_{i}
-        \end{equation}
-
-        \begin{equation}
-            \operatorname{Macro\ F1\text{-}score} = \frac{1}{K} \sum_{i=1}^{K} F1_{i}
-        \end{equation}
-
-        Keterangan $K$ menunjukkan jumlah kelas yang digunakan dalam penelitian. Dengan menggunakan \textit{macro average}, setiap kelas memiliki pengaruh yang sama terhadap nilai akhir, sehingga hasil evaluasi tidak hanya mencerminkan performa pada kelas yang jumlah datanya lebih besar atau lebih mudah dikenali.
-    \end{subsectioncontent}
-
-    \subsection{Waktu Inferensi}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Waktu inferensi menunjukkan waktu yang dibutuhkan model untuk memproses satu citra dan menghasilkan prediksi. Semakin rendah waktu inferensi, semakin cepat model dalam melakukan klasifikasi.
-    \end{subsectioncontent}
-
-    \subsection{\textit{Frame Per Second}}
-    \begin{subsectioncontent}
-        \hspace{\parindent}\textit{Frame Per Second} atau FPS menunjukkan jumlah citra yang dapat diproses oleh model dalam satu detik. FPS dihitung berdasarkan waktu rata-rata menggunakan rumus berikut:
-
-        \begin{equation}
-            FPS = \frac{1000}{\text{Average Time (ms)}}
-        \end{equation}
-
-        Dalam penelitian ini, FPS dapat dihitung berdasarkan waktu inferensi saja maupun berdasarkan waktu total \textit{pipeline}. Semakin tinggi nilai FPS, semakin baik kemampuan model dalam memproses citra secara cepat pada perangkat \textit{edge}.
-    \end{subsectioncontent}
-
-    \subsection{Penggunaan Memori dan Ukuran Model}
-    \begin{subsectioncontent}
-        \hspace{\parindent}Penggunaan memori digunakan untuk melihat kebutuhan sumber daya model ketika dijalankan pada Raspberry Pi 5. Nilai yang diamati adalah \textit{Resident Set Size} (RSS) puncak yang tersampling selama proses pengujian. Sementara itu, ukuran model menunjukkan besar file model hasil ekspor dalam format ONNX. Kedua metrik ini digunakan sebagai pertimbangan tambahan karena perangkat \textit{edge} umumnya memiliki keterbatasan penyimpanan dan memori.
-    \end{subsectioncontent}
+    Metrik efisiensi yang digunakan meliputi waktu inferensi rata-rata per citra, waktu total \textit{pipeline} per citra, FPS, penggunaan memori puncak teramati, dan ukuran file model hasil ekspor. Waktu inferensi digunakan untuk melihat kecepatan model dalam menghasilkan prediksi, sedangkan waktu total \textit{pipeline} digunakan untuk melihat waktu pemrosesan secara keseluruhan, mulai dari \textit{preprocessing}, inferensi, hingga \textit{postprocessing}. FPS dihitung berdasarkan waktu rata-rata dalam milidetik. Penggunaan memori diamati melalui nilai \textit{Resident Set Size} (RSS) puncak selama proses benchmark, sedangkan ukuran model dihitung dari besar file ONNX hasil ekspor.
 \end{sectioncontent}
+
 \section{Teknik Analisis}
 \begin{sectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, waktu total \textit{pipeline}, FPS, penggunaan memori, dan ukuran model.
