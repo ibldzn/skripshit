@@ -46,7 +46,11 @@
         \label{fig:penyakit-daun-tomat}
     \end{figure}
 
-    \hspace{\parindent}Penyakit daun tomat merupakan gangguan pada daun tanaman tomat yang dapat disebabkan oleh jamur, bakteri, virus, maupun faktor lain. Gangguan tersebut umumnya memunculkan gejala visual tertentu, seperti bercak, perubahan warna, nekrosis, deformasi, atau kerusakan jaringan daun. Identifikasi dini terhadap gejala pada daun penting dilakukan karena daun sering menjadi indikator awal adanya gangguan kesehatan tanaman yang dapat memengaruhi pertumbuhan dan hasil panen (\citealp[hlm. 1--3 dan 7]{jelali2024tomatoreview}; \citealp[hlm. 192--193]{das2025tomatoreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
+    \hspace{\parindent}Gambar~\ref{fig:penyakit-daun-tomat} memperlihatkan contoh visual beberapa kelas daun tomat yang digunakan dalam penelitian ini. Gambar tersebut memberikan gambaran awal mengenai perbedaan gejala pada setiap kelas, seperti daun sehat, bercak pada permukaan daun, perubahan warna, kerusakan jaringan, hingga bentuk daun yang menggulung. Perbedaan visual tersebut menjadi dasar penting dalam proses klasifikasi citra karena model perlu mengenali pola visual yang membedakan satu kelas penyakit dengan kelas lainnya.
+
+    \newpage
+
+    Penyakit daun tomat merupakan gangguan pada daun tanaman tomat yang dapat disebabkan oleh jamur, bakteri, virus, maupun faktor lain. Gangguan tersebut umumnya memunculkan gejala visual tertentu, seperti bercak, perubahan warna, nekrosis, deformasi, atau kerusakan jaringan daun. Identifikasi dini terhadap gejala pada daun penting dilakukan karena daun sering menjadi indikator awal adanya gangguan kesehatan tanaman yang dapat memengaruhi pertumbuhan dan hasil panen (\citealp[hlm. 1--3 dan 7]{jelali2024tomatoreview}; \citealp[hlm. 192--193]{das2025tomatoreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
 
     Dalam penelitian berbasis citra, gejala visual pada daun tomat dapat dipelajari sebagai pola yang mewakili kelas penyakit tertentu. Dengan kata lain, citra daun tidak hanya dilihat sebagai gambar, tetapi juga sebagai data yang mengandung karakteristik visual untuk proses klasifikasi. Oleh karena itu, daun tomat menjadi objek yang sesuai untuk tugas klasifikasi citra, terutama apabila dataset yang digunakan telah memiliki label kelas yang jelas dan proses akuisisi citra dilakukan secara memadai (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
 
@@ -213,6 +217,18 @@
     \hspace{\parindent}Uji Wilcoxon Signed-Rank merupakan uji statistik nonparametrik yang digunakan untuk membandingkan dua kelompok data yang saling berpasangan \citep[hlm. 80--83]{wilcoxon1945individual}. Uji ini sesuai digunakan ketika data berasal dari dua perlakuan atau dua model yang diuji pada kondisi yang sama.
 
     Dalam penelitian ini, hasil pengujian YOLOv8 Nano dan YOLO11 Nano dipasangkan berdasarkan variasi \textit{seed} yang sama. Dengan demikian, uji Wilcoxon Signed-Rank digunakan untuk membantu melihat apakah perbedaan performa kedua model cukup kuat secara statistik atau hanya muncul sebagai variasi dari proses pelatihan. Meskipun demikian, hasil uji statistik tetap perlu dibaca bersama dengan nilai rata-rata metrik, arah selisih, dan aspek efisiensi agar interpretasi penelitian tidak hanya berhenti pada kesimpulan signifikan atau tidak signifikan.
+\end{subsectioncontent}
+
+
+\subsection{Keterkaitan Landasan Teori dengan Penelitian}
+\begin{subsectioncontent}
+    \hspace{\parindent}Landasan teori pada penelitian ini digunakan sebagai dasar untuk menentukan data, model, metode pengujian, dan cara membaca hasil. Teori penyakit daun tomat menjelaskan bahwa setiap kelas penyakit memiliki ciri visual tertentu, seperti bercak, perubahan warna, nekrosis, pertumbuhan jamur, atau perubahan bentuk daun. Ciri visual tersebut menjadi alasan mengapa citra daun tomat dapat digunakan sebagai data masukan untuk tugas klasifikasi citra.
+
+    Teori klasifikasi citra dan \textit{deep learning} menjelaskan bahwa model mempelajari pola visual dari data latih, kemudian menggunakan pola tersebut untuk memprediksi label kelas pada data uji. Berdasarkan dasar tersebut, penelitian ini menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi, bukan versi deteksi objek, karena keluaran yang dibutuhkan adalah label penyakit dari keseluruhan citra. Pemilihan varian \textit{nano} juga berkaitan dengan kebutuhan perangkat \textit{edge}, yaitu model yang memiliki ukuran kecil dan waktu inferensi rendah.
+
+    Metrik evaluasi yang dijelaskan pada landasan teori digunakan untuk menilai hasil penelitian secara lebih lengkap. Akurasi digunakan untuk melihat ketepatan prediksi secara umum, sedangkan \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{confusion matrix} digunakan untuk melihat performa pada setiap kelas serta pola kesalahan klasifikasi. Sementara itu, teori komputasi \textit{edge} menjadi dasar penggunaan metrik efisiensi seperti waktu inferensi, FPS, penggunaan memori, dan ukuran model.
+
+    Uji Wilcoxon \textit{Signed-Rank} digunakan sebagai dasar analisis statistik karena hasil pengujian kedua model dibandingkan secara berpasangan pada \textit{seed} yang sama. Dengan demikian, landasan teori tidak berdiri sebagai penjelasan umum saja, tetapi menjadi dasar dalam penyusunan metode penelitian, pemilihan metrik evaluasi, dan interpretasi hasil.
 \end{subsectioncontent}
 
 \section{Kerangka Pemikiran}

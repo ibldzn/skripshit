@@ -5,13 +5,48 @@
 
 \chapter[METODE PENELITIAN]{\\ METODE PENELITIAN}
 
-\section{Analisa Kebutuhan}
+\section{Analisis Kebutuhan}
 \begin{sectioncontent}
-    \hspace{\parindent}Analisa kebutuhan dilakukan untuk menentukan kebutuhan data, model, perangkat keras, dan perangkat lunak yang digunakan dalam penelitian. Kebutuhan tersebut disusun agar proses pelatihan, pengujian, dan analisis hasil dapat berjalan sesuai dengan tujuan penelitian.
+    \hspace{\parindent}Analisis kebutuhan dilakukan untuk menentukan kebutuhan data, model, perangkat keras, dan perangkat lunak yang digunakan dalam penelitian. Kebutuhan tersebut disusun agar proses pelatihan, pengujian, dan analisis hasil dapat berjalan sesuai dengan tujuan penelitian. Analisis kebutuhan juga digunakan untuk memastikan bahwa data yang digunakan sesuai dengan teori klasifikasi citra, model yang dipilih sesuai dengan kebutuhan perangkat \textit{edge}, serta metode evaluasi yang digunakan dapat menjawab rumusan masalah penelitian.
 
     \subsection{Kebutuhan Data}
     \begin{subsectioncontent}
-        \hspace{\parindent}Data yang dibutuhkan dalam penelitian ini adalah citra daun tomat yang telah dikelompokkan berdasarkan kelas penyakit dan kelas daun sehat. Dataset perlu memiliki struktur data latih, data validasi, dan data uji agar dapat digunakan pada proses pelatihan, validasi, dan evaluasi model klasifikasi.
+        \hspace{\parindent}Data yang dibutuhkan dalam penelitian ini adalah citra daun tomat yang telah dikelompokkan berdasarkan kelas penyakit dan kelas daun sehat. Karena penelitian ini menggunakan pendekatan klasifikasi citra, setiap citra harus memiliki satu label kelas yang jelas. Label tersebut diperlukan agar model dapat mempelajari hubungan antara ciri visual daun tomat dan kategori penyakit yang menjadi target klasifikasi.
+
+        Dataset yang digunakan perlu memenuhi beberapa kebutuhan utama. Pertama, dataset harus memiliki kelas yang sesuai dengan ruang lingkup penelitian, yaitu \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Mold Leaf}, \textit{Yellow Curl Virus}, dan \textit{Healthy}. Kedua, dataset perlu memiliki struktur data latih, data validasi, dan data uji. Data latih digunakan untuk melatih model, data validasi digunakan untuk memantau performa selama pelatihan, sedangkan data uji digunakan untuk menilai performa akhir model. Ketiga, jumlah data pada setiap kelas perlu diperhatikan agar evaluasi tidak terlalu dipengaruhi oleh dominasi kelas tertentu.
+
+        Pada penelitian ini, dataset yang digunakan sudah tersedia dalam struktur \textit{train}, \textit{val}, dan \textit{test}. Struktur tersebut dipertahankan tanpa pembagian ulang agar data uji yang digunakan untuk YOLOv8 Nano dan YOLO11 Nano tetap sama. Dengan data uji yang sama, hasil pengujian kedua model dapat dibandingkan secara lebih adil. Selain itu, penggunaan seed hanya diterapkan pada proses pelatihan model, bukan pada pembagian dataset. Hal ini dilakukan karena tujuan penggunaan seed adalah melihat kestabilan hasil pelatihan, bukan membuat variasi data uji.
+
+        Kebutuhan data dalam penelitian ini dapat diringkas sebagai berikut:
+
+        \begin{table}[H]
+            \centering
+            \caption{Kebutuhan Data Penelitian}
+            \label{tab:kebutuhan-data}
+            \small
+            \renewcommand{\arraystretch}{1.25}
+            \begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
+                \hline
+                \textbf{Aspek Data} & \textbf{Kebutuhan dalam Penelitian} \\
+                \hline
+                Jenis data & Citra daun tomat dalam format gambar yang dapat digunakan untuk tugas klasifikasi citra. \\
+                \hline
+                Label data & Setiap citra memiliki satu label kelas penyakit atau kelas daun sehat. \\
+                \hline
+                Kelas data & Enam kelas, yaitu \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Mold Leaf}, \textit{Yellow Curl Virus}, dan \textit{Healthy}. \\
+                \hline
+                Struktur data & Tersedia dalam folder \textit{train}, \textit{val}, dan \textit{test} agar dapat digunakan untuk pelatihan, validasi, dan pengujian. \\
+                \hline
+                Distribusi data & Jumlah data tiap kelas seimbang agar evaluasi tidak didominasi oleh kelas tertentu. \\
+                \hline
+                Kesesuaian metode & Data berbentuk citra berlabel sehingga sesuai untuk pelatihan model YOLO versi klasifikasi. \\
+                \hline
+                Kesesuaian evaluasi & Data uji yang sama digunakan pada kedua model agar hasil akurasi, metrik per kelas, \textit{confusion matrix}, dan uji statistik dapat dibandingkan secara berpasangan. \\
+                \hline
+            \end{tabularx}
+        \end{table}
+
+        Dengan kebutuhan tersebut, data tidak hanya berperan sebagai bahan pelatihan model, tetapi juga sebagai dasar agar perbandingan YOLOv8 Nano dan YOLO11 Nano dapat dilakukan secara konsisten. Kebutuhan ini penting karena perbedaan hasil model harus dianalisis berdasarkan karakteristik model dan skenario pelatihan, bukan karena perbedaan data yang digunakan.
     \end{subsectioncontent}
 
     \subsection{Kebutuhan Model}
@@ -145,12 +180,11 @@ tomato-leaf-disease/
         \item Memeriksa struktur dataset dan jumlah data pada setiap kelas.
         \item Memeriksa pembagian dataset awal yang telah tersedia dalam struktur data latih, data validasi, dan data uji.
         \item Melakukan \textit{preprocessing} dataset agar sesuai dengan kebutuhan model klasifikasi YOLO.
-        \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama pada beberapa variasi seed.
-        \item Mengevaluasi performa klasifikasi model menggunakan data uji yang sama untuk setiap model dan setiap seed.
+        \item Melatih model YOLOv8 Nano dan YOLO11 Nano menggunakan konfigurasi yang sama pada beberapa variasi \textit{seed}.
+        \item Mengevaluasi performa klasifikasi model menggunakan data uji yang sama untuk setiap model dan setiap \textit{seed}.
         \item Mengekspor model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
         \item Menjalankan pengujian inferensi model pada Raspberry Pi 5.
         \item Menganalisis perbandingan akurasi dan efisiensi kedua model secara deskriptif dan menggunakan uji Wilcoxon Signed-Rank.
-        \newpage
         \item Menarik kesimpulan berdasarkan hasil pengujian yang diperoleh.
     \end{enumerate}
 \end{subsectioncontent}
@@ -161,7 +195,7 @@ tomato-leaf-disease/
 
     Tahapan \textit{preprocessing} dalam penelitian ini meliputi pemeriksaan struktur folder dataset, pemeriksaan jumlah data pada setiap kelas, penyesuaian ukuran citra menjadi 224 x 224 piksel, serta normalisasi nilai piksel sesuai kebutuhan model. Dataset yang digunakan sudah memiliki struktur \textit{train}, \textit{val}, dan \textit{test}, sehingga penelitian ini tidak melakukan pembagian ulang dataset.
 
-    Pada tahap pengujian inferensi menggunakan model ONNX, preprocessing dilakukan secara manual melalui script benchmark yang dijalankan pada perangkat \textit{edge}. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
+    Pada tahap pengujian inferensi menggunakan model ONNX, \textit{preprocessing} dilakukan secara manual melalui script benchmark yang dijalankan pada perangkat \textit{edge}. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
 \end{subsectioncontent}
 
 \subsection{Skenario Pelatihan Model}
@@ -214,13 +248,11 @@ tomato-leaf-disease/
 \begin{subsectioncontent}
     \hspace{\parindent}Pengujian model dilakukan dalam dua tahap, yaitu pengujian performa klasifikasi dan pengujian efisiensi pada perangkat \textit{edge}. Pengujian performa klasifikasi digunakan untuk mengetahui kemampuan model dalam mengklasifikasikan citra daun tomat ke kelas yang benar. Sementara itu, pengujian efisiensi digunakan untuk mengetahui kecepatan dan kelayakan model ketika dijalankan pada Raspberry Pi 5.
 
-    \noindent\textbf{Pengujian Klasifikasi.}
+    Skenario pengujian disusun agar perbandingan kedua model dilakukan pada kondisi yang setara. Setiap model yang dilatih pada seed tertentu diuji menggunakan data uji yang sama. Dengan demikian, hasil YOLOv8 Nano pada seed ke-1 dipasangkan dengan hasil YOLO11 Nano pada seed ke-1, begitu pula sampai seed ke-20. Pola berpasangan ini menjadi dasar penggunaan uji Wilcoxon Signed-Rank pada tahap analisis.
 
-    \hspace{\parindent}Pengujian klasifikasi dilakukan menggunakan data uji yang tidak digunakan dalam proses pelatihan. Setiap model hasil pelatihan diuji pada data uji yang sama, sehingga terdapat 20 hasil pengujian untuk YOLOv8 Nano dan 20 hasil pengujian untuk YOLO11 Nano. Hasil prediksi model dibandingkan dengan label sebenarnya untuk menghitung metrik evaluasi, seperti akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Selain itu, \textit{confusion matrix} digunakan untuk melihat pola kesalahan klasifikasi, terutama pada kelas-kelas yang memiliki gejala visual mirip.
+    Pengujian klasifikasi dilakukan menggunakan data uji yang tidak digunakan dalam proses pelatihan. Setiap model hasil pelatihan diuji pada data uji yang sama, sehingga terdapat 20 hasil pengujian untuk YOLOv8 Nano dan 20 hasil pengujian untuk YOLO11 Nano. Hasil prediksi model dibandingkan dengan label sebenarnya untuk menghitung metrik evaluasi, seperti akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Selain itu, \textit{confusion matrix} digunakan untuk melihat pola kesalahan klasifikasi, terutama pada kelas-kelas yang memiliki gejala visual mirip.
 
-    \noindent\textbf{Pengujian pada Perangkat \textit{Edge}.}
-
-    \hspace{\parindent}Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini mengukur efisiensi inferensi kedua model pada lingkungan komputasi terbatas.
+    Pengujian pada perangkat \textit{edge} dilakukan dengan menjalankan model hasil pelatihan pada Raspberry Pi 5. Model yang telah dilatih diekspor ke format ONNX agar dapat dijalankan menggunakan ONNX Runtime pada perangkat \textit{edge}. Pengujian ini mengukur efisiensi inferensi kedua model pada lingkungan komputasi terbatas.
 
         Parameter yang diamati dalam pengujian pada perangkat \textit{edge} meliputi:
 
@@ -255,9 +287,11 @@ tomato-leaf-disease/
 
     Setiap hasil pengujian YOLOv8 Nano dipasangkan dengan hasil pengujian YOLO11 Nano pada seed yang sama. Pasangan data tersebut kemudian dianalisis menggunakan uji Wilcoxon Signed-Rank untuk melihat apakah perbedaan hasil kedua model signifikan secara statistik. Uji ini digunakan karena data yang dibandingkan bersifat berpasangan dan jumlah pasangan pengujian relatif terbatas. Metrik yang diuji secara statistik meliputi akurasi, waktu inferensi rata-rata, waktu total \textit{pipeline}, dan FPS total \textit{pipeline}.
 
-    Taraf signifikansi yang digunakan dalam penelitian ini adalah $\alpha = 0{,}05$. Apabila nilai \textit{p-value} lebih kecil dari 0,05, maka perbedaan kedua model pada metrik tersebut dinyatakan signifikan secara statistik. Sebaliknya, apabila nilai \textit{p-value} lebih besar atau sama dengan 0,05, maka perbedaan kedua model tidak dinyatakan signifikan. Ukuran model tetap dilaporkan sebagai hasil deskriptif karena nilainya merupakan properti file model hasil ekspor dan tidak berubah antar seed.
+    Taraf signifikansi yang digunakan dalam penelitian ini adalah $\alpha = 0{,}05$. Apabila nilai \textit{p-value} lebih kecil dari 0,05, maka perbedaan kedua model pada metrik tersebut dinyatakan signifikan secara statistik. Sebaliknya, apabila nilai \textit{p-value} lebih besar atau sama dengan 0,05, maka perbedaan kedua model tidak dinyatakan signifikan. Hasil yang tidak signifikan tidak berarti kedua model benar-benar sama, tetapi menunjukkan bahwa data pengujian pada penelitian ini belum memberikan bukti statistik yang cukup untuk menyatakan adanya perbedaan yang konsisten pada metrik tersebut.
 
-    Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi, waktu inferensi lebih rendah, dan ukuran model lebih kecil dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut.
+    Interpretasi hasil tidak hanya didasarkan pada keputusan signifikan atau tidak signifikan. Nilai rata-rata, arah selisih, jumlah seed yang dimenangkan oleh masing-masing model, serta besar kecilnya selisih praktis tetap diperhatikan. Hal ini penting karena perbedaan yang signifikan secara statistik dapat saja memiliki selisih praktis yang kecil, sedangkan perbedaan rata-rata yang terlihat lebih tinggi belum tentu cukup kuat secara statistik. Ukuran model tetap dilaporkan sebagai hasil deskriptif karena nilainya merupakan properti file model hasil ekspor dan tidak berubah antar seed.
+
+    Hasil pengujian disajikan dalam bentuk tabel dan grafik agar perbandingan kedua model lebih mudah dianalisis. Model yang memiliki akurasi lebih tinggi, waktu inferensi lebih rendah, dan ukuran model lebih kecil dinilai lebih sesuai untuk diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, apabila terdapat perbedaan antara akurasi dan efisiensi, analisis dilakukan dengan mempertimbangkan keseimbangan antara kedua aspek tersebut serta makna praktis dari selisih hasil yang diperoleh.
 \end{subsectioncontent}
 
 \subsection{Rancangan Hasil Pengujian}
