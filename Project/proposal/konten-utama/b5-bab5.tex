@@ -2,10 +2,10 @@
 
 \section{Kesimpulan}
 \begin{sectioncontent}
-    \hspace{\parindent}Berdasarkan hasil penelitian dan pengujian yang telah dilakukan, dapat disimpulkan bahwa perbandingan YOLOv8 Nano dan YOLO11 Nano menunjukkan hasil yang cukup berdekatan, terutama dari sisi akurasi klasifikasi. Namun, terdapat beberapa perbedaan pada aspek efisiensi, ukuran model, dan penggunaan memori ketika kedua model dijalankan pada perangkat \textit{edge}. Adapun kesimpulan dari penelitian ini adalah sebagai berikut.
+    \hspace{\parindent}YOLOv8 Nano dan YOLO11 Nano berhasil diterapkan untuk klasifikasi penyakit daun tomat pada enam kelas, yaitu Tomato Early Blight, Tomato Healthy, Tomato Leaf Late Blight, Tomato Leaf Yellow Curl Virus, Tomato Mold Leaf, dan Tomato Septoria Leaf Spot. Dataset yang digunakan berjumlah 7.200 citra, dengan data uji sebanyak 720 citra yang terbagi seimbang pada setiap kelas.
+    
+    Berdasarkan hasil penelitian dan pengujian yang telah dilakukan, dapat disimpulkan bahwa perbandingan YOLOv8 Nano dan YOLO11 Nano menunjukkan hasil yang cukup berdekatan, terutama dari sisi akurasi klasifikasi. Namun, terdapat beberapa perbedaan pada aspek efisiensi, ukuran model, dan penggunaan memori ketika kedua model dijalankan pada perangkat \textit{edge}. Adapun kesimpulan dari penelitian ini adalah sebagai berikut.
     \begin{enumerate}[leftmargin=0.75cm,label=\arabic*.]
-        \item YOLOv8 Nano dan YOLO11 Nano berhasil diterapkan untuk klasifikasi penyakit daun tomat pada enam kelas, yaitu Tomato Early Blight, Tomato Healthy, Tomato Leaf Late Blight, Tomato Leaf Yellow Curl Virus, Tomato Mold Leaf, dan Tomato Septoria Leaf Spot. Dataset yang digunakan berjumlah 7.200 citra, dengan data uji sebanyak 720 citra yang terbagi seimbang pada setiap kelas.
-
         \item Berdasarkan rata-rata hasil pengujian dari 20 seed, YOLOv8 Nano memperoleh akurasi sebesar 88,32\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 87,81\%. YOLOv8 Nano juga memperoleh \textit{macro F1-score} sebesar 88,33\%, sedangkan YOLO11 Nano memperoleh 87,89\%. Secara deskriptif, YOLOv8 Nano sedikit lebih tinggi, tetapi hasil uji Wilcoxon Signed-Rank menunjukkan bahwa perbedaan akurasi kedua model tidak signifikan secara statistik dengan nilai \textit{p-value} sebesar 0,2706.
 
         \item Berdasarkan hasil pengujian pada Raspberry Pi 5, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 8,43 ms, sedangkan YOLO11 Nano memperoleh 8,50 ms. Pada waktu total \textit{pipeline}, YOLOv8 Nano memperoleh 9,79 ms, sedangkan YOLO11 Nano memperoleh 9,85 ms. Hasil uji Wilcoxon menunjukkan bahwa perbedaan waktu inferensi signifikan secara statistik, meskipun selisih praktis antara kedua model tetap kecil.

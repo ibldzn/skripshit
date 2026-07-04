@@ -61,12 +61,12 @@
 \begin{subsectioncontent}
     \hspace{\parindent}Objek dalam penelitian ini adalah citra daun tomat yang terdiri dari beberapa kelas penyakit dan satu kelas daun sehat. Citra tersebut digunakan sebagai data masukan untuk proses klasifikasi menggunakan model YOLOv8 Nano dan YOLO11 Nano. Penelitian ini berfokus pada tugas \textit{image classification}, sehingga keluaran model berupa label kelas dari keseluruhan citra, bukan lokasi objek atau area penyakit pada citra.
 
-    Kelas yang digunakan dalam penelitian ini terdiri dari \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}. Penentuan kelas tersebut disesuaikan dengan struktur dataset publik yang digunakan dalam penelitian.
+    Kelas yang digunakan dalam penelitian ini terdiri dari \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Mold Leaf}, \textit{Yellow Curl Virus}, dan \textit{Healthy}. Penentuan kelas tersebut disesuaikan dengan struktur dataset publik yang digunakan dalam penelitian.
 \end{subsectioncontent}
 
 \subsection{Dataset Penelitian}
 \begin{subsectioncontent}
-    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini adalah \textit{Tomato Leaf Disease Classification Dataset in Pakistan} \citep{malik2026dataset} yang tersedia secara publik. Dataset ini terdiri dari 7.200 citra daun tomat yang dikumpulkan dari kondisi pertanian lapangan di Pakistan. Citra pada dataset tersebut mencakup enam kelas, yaitu \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Leaf Mold}, \textit{Yellow Leaf Curl Virus}, dan \textit{Healthy}.
+    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini adalah \textit{Tomato Leaf Disease Classification Dataset in Pakistan} \citep{malik2026dataset} yang tersedia secara publik. Dataset ini terdiri dari 7.200 citra daun tomat yang dikumpulkan dari kondisi pertanian lapangan di Pakistan. Citra pada dataset tersebut mencakup enam kelas, yaitu \textit{Early Blight}, \textit{Late Blight}, \textit{Septoria Leaf Spot}, \textit{Mold Leaf}, \textit{Yellow Curl Virus}, dan \textit{Healthy}.
 
     Dataset yang digunakan dalam penelitian ini telah tersedia dalam struktur data latih, data validasi, dan data uji. Oleh karena itu, penelitian ini mengikuti struktur pembagian dataset awal tanpa melakukan pembagian ulang. Penggunaan struktur awal tersebut dipilih agar eksperimen tetap konsisten dengan susunan dataset yang telah tersedia.
 
@@ -103,7 +103,36 @@ tomato-leaf-disease/
     |-- Tomato_Septoria_leaf_spot/
     \end{verbatim}
 
-    Pembagian dataset pada sumber data telah disusun dengan proporsi yang seimbang pada setiap kelas. Dalam penelitian ini, pembagian tersebut digunakan sebagaimana struktur awal dataset tanpa proses pembagian ulang.
+
+    Pembagian jumlah data pada setiap kelas ditampilkan pada Tabel \ref{tab:distribusi-dataset}. Tabel tersebut menunjukkan bahwa setiap kelas memiliki jumlah data yang sama, yaitu 1.200 citra, dengan pembagian 840 citra untuk data latih, 240 citra untuk data validasi, dan 120 citra untuk data uji.
+
+    \begin{table}[H]
+        \centering
+        \caption{Distribusi Dataset Penelitian}
+        \label{tab:distribusi-dataset}
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabularx}{\textwidth}{|X|c|c|c|c|}
+            \hline
+            \textbf{Kelas} & \textbf{Train} & \textbf{Val} & \textbf{Test} & \textbf{Total} \\
+            \hline
+            Tomato Early Blight & 840 & 240 & 120 & 1200 \\
+            \hline
+            Tomato Healthy & 840 & 240 & 120 & 1200 \\
+            \hline
+            Tomato Leaf Late Blight & 840 & 240 & 120 & 1200 \\
+            \hline
+            Tomato Leaf Yellow Curl Virus & 840 & 240 & 120 & 1200 \\
+            \hline
+            Tomato Mold Leaf & 840 & 240 & 120 & 1200 \\
+            \hline
+            Tomato Septoria Leaf Spot & 840 & 240 & 120 & 1200 \\
+            \hline
+            \textbf{Total} & \textbf{5040} & \textbf{1440} & \textbf{720} & \textbf{7200} \\
+            \hline
+        \end{tabularx}
+    \end{table}
+
+    Berdasarkan distribusi tersebut, total data uji yang digunakan pada setiap pengujian adalah 720 citra. Distribusi yang seimbang membantu proses evaluasi karena hasil akurasi tidak didominasi oleh kelas tertentu. Meskipun demikian, penelitian ini tetap menggunakan metrik \textit{precision}, \textit{recall}, dan \textit{F1-score} untuk melihat performa model secara lebih rinci pada setiap kelas.
 \end{subsectioncontent}
 
 \subsection{Tahapan Penelitian}
@@ -121,6 +150,7 @@ tomato-leaf-disease/
         \item Mengekspor model ke format yang sesuai untuk pengujian pada perangkat \textit{edge}.
         \item Menjalankan pengujian inferensi model pada Raspberry Pi 5.
         \item Menganalisis perbandingan akurasi dan efisiensi kedua model secara deskriptif dan menggunakan uji Wilcoxon Signed-Rank.
+        \newpage
         \item Menarik kesimpulan berdasarkan hasil pengujian yang diperoleh.
     \end{enumerate}
 \end{subsectioncontent}
@@ -131,7 +161,7 @@ tomato-leaf-disease/
 
     Tahapan \textit{preprocessing} dalam penelitian ini meliputi pemeriksaan struktur folder dataset, pemeriksaan jumlah data pada setiap kelas, penyesuaian ukuran citra menjadi 224 x 224 piksel, serta normalisasi nilai piksel sesuai kebutuhan model. Dataset yang digunakan sudah memiliki struktur \textit{train}, \textit{val}, dan \textit{test}, sehingga penelitian ini tidak melakukan pembagian ulang dataset.
 
-    Pada tahap pengujian inferensi menggunakan model ONNX, preprocessing dilakukan secara manual melalui script benchmark. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
+    Pada tahap pengujian inferensi menggunakan model ONNX, preprocessing dilakukan secara manual melalui script benchmark yang dijalankan pada perangkat \textit{edge}. Citra dibaca dalam format RGB, diubah ukurannya menjadi 224 x 224 piksel, dinormalisasi ke rentang nilai 0 sampai 1, kemudian diubah dari format HWC menjadi CHW dan ditambahkan dimensi batch. Tahapan tersebut dilakukan agar bentuk input sesuai dengan kebutuhan model YOLO versi klasifikasi dalam format ONNX.
 \end{subsectioncontent}
 
 \subsection{Skenario Pelatihan Model}
@@ -223,7 +253,7 @@ tomato-leaf-disease/
 \begin{subsectioncontent}
     \hspace{\parindent}Analisis data dilakukan dengan membandingkan hasil pengujian YOLOv8 Nano dan YOLO11 Nano berdasarkan metrik yang telah ditentukan. Hasil pengujian klasifikasi dianalisis menggunakan akurasi, \textit{macro precision}, \textit{macro recall}, \textit{macro F1-score}, hasil evaluasi per kelas, dan \textit{confusion matrix}. Sementara itu, hasil pengujian efisiensi pada perangkat \textit{edge} dianalisis berdasarkan waktu inferensi, waktu total \textit{pipeline}, FPS, penggunaan memori, dan ukuran model.
 
-    Setiap hasil pengujian YOLOv8 Nano dipasangkan dengan hasil pengujian YOLO11 Nano pada seed yang sama. Pasangan data tersebut kemudian dianalisis menggunakan uji Wilcoxon Signed-Rank untuk melihat apakah perbedaan hasil kedua model signifikan secara statistik. Uji ini digunakan karena data yang dibandingkan bersifat berpasangan dan jumlah pasangan pengujian relatif terbatas.
+    Setiap hasil pengujian YOLOv8 Nano dipasangkan dengan hasil pengujian YOLO11 Nano pada seed yang sama. Pasangan data tersebut kemudian dianalisis menggunakan uji Wilcoxon Signed-Rank untuk melihat apakah perbedaan hasil kedua model signifikan secara statistik. Uji ini digunakan karena data yang dibandingkan bersifat berpasangan dan jumlah pasangan pengujian relatif terbatas. Metrik yang diuji secara statistik meliputi akurasi, waktu inferensi rata-rata, waktu total \textit{pipeline}, dan FPS total \textit{pipeline}.
 
     Taraf signifikansi yang digunakan dalam penelitian ini adalah $\alpha = 0{,}05$. Apabila nilai \textit{p-value} lebih kecil dari 0,05, maka perbedaan kedua model pada metrik tersebut dinyatakan signifikan secara statistik. Sebaliknya, apabila nilai \textit{p-value} lebih besar atau sama dengan 0,05, maka perbedaan kedua model tidak dinyatakan signifikan. Ukuran model tetap dilaporkan sebagai hasil deskriptif karena nilainya merupakan properti file model hasil ekspor dan tidak berubah antar seed.
 

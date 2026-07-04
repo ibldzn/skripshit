@@ -7,82 +7,18 @@
 
 \section{Hasil}
 \begin{sectioncontent}
-    \hspace{\parindent}Hasil pelatihan dan pengujian model YOLOv8 Nano serta YOLO11 Nano disajikan untuk melihat performa keduanya pada tugas klasifikasi penyakit daun tomat. Agar perbandingan lebih adil, kedua model dilatih menggunakan dataset yang sama, konfigurasi pelatihan yang seragam, dan variasi seed yang sama. Analisis difokuskan pada dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi.
+    \hspace{\parindent}Hasil pelatihan dan pengujian model YOLOv8 Nano serta YOLO11 Nano disajikan untuk melihat performa keduanya pada tugas klasifikasi penyakit daun tomat. Analisis difokuskan pada dua aspek utama, yaitu akurasi klasifikasi dan efisiensi inferensi ketika model dijalankan pada perangkat \textit{edge}.
 
-    Setelah proses pelatihan selesai, bobot terbaik dari masing-masing model digunakan untuk proses evaluasi. Model tersebut kemudian diekspor ke format ONNX agar dapat dijalankan pada perangkat \textit{edge}, yaitu Raspberry Pi 5. Dengan demikian, pengujian dalam penelitian ini tidak hanya menilai kemampuan model dalam mengenali kelas penyakit daun tomat, tetapi juga menilai kelayakan model ketika dijalankan pada perangkat dengan sumber daya komputasi terbatas.
-
-    Pengujian dilakukan sebanyak 20 pasangan seed. Setiap hasil YOLOv8 Nano pada seed tertentu dipasangkan dengan hasil YOLO11 Nano pada seed yang sama. Pendekatan ini digunakan agar perbandingan tidak hanya bergantung pada satu kali pelatihan, serta memungkinkan dilakukan uji Wilcoxon Signed-Rank untuk melihat apakah perbedaan hasil kedua model signifikan secara statistik.
-\end{sectioncontent}
-
-\section{Distribusi Dataset Penelitian}
-\begin{sectioncontent}
-    \hspace{\parindent}Dataset yang digunakan dalam penelitian ini terdiri dari 7.200 citra daun tomat yang terbagi ke dalam enam kelas. Dataset tersebut dibagi menjadi tiga bagian, yaitu data latih, data validasi, dan data uji.
-
-    Data latih digunakan untuk melatih model, data validasi untuk memantau performa selama pelatihan, dan data uji untuk mengevaluasi performa akhir model.
-
-    \begin{table}[H]
-        \centering
-        \caption{Distribusi Dataset Penelitian}
-        \label{tab:distribusi-dataset}
-        \renewcommand{\arraystretch}{1.2}
-        \begin{tabularx}{\textwidth}{|X|c|c|c|c|}
-            \hline
-            \textbf{Kelas} & \textbf{Train} & \textbf{Val} & \textbf{Test} & \textbf{Total} \\
-            \hline
-            Tomato Early Blight & 840 & 240 & 120 & 1200 \\
-            \hline
-            Tomato Healthy & 840 & 240 & 120 & 1200 \\
-            \hline
-            Tomato Leaf Late Blight & 840 & 240 & 120 & 1200 \\
-            \hline
-            Tomato Leaf Yellow Curl Virus & 840 & 240 & 120 & 1200 \\
-            \hline
-            Tomato Mold Leaf & 840 & 240 & 120 & 1200 \\
-            \hline
-            Tomato Septoria Leaf Spot & 840 & 240 & 120 & 1200 \\
-            \hline
-            \textbf{Total} & \textbf{5040} & \textbf{1440} & \textbf{720} & \textbf{7200} \\
-            \hline
-        \end{tabularx}
-    \end{table}
-
-    Berdasarkan Tabel \ref{tab:distribusi-dataset}, dataset penelitian memiliki distribusi yang seimbang pada setiap kelas. Masing-masing kelas terdiri dari 1.200 citra, dengan pembagian 840 citra untuk data latih, 240 citra untuk data validasi, dan 120 citra untuk data uji. Dengan demikian, data uji yang digunakan pada setiap pengujian berjumlah 720 citra dan tidak digunakan dalam proses pelatihan maupun validasi model.
-
-    Distribusi yang seimbang membantu proses evaluasi karena hasil akurasi tidak didominasi oleh kelas tertentu. Meskipun demikian, penelitian ini tetap menggunakan metrik \textit{precision}, \textit{recall}, dan \textit{F1-score} untuk melihat performa model secara lebih rinci pada setiap kelas.
+    Perancangan dataset, konfigurasi pelatihan, skenario pengujian, dan teknik analisis statistik telah dijelaskan pada Bab III. Oleh karena itu, Bab IV difokuskan pada penyajian hasil, interpretasi angka pengujian, dan pembahasan perbandingan antara YOLOv8 Nano dan YOLO11 Nano.
 \end{sectioncontent}
 
 \section{Hasil Pelatihan Model}
 \begin{sectioncontent}
-    \hspace{\parindent}Pelatihan model dilakukan menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi. Kedua model dilatih dengan ukuran citra masukan sebesar 224 x 224 piksel. Untuk menjaga konsistensi eksperimen, parameter utama seperti jumlah \textit{epoch}, ukuran citra, dan \textit{batch size} dibuat sama pada kedua model. Konfigurasi pelatihan yang digunakan ditampilkan pada Tabel \ref{tab:konfigurasi-pelatihan-bab4}.
-
-    \begin{table}[H]
-        \centering
-        \caption{Konfigurasi Pelatihan Model}
-        \label{tab:konfigurasi-pelatihan-bab4}
-        \begin{tabular}{|l|l|}
-            \hline
-            \textbf{Parameter} & \textbf{Nilai} \\
-            \hline
-            Model 1 & YOLOv8 Nano Classification \\
-            \hline
-            Model 2 & YOLO11 Nano Classification \\
-            \hline
-            Ukuran citra & 224 x 224 piksel \\
-            \hline
-            Jumlah \textit{epoch} & 50 \\
-            \hline
-            \textit{Batch size} & 16 \\
-            \hline
-            Seed & 1 sampai 20 \\
-            \hline
-            Perangkat pelatihan & Desktop PC dengan NVIDIA RTX 4060 \\
-            \hline
-            Perangkat pengujian \textit{edge} & Raspberry Pi 5 RAM 8 GB \\
-            \hline
-        \end{tabular}
-    \end{table}
+    \hspace{\parindent}Pelatihan model dilakukan sesuai dengan skenario pelatihan yang telah dijelaskan pada Bab III. Bagian ini menyajikan visualisasi hasil pelatihan sebagai gambaran perubahan nilai \textit{loss} dan akurasi selama proses pelatihan pada YOLOv8 Nano dan YOLO11 Nano.
 
     Hasil pelatihan dari masing-masing seed menghasilkan bobot terbaik yang kemudian digunakan pada tahap pengujian. Sebagai gambaran proses pelatihan, visualisasi perubahan nilai \textit{loss} dan akurasi selama pelatihan ditampilkan pada Gambar \ref{fig:training-yolov8} dan Gambar \ref{fig:training-yolo11}.
+
+    Grafik pelatihan yang ditampilkan merupakan contoh hasil pelatihan dari salah satu seed yang digunakan sebagai representasi pola pelatihan. Analisis utama tetap didasarkan pada hasil pengujian dari seluruh 20 seed.
 
     \begin{figure}[H]
         \centering
@@ -289,7 +225,7 @@
 
 \section{Hasil Pengujian Efisiensi pada Perangkat \textit{Edge}}
 \begin{sectioncontent}
-    \hspace{\parindent}Pengujian efisiensi dilakukan pada Raspberry Pi 5 menggunakan model hasil ekspor dalam format ONNX. Pengujian ini dilakukan untuk melihat seberapa cepat kedua model menjalankan proses inferensi pada perangkat \textit{edge}. Ringkasan hasil pengujian efisiensi ditampilkan pada Tabel \ref{tab:ukuran-model-memori} dan Tabel \ref{tab:efisiensi-edge}.
+    \hspace{\parindent}Berdasarkan skenario pengujian pada perangkat \textit{edge} yang telah dijelaskan pada Bab III, bagian ini menyajikan hasil efisiensi inferensi YOLOv8 Nano dan YOLO11 Nano pada Raspberry Pi 5. Ringkasan hasil pengujian efisiensi ditampilkan pada Tabel \ref{tab:ukuran-model-memori} dan Tabel \ref{tab:efisiensi-edge}.
 
     \begin{table}[H]
         \centering
@@ -421,7 +357,7 @@
 
 \section{Hasil Uji Wilcoxon Signed-Rank}
 \begin{sectioncontent}
-    \hspace{\parindent}Uji Wilcoxon Signed-Rank digunakan untuk melihat apakah perbedaan hasil YOLOv8 Nano dan YOLO11 Nano signifikan secara statistik. Data yang diuji berupa 20 pasangan hasil, yaitu hasil YOLOv8 Nano dan YOLO11 Nano pada seed yang sama. Uji dilakukan dengan taraf signifikansi $\alpha = 0{,}05$. Ringkasan hasil uji Wilcoxon ditampilkan pada Tabel \ref{tab:wilcoxon}.
+    \hspace{\parindent}Berdasarkan teknik analisis yang telah dijelaskan pada Bab III, hasil uji Wilcoxon Signed-Rank digunakan untuk melihat signifikansi perbedaan performa YOLOv8 Nano dan YOLO11 Nano. Ringkasan hasil uji Wilcoxon ditampilkan pada Tabel \ref{tab:wilcoxon}.
 
     \begin{table}[H]
         \centering
@@ -527,13 +463,4 @@
     Keempat, penelitian ini menggunakan 20 seed untuk melihat kestabilan hasil, tetapi variasi tersebut tetap belum mewakili seluruh kemungkinan konfigurasi pelatihan. Kelima, penelitian ini hanya berfokus pada tugas klasifikasi citra. Artinya, model hanya menentukan kelas penyakit dari keseluruhan gambar, tetapi tidak menunjukkan lokasi bagian daun yang terinfeksi. Dengan demikian, penelitian ini belum membahas tugas \textit{object detection}, segmentasi citra, maupun rekomendasi penanganan penyakit tanaman.
 
     Dengan keterbatasan tersebut, hasil penelitian tetap dapat digunakan sebagai dasar perbandingan antara YOLOv8 Nano dan YOLO11 Nano pada skenario klasifikasi penyakit daun tomat berbasis perangkat \textit{edge}. Namun, penelitian lanjutan dapat dilakukan dengan menambah variasi dataset, menguji perangkat \textit{edge} lain, membandingkan format model yang berbeda, serta mengevaluasi performa model pada citra lapangan yang lebih beragam.
-\end{sectioncontent}
-
-\section{Ringkasan Hasil}
-\begin{sectioncontent}
-    \hspace{\parindent}Berdasarkan rata-rata dari 20 seed, YOLOv8 Nano memperoleh akurasi sebesar 88,32\%, sedangkan YOLO11 Nano memperoleh akurasi sebesar 87,81\%. Meskipun YOLOv8 Nano memiliki rata-rata akurasi yang sedikit lebih tinggi, hasil uji Wilcoxon menunjukkan bahwa perbedaan akurasi kedua model tidak signifikan secara statistik.
-
-    Dari sisi efisiensi, YOLOv8 Nano memperoleh rata-rata waktu inferensi sebesar 8,43 ms, sedangkan YOLO11 Nano memperoleh 8,50 ms. Perbedaan waktu inferensi ini signifikan secara statistik, meskipun selisih praktisnya kecil. YOLOv8 Nano juga memiliki ukuran model yang lebih kecil, yaitu 5,53 MB dibandingkan YOLO11 Nano sebesar 5,90 MB.
-
-    Secara umum, kedua model mampu melakukan klasifikasi penyakit daun tomat dengan akurasi di atas 87\% dan waktu total \textit{pipeline} di bawah 10 ms pada Raspberry Pi 5. Berdasarkan kombinasi hasil tersebut, YOLOv8 Nano lebih direkomendasikan apabila prioritas utama adalah efisiensi dan ukuran model. Namun, dari sisi akurasi, kedua model lebih tepat dinyatakan memiliki performa yang sebanding pada dataset, konfigurasi, dan perangkat pengujian yang digunakan.
 \end{sectioncontent}

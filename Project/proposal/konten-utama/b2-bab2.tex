@@ -88,7 +88,7 @@
         & \citep{clemson2025tomatoDiseases} \\
         \hline
 
-        4 & \textit{Leaf Mold}
+        4 & \textit{Mold Leaf}
         & Gejala awal berupa bercak hijau pucat atau kekuningan pada permukaan atas daun, terutama pada daun tua. Pada kondisi lembap, permukaan bawah daun tertutup pertumbuhan spora berwarna abu-abu hingga seperti beludru. Jika infeksi berat, bercak dapat menyatu dan menyebabkan jaringan daun mati.
         & \citep{clemson2025tomatoDiseases} \\
         \hline
@@ -155,6 +155,9 @@
         \item[$FN$] (\textit{False Negative}) adalah jumlah data pada suatu kelas yang salah diprediksi sebagai kelas lain.
         \item[$TN$] (\textit{True Negative}) adalah jumlah data yang bukan berasal dari suatu kelas dan juga tidak diprediksi sebagai kelas tersebut.
     \end{description}
+
+    \textit{Confusion matrix} merupakan tabel yang memperlihatkan hubungan antara label sebenarnya dan label hasil prediksi model. Pada klasifikasi multikelas, baris pada \textit{confusion matrix} umumnya menunjukkan kelas aktual, sedangkan kolom menunjukkan kelas prediksi. Matriks ini membantu melihat kelas mana yang paling sering diklasifikasikan dengan benar dan kelas mana yang paling sering tertukar dengan kelas lain. Oleh karena itu, \textit{confusion matrix} tidak hanya berguna untuk menghitung metrik evaluasi, tetapi juga untuk menganalisis pola kesalahan model pada kelas-kelas yang memiliki kemiripan visual \citep{grandini2020metrics}.
+
 
     Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Pada klasifikasi multikelas, akurasi dapat digunakan untuk melihat performa model secara keseluruhan. Rumus akurasi adalah sebagai berikut \citep{grandini2020metrics}:
 
