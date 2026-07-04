@@ -5,6 +5,7 @@
 
 \chapter[LANDASAN TEORI DAN KERANGKA PEMIKIRAN]{\\ LANDASAN TEORI DAN KERANGKA PEMIKIRAN}
 
+%TODO: revisi bab 2
 \section{Tinjauan Pustaka}
 \begin{sectioncontent}
     \hspace{\parindent}Penelitian mengenai klasifikasi penyakit daun tomat berbasis citra terus berkembang seiring dengan kemajuan \textit{computer vision} dan \textit{deep learning}. Berbagai penelitian terdahulu menunjukkan bahwa citra daun dapat digunakan sebagai dasar untuk mengenali kondisi sehat maupun gejala penyakit tanaman secara otomatis. Pendekatan yang digunakan juga semakin beragam, mulai dari arsitektur CNN umum, model ringan, hingga pendekatan yang diarahkan untuk penerapan pada perangkat dengan sumber daya terbatas.
@@ -38,9 +39,66 @@
 
 \subsection{Penyakit Daun Tomat}
 \begin{subsectioncontent}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth,height=0.4\textheight]{penyakit-daun-tomat.png}
+        \caption{Jenis Penyakit Daun Tomat}
+        \label{fig:penyakit-daun-tomat}
+    \end{figure}
+
     \hspace{\parindent}Penyakit daun tomat merupakan gangguan pada daun tanaman tomat yang dapat disebabkan oleh jamur, bakteri, virus, maupun faktor lain. Gangguan tersebut umumnya memunculkan gejala visual tertentu, seperti bercak, perubahan warna, nekrosis, deformasi, atau kerusakan jaringan daun. Identifikasi dini terhadap gejala pada daun penting dilakukan karena daun sering menjadi indikator awal adanya gangguan kesehatan tanaman yang dapat memengaruhi pertumbuhan dan hasil panen (\citealp[hlm. 1--3 dan 7]{jelali2024tomatoreview}; \citealp[hlm. 192--193]{das2025tomatoreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
 
     Dalam penelitian berbasis citra, gejala visual pada daun tomat dapat dipelajari sebagai pola yang mewakili kelas penyakit tertentu. Dengan kata lain, citra daun tidak hanya dilihat sebagai gambar, tetapi juga sebagai data yang mengandung karakteristik visual untuk proses klasifikasi. Oleh karena itu, daun tomat menjadi objek yang sesuai untuk tugas klasifikasi citra, terutama apabila dataset yang digunakan telah memiliki label kelas yang jelas dan proses akuisisi citra dilakukan secara memadai (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
+
+    Beberapa penyakit daun tomat memiliki ciri visual yang berbeda-beda, seperti bercak, perubahan warna, nekrosis, hingga keriting daun. Ringkasan penyakit dan ciri visualnya disajikan pada Tabel~\ref{tab:penyakit-daun-tomat}.
+    
+    {\small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.25}
+
+    \begin{longtable}{|p{0.7cm}|p{3.6cm}|p{7cm}|p{2.8cm}|}
+        \caption{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya}
+        \label{tab:penyakit-daun-tomat} \\
+        \hline
+        No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
+        \hline
+        \endfirsthead
+
+        \caption[]{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya (lanjutan)} \\
+        \hline
+        No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
+        \hline
+        \endhead
+
+        \hline
+        \endfoot
+
+        1 & \textit{Yellow Curl Virus}
+        & Daun muda mengalami klorosis pada bagian tepi maupun antar tulang daun, menggulung ke atas atau ke bawah, tampak berkerut, serta berukuran lebih kecil. Pada infeksi berat, tanaman dapat terlihat kerdil dan rimbun akibat ruas batang yang memendek.
+        & \citep{murray2023tylcv} \\
+        \hline
+
+        2 & \textit{Early Blight}
+        & Gejala umumnya muncul pada daun tua atau daun bagian bawah. Bercak berwarna cokelat hingga kehitaman, berbentuk bulat sampai tidak beraturan, dan sering memiliki pola cincin konsentris menyerupai target. Area di sekitar bercak dapat menguning, kemudian daun mengering dan gugur.
+        & \citep{clemson2025tomatoDiseases} \\
+        \hline
+
+        3 & \textit{Late Blight}
+        & Daun menunjukkan bercak kecil berwarna gelap dan tampak basah. Bercak dapat membesar dengan cepat menjadi lesi tidak beraturan berwarna cokelat sampai kehitaman. Pada kondisi lembap, bagian bawah daun dapat ditumbuhi lapisan putih seperti jamur, kemudian daun mengalami pencokelatan, layu, dan mati.
+        & \citep{clemson2025tomatoDiseases} \\
+        \hline
+
+        4 & \textit{Leaf Mold}
+        & Gejala awal berupa bercak hijau pucat atau kekuningan pada permukaan atas daun, terutama pada daun tua. Pada kondisi lembap, permukaan bawah daun tertutup pertumbuhan spora berwarna abu-abu hingga seperti beludru. Jika infeksi berat, bercak dapat menyatu dan menyebabkan jaringan daun mati.
+        & \citep{clemson2025tomatoDiseases} \\
+        \hline
+
+        5 & \textit{Septoria Leaf Spot}
+        & Gejala ditandai dengan banyak bercak kecil berbentuk bulat pada daun, terutama daun tua bagian bawah. Bercak memiliki tepi gelap dengan bagian tengah berwarna krem, abu-abu, atau kecokelatan. Pada bagian tengah bercak dapat terlihat titik-titik hitam kecil sebagai struktur penghasil spora. Daun yang terinfeksi berat dapat menguning, mengering, dan gugur.
+        & \citep{clemson2025tomatoDiseases,pandey2024septoria} \\
+        \hline
+    \end{longtable}
+    }
 \end{subsectioncontent}
 
 \subsection{Klasifikasi Citra}
@@ -57,7 +115,7 @@
     Salah satu arsitektur yang umum digunakan dalam klasifikasi citra adalah \textit{Convolutional Neural Network} (CNN). CNN memanfaatkan operasi konvolusi untuk menangkap pola spasial pada citra, seperti tepi, tekstur, warna, dan bentuk. Pola-pola tersebut kemudian diproses lebih lanjut untuk menghasilkan keputusan klasifikasi. Dalam penelitian penyakit tanaman, CNN banyak digunakan karena mampu mengenali gejala visual pada daun yang sering muncul dalam bentuk bercak, perubahan warna, atau pola tekstur tertentu (\citealp[hlm. 1--3]{jelali2024tomatoreview}; \citealp[hlm. 192--193 dan 199--200]{das2025tomatoreview}; \citealp[hlm. 1--2 dan 7--9]{sun2024tomatoclassification}).
 \end{subsectioncontent}
 
-\subsection{Keluarga Model YOLO}
+\subsection{YOLO}
 \begin{subsectioncontent}
     \hspace{\parindent}YOLO (\textit{You Only Look Once}) merupakan keluarga model \textit{deep learning} yang awalnya dikenal luas pada tugas \textit{object detection}. Model ini banyak digunakan karena dirancang untuk menghasilkan prediksi secara cepat dalam satu proses inferensi. Perkembangan YOLO dari versi awal hingga versi yang lebih baru menunjukkan adanya peningkatan pada efisiensi, akurasi, dan fleksibilitas penggunaan (\citealp[hlm. 1680--1683]{terven2023yolo}; \citealp[hlm. 1--3]{ali2024yoloframework}; \citealp[hlm. 1--3]{murat2025yolo}).
 
