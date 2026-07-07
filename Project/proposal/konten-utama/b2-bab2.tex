@@ -36,200 +36,203 @@
 \end{sectioncontent}
 
 \section{Landasan Teori}
+\begin{sectioncontent}
+    \subsection{Penyakit Daun Tomat}
+    \begin{subsectioncontent}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth,height=0.4\textheight]{penyakit-daun-tomat.png}
+            \caption{Jenis Penyakit Daun Tomat}
+            \label{fig:penyakit-daun-tomat}
+        \end{figure}
 
-\subsection{Penyakit Daun Tomat}
-\begin{subsectioncontent}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth,height=0.4\textheight]{penyakit-daun-tomat.png}
-        \caption{Jenis Penyakit Daun Tomat}
-        \label{fig:penyakit-daun-tomat}
-    \end{figure}
+        \hspace{\parindent}Gambar~\ref{fig:penyakit-daun-tomat} memperlihatkan contoh visual beberapa kelas daun tomat yang digunakan dalam penelitian ini. Gambar tersebut memberikan gambaran awal mengenai perbedaan gejala pada setiap kelas, seperti daun sehat, bercak pada permukaan daun, perubahan warna, kerusakan jaringan, hingga bentuk daun yang menggulung. Perbedaan visual tersebut menjadi dasar penting dalam proses klasifikasi citra karena model perlu mengenali pola visual yang membedakan satu kelas penyakit dengan kelas lainnya.
 
-    \hspace{\parindent}Gambar~\ref{fig:penyakit-daun-tomat} memperlihatkan contoh visual beberapa kelas daun tomat yang digunakan dalam penelitian ini. Gambar tersebut memberikan gambaran awal mengenai perbedaan gejala pada setiap kelas, seperti daun sehat, bercak pada permukaan daun, perubahan warna, kerusakan jaringan, hingga bentuk daun yang menggulung. Perbedaan visual tersebut menjadi dasar penting dalam proses klasifikasi citra karena model perlu mengenali pola visual yang membedakan satu kelas penyakit dengan kelas lainnya.
+        \newpage
 
-    \newpage
+        Penyakit daun tomat merupakan gangguan pada daun tanaman tomat yang dapat disebabkan oleh jamur, bakteri, virus, maupun faktor lain. Gangguan tersebut umumnya memunculkan gejala visual tertentu, seperti bercak, perubahan warna, nekrosis, deformasi, atau kerusakan jaringan daun. Identifikasi dini terhadap gejala pada daun penting dilakukan karena daun sering menjadi indikator awal adanya gangguan kesehatan tanaman yang dapat memengaruhi pertumbuhan dan hasil panen (\citealp[hlm. 1--3 dan 7]{jelali2024tomatoreview}; \citealp[hlm. 192--193]{das2025tomatoreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
 
-    Penyakit daun tomat merupakan gangguan pada daun tanaman tomat yang dapat disebabkan oleh jamur, bakteri, virus, maupun faktor lain. Gangguan tersebut umumnya memunculkan gejala visual tertentu, seperti bercak, perubahan warna, nekrosis, deformasi, atau kerusakan jaringan daun. Identifikasi dini terhadap gejala pada daun penting dilakukan karena daun sering menjadi indikator awal adanya gangguan kesehatan tanaman yang dapat memengaruhi pertumbuhan dan hasil panen (\citealp[hlm. 1--3 dan 7]{jelali2024tomatoreview}; \citealp[hlm. 192--193]{das2025tomatoreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
+        Dalam penelitian berbasis citra, gejala visual pada daun tomat dapat dipelajari sebagai pola yang mewakili kelas penyakit tertentu. Dengan kata lain, citra daun tidak hanya dilihat sebagai gambar, tetapi juga sebagai data yang mengandung karakteristik visual untuk proses klasifikasi. Oleh karena itu, daun tomat menjadi objek yang sesuai untuk tugas klasifikasi citra, terutama apabila dataset yang digunakan telah memiliki label kelas yang jelas dan proses akuisisi citra dilakukan secara memadai (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
 
-    Dalam penelitian berbasis citra, gejala visual pada daun tomat dapat dipelajari sebagai pola yang mewakili kelas penyakit tertentu. Dengan kata lain, citra daun tidak hanya dilihat sebagai gambar, tetapi juga sebagai data yang mengandung karakteristik visual untuk proses klasifikasi. Oleh karena itu, daun tomat menjadi objek yang sesuai untuk tugas klasifikasi citra, terutama apabila dataset yang digunakan telah memiliki label kelas yang jelas dan proses akuisisi citra dilakukan secara memadai (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
+        Beberapa penyakit daun tomat memiliki ciri visual yang berbeda-beda, seperti bercak, perubahan warna, nekrosis, hingga keriting daun. Ringkasan penyakit dan ciri visualnya disajikan pada Tabel~\ref{tab:penyakit-daun-tomat}.
+        
+        {\small
+        \setlength{\tabcolsep}{4pt}
+        \renewcommand{\arraystretch}{1.25}
 
-    Beberapa penyakit daun tomat memiliki ciri visual yang berbeda-beda, seperti bercak, perubahan warna, nekrosis, hingga keriting daun. Ringkasan penyakit dan ciri visualnya disajikan pada Tabel~\ref{tab:penyakit-daun-tomat}.
-    
-    {\small
-    \setlength{\tabcolsep}{4pt}
-    \renewcommand{\arraystretch}{1.25}
+        \begin{longtable}{|p{0.7cm}|p{3.6cm}|p{7cm}|p{2.8cm}|}
+            \caption{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya}
+            \label{tab:penyakit-daun-tomat} \\
+            \hline
+            No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
+            \hline
+            \endfirsthead
 
-    \begin{longtable}{|p{0.7cm}|p{3.6cm}|p{7cm}|p{2.8cm}|}
-        \caption{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya}
-        \label{tab:penyakit-daun-tomat} \\
-        \hline
-        No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
-        \hline
-        \endfirsthead
+            \caption[]{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya (lanjutan)} \\
+            \hline
+            No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
+            \hline
+            \endhead
 
-        \caption[]{Jenis Penyakit Daun Tomat dan Ciri-Ciri Visualnya (lanjutan)} \\
-        \hline
-        No. & Penyakit/Kelas & Ciri-ciri visual pada daun & Sumber \\
-        \hline
-        \endhead
+            \hline
+            \endfoot
 
-        \hline
-        \endfoot
+            1 & \textit{Yellow Curl Virus}
+            & Daun muda mengalami klorosis pada bagian tepi maupun antar tulang daun, menggulung ke atas atau ke bawah, tampak berkerut, serta berukuran lebih kecil. Pada infeksi berat, tanaman dapat terlihat kerdil dan rimbun akibat ruas batang yang memendek.
+            & \citep{murray2023tylcv} \\
+            \hline
 
-        1 & \textit{Yellow Curl Virus}
-        & Daun muda mengalami klorosis pada bagian tepi maupun antar tulang daun, menggulung ke atas atau ke bawah, tampak berkerut, serta berukuran lebih kecil. Pada infeksi berat, tanaman dapat terlihat kerdil dan rimbun akibat ruas batang yang memendek.
-        & \citep{murray2023tylcv} \\
-        \hline
+            2 & \textit{Early Blight}
+            & Gejala umumnya muncul pada daun tua atau daun bagian bawah. Bercak berwarna cokelat hingga kehitaman, berbentuk bulat sampai tidak beraturan, dan sering memiliki pola cincin konsentris menyerupai target. Area di sekitar bercak dapat menguning, kemudian daun mengering dan gugur.
+            & \citep{clemson2025tomatoDiseases} \\
+            \hline
 
-        2 & \textit{Early Blight}
-        & Gejala umumnya muncul pada daun tua atau daun bagian bawah. Bercak berwarna cokelat hingga kehitaman, berbentuk bulat sampai tidak beraturan, dan sering memiliki pola cincin konsentris menyerupai target. Area di sekitar bercak dapat menguning, kemudian daun mengering dan gugur.
-        & \citep{clemson2025tomatoDiseases} \\
-        \hline
+            3 & \textit{Late Blight}
+            & Daun menunjukkan bercak kecil berwarna gelap dan tampak basah. Bercak dapat membesar dengan cepat menjadi lesi tidak beraturan berwarna cokelat sampai kehitaman. Pada kondisi lembap, bagian bawah daun dapat ditumbuhi lapisan putih seperti jamur, kemudian daun mengalami pencokelatan, layu, dan mati.
+            & \citep{clemson2025tomatoDiseases} \\
+            \hline
 
-        3 & \textit{Late Blight}
-        & Daun menunjukkan bercak kecil berwarna gelap dan tampak basah. Bercak dapat membesar dengan cepat menjadi lesi tidak beraturan berwarna cokelat sampai kehitaman. Pada kondisi lembap, bagian bawah daun dapat ditumbuhi lapisan putih seperti jamur, kemudian daun mengalami pencokelatan, layu, dan mati.
-        & \citep{clemson2025tomatoDiseases} \\
-        \hline
+            4 & \textit{Mold Leaf}
+            & Gejala awal berupa bercak hijau pucat atau kekuningan pada permukaan atas daun, terutama pada daun tua. Pada kondisi lembap, permukaan bawah daun tertutup pertumbuhan spora berwarna abu-abu hingga seperti beludru. Jika infeksi berat, bercak dapat menyatu dan menyebabkan jaringan daun mati.
+            & \citep{clemson2025tomatoDiseases} \\
+            \hline
 
-        4 & \textit{Mold Leaf}
-        & Gejala awal berupa bercak hijau pucat atau kekuningan pada permukaan atas daun, terutama pada daun tua. Pada kondisi lembap, permukaan bawah daun tertutup pertumbuhan spora berwarna abu-abu hingga seperti beludru. Jika infeksi berat, bercak dapat menyatu dan menyebabkan jaringan daun mati.
-        & \citep{clemson2025tomatoDiseases} \\
-        \hline
+            5 & \textit{Septoria Leaf Spot}
+            & Gejala ditandai dengan banyak bercak kecil berbentuk bulat pada daun, terutama daun tua bagian bawah. Bercak memiliki tepi gelap dengan bagian tengah berwarna krem, abu-abu, atau kecokelatan. Pada bagian tengah bercak dapat terlihat titik-titik hitam kecil sebagai struktur penghasil spora. Daun yang terinfeksi berat dapat menguning, mengering, dan gugur.
+            & \citep{clemson2025tomatoDiseases,pandey2024septoria} \\
+            \hline
+        \end{longtable}
+        }
+    \end{subsectioncontent}
 
-        5 & \textit{Septoria Leaf Spot}
-        & Gejala ditandai dengan banyak bercak kecil berbentuk bulat pada daun, terutama daun tua bagian bawah. Bercak memiliki tepi gelap dengan bagian tengah berwarna krem, abu-abu, atau kecokelatan. Pada bagian tengah bercak dapat terlihat titik-titik hitam kecil sebagai struktur penghasil spora. Daun yang terinfeksi berat dapat menguning, mengering, dan gugur.
-        & \citep{clemson2025tomatoDiseases,pandey2024septoria} \\
-        \hline
-    \end{longtable}
-    }
-\end{subsectioncontent}
+    \subsection{Klasifikasi Citra}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Klasifikasi citra adalah proses pemberian label pada suatu gambar berdasarkan karakteristik visual yang terdapat di dalamnya. Pada tugas ini, citra diperlakukan sebagai satu kesatuan masukan, kemudian model menghasilkan satu label kelas sebagai keluaran. Dalam penelitian ini, label keluaran merepresentasikan jenis penyakit daun tomat atau kondisi daun sehat.
 
-\subsection{Klasifikasi Citra}
-\begin{subsectioncontent}
-    \hspace{\parindent}Klasifikasi citra adalah proses pemberian label pada suatu gambar berdasarkan karakteristik visual yang terdapat di dalamnya. Pada tugas ini, citra diperlakukan sebagai satu kesatuan masukan, kemudian model menghasilkan satu label kelas sebagai keluaran. Dalam penelitian ini, label keluaran merepresentasikan jenis penyakit daun tomat atau kondisi daun sehat.
+        Klasifikasi citra berbeda dengan \textit{object detection}. Pada \textit{object detection}, model tidak hanya menentukan jenis objek, tetapi juga mencari posisi objek tersebut di dalam citra. Sementara itu, klasifikasi citra hanya berfokus pada penentuan kategori gambar secara keseluruhan. Oleh karena itu, pendekatan klasifikasi dipilih dalam penelitian ini karena tujuan utamanya adalah menentukan kelas penyakit dari citra daun tomat, bukan menemukan lokasi area penyakit pada daun (\citealp[bagian \textit{Image Classification}]{ultralyticsclassify}; \citealp[hlm. 1--2 dan 7--9]{sun2024tomatoclassification}).
+    \end{subsectioncontent}
 
-    Klasifikasi citra berbeda dengan \textit{object detection}. Pada \textit{object detection}, model tidak hanya menentukan jenis objek, tetapi juga mencari posisi objek tersebut di dalam citra. Sementara itu, klasifikasi citra hanya berfokus pada penentuan kategori gambar secara keseluruhan. Oleh karena itu, pendekatan klasifikasi dipilih dalam penelitian ini karena tujuan utamanya adalah menentukan kelas penyakit dari citra daun tomat, bukan menemukan lokasi area penyakit pada daun (\citealp[bagian \textit{Image Classification}]{ultralyticsclassify}; \citealp[hlm. 1--2 dan 7--9]{sun2024tomatoclassification}).
-\end{subsectioncontent}
+    \subsection{\textit{Deep Learning} dan CNN}
+    \begin{subsectioncontent}
+        \hspace{\parindent}\textit{Deep learning} merupakan cabang dari \textit{machine learning} yang menggunakan jaringan saraf tiruan berlapis untuk mempelajari pola kompleks dari data. Dalam pengolahan citra, pendekatan ini banyak digunakan karena mampu mengekstraksi fitur visual secara otomatis tanpa bergantung sepenuhnya pada rekayasa fitur manual (\citealp[hlm. 1--2]{jackulin2022plantreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
 
-\subsection{\textit{Deep Learning} dan CNN}
-\begin{subsectioncontent}
-    \hspace{\parindent}\textit{Deep learning} merupakan cabang dari \textit{machine learning} yang menggunakan jaringan saraf tiruan berlapis untuk mempelajari pola kompleks dari data. Dalam pengolahan citra, pendekatan ini banyak digunakan karena mampu mengekstraksi fitur visual secara otomatis tanpa bergantung sepenuhnya pada rekayasa fitur manual (\citealp[hlm. 1--2]{jackulin2022plantreview}; \citealp[hlm. 1]{nyawose2025plantreview}).
+        Salah satu arsitektur yang umum digunakan dalam klasifikasi citra adalah \textit{Convolutional Neural Network} (CNN). CNN memanfaatkan operasi konvolusi untuk menangkap pola spasial pada citra, seperti tepi, tekstur, warna, dan bentuk. Pola-pola tersebut kemudian diproses lebih lanjut untuk menghasilkan keputusan klasifikasi. Dalam penelitian penyakit tanaman, CNN banyak digunakan karena mampu mengenali gejala visual pada daun yang sering muncul dalam bentuk bercak, perubahan warna, atau pola tekstur tertentu (\citealp[hlm. 1--3]{jelali2024tomatoreview}; \citealp[hlm. 192--193 dan 199--200]{das2025tomatoreview}; \citealp[hlm. 1--2 dan 7--9]{sun2024tomatoclassification}).
+    \end{subsectioncontent}
 
-    Salah satu arsitektur yang umum digunakan dalam klasifikasi citra adalah \textit{Convolutional Neural Network} (CNN). CNN memanfaatkan operasi konvolusi untuk menangkap pola spasial pada citra, seperti tepi, tekstur, warna, dan bentuk. Pola-pola tersebut kemudian diproses lebih lanjut untuk menghasilkan keputusan klasifikasi. Dalam penelitian penyakit tanaman, CNN banyak digunakan karena mampu mengenali gejala visual pada daun yang sering muncul dalam bentuk bercak, perubahan warna, atau pola tekstur tertentu (\citealp[hlm. 1--3]{jelali2024tomatoreview}; \citealp[hlm. 192--193 dan 199--200]{das2025tomatoreview}; \citealp[hlm. 1--2 dan 7--9]{sun2024tomatoclassification}).
-\end{subsectioncontent}
+    \subsection{YOLO}
+    \begin{subsectioncontent}
+        \hspace{\parindent}YOLO (\textit{You Only Look Once}) merupakan keluarga model \textit{deep learning} yang awalnya dikenal luas pada tugas \textit{object detection}. Model ini banyak digunakan karena dirancang untuk menghasilkan prediksi secara cepat dalam satu proses inferensi. Perkembangan YOLO dari versi awal hingga versi yang lebih baru menunjukkan adanya peningkatan pada efisiensi, akurasi, dan fleksibilitas penggunaan (\citealp[hlm. 1680--1683]{terven2023yolo}; \citealp[hlm. 1--3]{ali2024yoloframework}; \citealp[hlm. 1--3]{murat2025yolo}).
 
-\subsection{YOLO}
-\begin{subsectioncontent}
-    \hspace{\parindent}YOLO (\textit{You Only Look Once}) merupakan keluarga model \textit{deep learning} yang awalnya dikenal luas pada tugas \textit{object detection}. Model ini banyak digunakan karena dirancang untuk menghasilkan prediksi secara cepat dalam satu proses inferensi. Perkembangan YOLO dari versi awal hingga versi yang lebih baru menunjukkan adanya peningkatan pada efisiensi, akurasi, dan fleksibilitas penggunaan (\citealp[hlm. 1680--1683]{terven2023yolo}; \citealp[hlm. 1--3]{ali2024yoloframework}; \citealp[hlm. 1--3]{murat2025yolo}).
+        Pada perkembangannya, varian modern dari keluarga YOLO tidak hanya digunakan untuk \textit{object detection}, tetapi juga mendukung tugas lain, termasuk klasifikasi citra. Dokumentasi resmi Ultralytics menjelaskan bahwa \textit{image classification} digunakan untuk mengelompokkan keseluruhan citra ke dalam kelas yang telah ditentukan. Dukungan tersebut tersedia pada ekosistem YOLOv8 maupun YOLO11, sehingga kedua model dapat digunakan dalam penelitian klasifikasi citra (\citealp[bagian \textit{Image Classification}]{ultralyticsclassify}; \citealp[bagian \textit{YOLOv8 Models}]{ultralyticsyolov8}; \citealp[bagian \textit{YOLO11 Models}]{ultralyticsyolo11}).
 
-    Pada perkembangannya, varian modern dari keluarga YOLO tidak hanya digunakan untuk \textit{object detection}, tetapi juga mendukung tugas lain, termasuk klasifikasi citra. Dokumentasi resmi Ultralytics menjelaskan bahwa \textit{image classification} digunakan untuk mengelompokkan keseluruhan citra ke dalam kelas yang telah ditentukan. Dukungan tersebut tersedia pada ekosistem YOLOv8 maupun YOLO11, sehingga kedua model dapat digunakan dalam penelitian klasifikasi citra (\citealp[bagian \textit{Image Classification}]{ultralyticsclassify}; \citealp[bagian \textit{YOLOv8 Models}]{ultralyticsyolov8}; \citealp[bagian \textit{YOLO11 Models}]{ultralyticsyolo11}).
+        YOLOv8 Nano merupakan varian ringan dari YOLOv8 yang disediakan dalam ekosistem Ultralytics. Pada tugas klasifikasi citra, model ini digunakan untuk mengelompokkan satu citra ke dalam satu kelas tertentu. Karakteristik varian \textit{nano} yang relatif kecil membuat model ini relevan untuk skenario yang membutuhkan waktu inferensi cepat dan ukuran model yang tidak terlalu besar \citep[bagian \textit{YOLOv8 Models}]{ultralyticsyolov8}.
 
-    YOLOv8 Nano merupakan varian ringan dari YOLOv8 yang disediakan dalam ekosistem Ultralytics. Pada tugas klasifikasi citra, model ini digunakan untuk mengelompokkan satu citra ke dalam satu kelas tertentu. Karakteristik varian \textit{nano} yang relatif kecil membuat model ini relevan untuk skenario yang membutuhkan waktu inferensi cepat dan ukuran model yang tidak terlalu besar \citep[bagian \textit{YOLOv8 Models}]{ultralyticsyolov8}.
+        YOLO11 Nano merupakan varian ringan dari YOLO11. Model ini berasal dari generasi YOLO yang lebih baru dan tetap mendukung tugas klasifikasi citra melalui ekosistem Ultralytics. Dalam konteks penelitian ini, YOLO11 Nano menjadi pembanding terhadap YOLOv8 Nano untuk melihat apakah generasi model yang lebih baru memberikan perbedaan performa klasifikasi dan efisiensi inferensi pada perangkat \textit{edge} \citep[bagian \textit{YOLO11 Models}]{ultralyticsyolo11}.
 
-    YOLO11 Nano merupakan varian ringan dari YOLO11. Model ini berasal dari generasi YOLO yang lebih baru dan tetap mendukung tugas klasifikasi citra melalui ekosistem Ultralytics. Dalam konteks penelitian ini, YOLO11 Nano menjadi pembanding terhadap YOLOv8 Nano untuk melihat apakah generasi model yang lebih baru memberikan perbedaan performa klasifikasi dan efisiensi inferensi pada perangkat \textit{edge} \citep[bagian \textit{YOLO11 Models}]{ultralyticsyolo11}.
+        \newpage
 
-    Dengan demikian, YOLOv8 Nano dan YOLO11 Nano dipahami sebagai dua model ringan dari keluarga YOLO yang sama-sama mendukung tugas klasifikasi citra. Keduanya relevan untuk dibandingkan karena penelitian ini tidak hanya menilai ketepatan prediksi, tetapi juga mempertimbangkan ukuran model, waktu inferensi, dan kelayakan penerapannya pada perangkat dengan sumber daya terbatas.
-\end{subsectioncontent}
+        Dengan demikian, YOLOv8 Nano dan YOLO11 Nano dipahami sebagai dua model ringan dari keluarga YOLO yang sama-sama mendukung tugas klasifikasi citra. Keduanya relevan untuk dibandingkan karena penelitian ini tidak hanya menilai ketepatan prediksi, tetapi juga mempertimbangkan ukuran model, waktu inferensi, dan kelayakan penerapannya pada perangkat dengan sumber daya terbatas.
+    \end{subsectioncontent}
 
-\subsection{Perangkat \textit{Edge}}
-\begin{subsectioncontent}
-    \hspace{\parindent}Komputasi \textit{edge} adalah pendekatan pemrosesan data yang dilakukan lebih dekat dengan sumber data atau lokasi tempat data dihasilkan. Pada pendekatan ini, inferensi model dapat dijalankan secara lokal tanpa selalu bergantung pada server pusat atau komputasi awan. Keunggulan utama dari pendekatan ini adalah latensi yang lebih rendah, respons yang lebih cepat, serta potensi pengurangan komunikasi data ke server eksternal (\citealp[hlm. 71--74]{singh2023edge}; \citealp[hlm. 1--4]{gill2025taxonomy}; \citealp[hlm. 1--6]{xu2025edge}).
+    \subsection{Perangkat \textit{Edge}}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Komputasi \textit{edge} adalah pendekatan pemrosesan data yang dilakukan lebih dekat dengan sumber data atau lokasi tempat data dihasilkan. Pada pendekatan ini, inferensi model dapat dijalankan secara lokal tanpa selalu bergantung pada server pusat atau komputasi awan. Keunggulan utama dari pendekatan ini adalah latensi yang lebih rendah, respons yang lebih cepat, serta potensi pengurangan komunikasi data ke server eksternal (\citealp[hlm. 71--74]{singh2023edge}; \citealp[hlm. 1--4]{gill2025taxonomy}; \citealp[hlm. 1--6]{xu2025edge}).
 
-    Dalam penelitian ini, perangkat \textit{edge} digunakan sebagai media implementasi untuk menguji efisiensi model klasifikasi. Raspberry Pi 5 dipilih karena merupakan platform komputasi lokal yang mendukung CPU \textit{quad-core} Arm Cortex-A76 2.4 GHz dan varian RAM hingga 16 GB, termasuk versi 8 GB yang digunakan dalam penelitian ini (\citealp[bagian \textit{Specifications}]{raspberrypi5}; \citealp[hlm. 2--3]{raspberrypi5brief}). Pengujian pada perangkat \textit{edge} penting dilakukan karena model yang akurat belum tentu layak digunakan pada sistem nyata apabila waktu inferensinya terlalu tinggi atau penggunaan sumber dayanya terlalu besar.
-\end{subsectioncontent}
+        Dalam penelitian ini, perangkat \textit{edge} digunakan sebagai media implementasi untuk menguji efisiensi model klasifikasi. Raspberry Pi 5 dipilih karena merupakan platform komputasi lokal yang mendukung CPU \textit{quad-core} Arm Cortex-A76 2.4 GHz dan varian RAM hingga 16 GB, termasuk versi 8 GB yang digunakan dalam penelitian ini (\citealp[bagian \textit{Specifications}]{raspberrypi5}; \citealp[hlm. 2--3]{raspberrypi5brief}). Pengujian pada perangkat \textit{edge} penting dilakukan karena model yang akurat belum tentu layak digunakan pada sistem nyata apabila waktu inferensinya terlalu tinggi atau penggunaan sumber dayanya terlalu besar.
+    \end{subsectioncontent}
 
-\subsection{Kualitas Citra dan Faktor Visual}
-\begin{subsectioncontent}
-    \hspace{\parindent}Pada sistem klasifikasi berbasis citra, kualitas data masukan sangat memengaruhi hasil prediksi model. Faktor seperti resolusi gambar, pencahayaan, sudut pengambilan, jarak kamera terhadap objek, latar belakang, dan kestabilan posisi kamera dapat memengaruhi karakteristik visual citra. Pada citra daun tomat, variasi tersebut dapat memengaruhi keterbacaan gejala penyakit, seperti bercak, perubahan warna, dan tekstur permukaan daun (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
+    \subsection{Kualitas Citra dan Faktor Visual}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Pada sistem klasifikasi berbasis citra, kualitas data masukan sangat memengaruhi hasil prediksi model. Faktor seperti resolusi gambar, pencahayaan, sudut pengambilan, jarak kamera terhadap objek, latar belakang, dan kestabilan posisi kamera dapat memengaruhi karakteristik visual citra. Pada citra daun tomat, variasi tersebut dapat memengaruhi keterbacaan gejala penyakit, seperti bercak, perubahan warna, dan tekstur permukaan daun (\citealp[hlm. 1]{imtiaz2025dataset}; \citealp[hlm. 1--2]{oni2025dataset}; \citealp[hlm. 1--2]{liu2025dataset}).
 
-    Dalam penelitian ini, faktor kualitas citra tidak dijadikan variabel bebas, melainkan dipahami sebagai salah satu kondisi yang melekat pada dataset. Oleh karena itu, perbandingan model dilakukan menggunakan dataset yang sama serta konfigurasi pengujian yang seragam. Dengan cara tersebut, perbedaan hasil pengujian lebih diarahkan pada karakteristik model, bukan pada perbedaan sumber data atau skenario pengujian.
-\end{subsectioncontent}
-
-
-\subsection{Metrik Evaluasi Klasifikasi dan Efisiensi}
-\begin{subsectioncontent}
-    \hspace{\parindent}Evaluasi model klasifikasi dilakukan untuk mengukur sejauh mana model mampu menghasilkan prediksi yang sesuai dengan label sebenarnya. Beberapa metrik yang umum digunakan dalam evaluasi klasifikasi adalah akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Metrik-metrik tersebut dapat diturunkan dari hasil prediksi model terhadap data uji, khususnya melalui hubungan antara prediksi model dan label sebenarnya \citep{powers2011evaluation,grandini2020metrics}.
-
-    Pada klasifikasi multikelas, perhitungan \textit{precision}, \textit{recall}, dan \textit{F1-score} dapat dilakukan untuk setiap kelas dengan pendekatan \textit{one-vs-rest}. Dengan pendekatan tersebut, satu kelas dianggap sebagai kelas positif, sedangkan kelas lain dianggap sebagai kelas negatif. Istilah yang digunakan dalam perhitungan metrik evaluasi adalah sebagai berikut:
-
-    \begin{description}[leftmargin=0.75cm]
-        \item[$TP$] (\textit{True Positive}) adalah jumlah data pada suatu kelas yang diprediksi dengan benar sebagai kelas tersebut.
-        \item[$FP$] (\textit{False Positive}) adalah jumlah data dari kelas lain yang salah diprediksi sebagai kelas tersebut.
-        \item[$FN$] (\textit{False Negative}) adalah jumlah data pada suatu kelas yang salah diprediksi sebagai kelas lain.
-        \item[$TN$] (\textit{True Negative}) adalah jumlah data yang bukan berasal dari suatu kelas dan juga tidak diprediksi sebagai kelas tersebut.
-    \end{description}
-
-    \textit{Confusion matrix} merupakan tabel yang memperlihatkan hubungan antara label sebenarnya dan label hasil prediksi model. Pada klasifikasi multikelas, baris pada \textit{confusion matrix} umumnya menunjukkan kelas aktual, sedangkan kolom menunjukkan kelas prediksi. Matriks ini membantu melihat kelas mana yang paling sering diklasifikasikan dengan benar dan kelas mana yang paling sering tertukar dengan kelas lain. Oleh karena itu, \textit{confusion matrix} tidak hanya berguna untuk menghitung metrik evaluasi, tetapi juga untuk menganalisis pola kesalahan model pada kelas-kelas yang memiliki kemiripan visual \citep{grandini2020metrics}.
+        Dalam penelitian ini, faktor kualitas citra tidak dijadikan variabel bebas, melainkan dipahami sebagai salah satu kondisi yang melekat pada dataset. Oleh karena itu, perbandingan model dilakukan menggunakan dataset yang sama serta konfigurasi pengujian yang seragam. Dengan cara tersebut, perbedaan hasil pengujian lebih diarahkan pada karakteristik model, bukan pada perbedaan sumber data atau skenario pengujian.
+    \end{subsectioncontent}
 
 
-    Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Pada klasifikasi multikelas, akurasi dapat digunakan untuk melihat performa model secara keseluruhan. Rumus akurasi adalah sebagai berikut \citep{grandini2020metrics}:
+    \subsection{Metrik Evaluasi Klasifikasi dan Efisiensi}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Evaluasi model klasifikasi dilakukan untuk mengukur sejauh mana model mampu menghasilkan prediksi yang sesuai dengan label sebenarnya. Beberapa metrik yang umum digunakan dalam evaluasi klasifikasi adalah akurasi, \textit{precision}, \textit{recall}, dan \textit{F1-score}. Metrik-metrik tersebut dapat diturunkan dari hasil prediksi model terhadap data uji, khususnya melalui hubungan antara prediksi model dan label sebenarnya \citep{powers2011evaluation,grandini2020metrics}.
 
-    \begin{equation}
-        Accuracy = \frac{\text{Jumlah Prediksi Benar}}{\text{Jumlah Seluruh Data Uji}}
-    \end{equation}
+        Pada klasifikasi multikelas, perhitungan \textit{precision}, \textit{recall}, dan \textit{F1-score} dapat dilakukan untuk setiap kelas dengan pendekatan \textit{one-vs-rest}. Dengan pendekatan tersebut, satu kelas dianggap sebagai kelas positif, sedangkan kelas lain dianggap sebagai kelas negatif. Istilah yang digunakan dalam perhitungan metrik evaluasi adalah sebagai berikut:
 
-    \textit{Precision} menunjukkan tingkat ketepatan model ketika memprediksi suatu kelas. Nilai ini menggambarkan seberapa banyak data yang diprediksi sebagai suatu kelas benar-benar berasal dari kelas tersebut. Untuk kelas ke-$i$, rumus \textit{precision} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
+        \begin{description}[leftmargin=0.75cm]
+            \item[$TP$] (\textit{True Positive}) adalah jumlah data pada suatu kelas yang diprediksi dengan benar sebagai kelas tersebut.
+            \item[$FP$] (\textit{False Positive}) adalah jumlah data dari kelas lain yang salah diprediksi sebagai kelas tersebut.
+            \item[$FN$] (\textit{False Negative}) adalah jumlah data pada suatu kelas yang salah diprediksi sebagai kelas lain.
+            \item[$TN$] (\textit{True Negative}) adalah jumlah data yang bukan berasal dari suatu kelas dan juga tidak diprediksi sebagai kelas tersebut.
+        \end{description}
 
-    \begin{equation}
-        Precision_{i} = \frac{TP_{i}}{TP_{i} + FP_{i}}
-    \end{equation}
-
-    \textit{Recall} menunjukkan kemampuan model dalam menemukan data yang seharusnya termasuk ke dalam suatu kelas. Nilai ini menggambarkan seberapa banyak data dari suatu kelas berhasil dikenali dengan benar oleh model. Untuk kelas ke-$i$, rumus \textit{recall} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
-
-    \begin{equation}
-        Recall_{i} = \frac{TP_{i}}{TP_{i} + FN_{i}}
-    \end{equation}
-
-    \textit{F1-score} merupakan rata-rata harmonik dari \textit{precision} dan \textit{recall}. Metrik ini digunakan untuk memberikan gambaran keseimbangan antara ketepatan prediksi dan kemampuan model dalam mengenali data pada suatu kelas. Untuk kelas ke-$i$, rumus \textit{F1-score} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
-
-    \begin{equation}
-        F1\text{-}score_{i} = 2 \times \frac{Precision_{i} \times Recall_{i}}{Precision_{i} + Recall_{i}}
-    \end{equation}
-
-    Karena penelitian ini menggunakan klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} juga dapat dihitung menggunakan pendekatan \textit{macro average}. Pendekatan ini menghitung rata-rata metrik dari seluruh kelas tanpa memberikan bobot lebih besar pada kelas tertentu. Dengan demikian, setiap kelas memiliki kontribusi yang sama terhadap nilai akhir \citep{grandini2020metrics,opitz2019macro}.
-
-    \begin{equation}
-        \operatorname{Macro\ Precision} = \frac{1}{K} \sum_{i=1}^{K} Precision_{i}
-    \end{equation}
-
-    \begin{equation}
-        \operatorname{Macro\ Recall} = \frac{1}{K} \sum_{i=1}^{K} Recall_{i}
-    \end{equation}
-
-    \begin{equation}
-        \operatorname{Macro\ F1\text{-}score} = \frac{1}{K} \sum_{i=1}^{K} F1\text{-}score_{i}
-    \end{equation}
-
-    Keterangan $K$ menunjukkan jumlah kelas yang digunakan dalam penelitian. Pada penelitian ini, penggunaan \textit{macro average} diperlukan agar performa model tidak hanya terlihat dari akurasi keseluruhan, tetapi juga dari kemampuan model dalam mengenali setiap kelas penyakit daun tomat secara lebih seimbang.
-
-    Selain akurasi klasifikasi, efisiensi juga menjadi aspek penting ketika model diterapkan pada perangkat \textit{edge}. Efisiensi dapat dinilai melalui waktu inferensi, waktu total \textit{pipeline}, nilai FPS (\textit{Frame Per Second}), penggunaan memori, dan ukuran model. Waktu inferensi menunjukkan waktu yang dibutuhkan model untuk menghasilkan prediksi, sedangkan waktu total \textit{pipeline} mencakup proses \textit{preprocessing}, inferensi, dan \textit{postprocessing}. Nilai FPS menunjukkan jumlah citra yang dapat diproses dalam satu detik. Apabila waktu rata-rata dinyatakan dalam milidetik, rumus FPS adalah sebagai berikut:
-
-    \begin{equation}
-        FPS = \frac{1000}{\text{Average Time (ms)}}
-    \end{equation}
-
-    Penggunaan memori dan ukuran model digunakan sebagai pertimbangan tambahan karena perangkat \textit{edge} umumnya memiliki keterbatasan sumber daya. Dalam penelitian ini, akurasi dan efisiensi digunakan sebagai dua dasar utama untuk menentukan model yang lebih sesuai diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge} (\citealp[hlm. 71--74]{singh2023edge}; \citealp[hlm. 1--4]{gill2025taxonomy}; \citealp[hlm. 1--6]{xu2025edge}; \citealp[hlm. 10--13]{majeed2024edge}).
-\end{subsectioncontent}
-
-\subsection{Uji Wilcoxon Signed-Rank}
-\begin{subsectioncontent}
-    \hspace{\parindent}Uji Wilcoxon Signed-Rank merupakan uji statistik nonparametrik yang digunakan untuk membandingkan dua kelompok data yang saling berpasangan \citep[hlm. 80--83]{wilcoxon1945individual}. Uji ini sesuai digunakan ketika data berasal dari dua perlakuan atau dua model yang diuji pada kondisi yang sama.
-
-    Dalam penelitian ini, hasil pengujian YOLOv8 Nano dan YOLO11 Nano dipasangkan berdasarkan variasi \textit{seed} yang sama. Dengan demikian, uji Wilcoxon Signed-Rank digunakan untuk membantu melihat apakah perbedaan performa kedua model cukup kuat secara statistik atau hanya muncul sebagai variasi dari proses pelatihan. Meskipun demikian, hasil uji statistik tetap perlu dibaca bersama dengan nilai rata-rata metrik, arah selisih, dan aspek efisiensi agar interpretasi penelitian tidak hanya berhenti pada kesimpulan signifikan atau tidak signifikan.
-\end{subsectioncontent}
+        \textit{Confusion matrix} merupakan tabel yang memperlihatkan hubungan antara label sebenarnya dan label hasil prediksi model. Pada klasifikasi multikelas, baris pada \textit{confusion matrix} umumnya menunjukkan kelas aktual, sedangkan kolom menunjukkan kelas prediksi. Matriks ini membantu melihat kelas mana yang paling sering diklasifikasikan dengan benar dan kelas mana yang paling sering tertukar dengan kelas lain. Oleh karena itu, \textit{confusion matrix} tidak hanya berguna untuk menghitung metrik evaluasi, tetapi juga untuk menganalisis pola kesalahan model pada kelas-kelas yang memiliki kemiripan visual \citep{grandini2020metrics}.
 
 
-\subsection{Keterkaitan Landasan Teori dengan Penelitian}
-\begin{subsectioncontent}
-    \hspace{\parindent}Landasan teori pada penelitian ini digunakan sebagai dasar untuk menentukan data, model, metode pengujian, dan cara membaca hasil. Teori penyakit daun tomat menjelaskan bahwa setiap kelas penyakit memiliki ciri visual tertentu, seperti bercak, perubahan warna, nekrosis, pertumbuhan jamur, atau perubahan bentuk daun. Ciri visual tersebut menjadi alasan mengapa citra daun tomat dapat digunakan sebagai data masukan untuk tugas klasifikasi citra.
+        Akurasi menunjukkan perbandingan antara jumlah prediksi yang benar dengan seluruh data yang diuji. Pada klasifikasi multikelas, akurasi dapat digunakan untuk melihat performa model secara keseluruhan. Rumus akurasi adalah sebagai berikut \citep{grandini2020metrics}:
 
-    Teori klasifikasi citra dan \textit{deep learning} menjelaskan bahwa model mempelajari pola visual dari data latih, kemudian menggunakan pola tersebut untuk memprediksi label kelas pada data uji. Berdasarkan dasar tersebut, penelitian ini menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi, bukan versi deteksi objek, karena keluaran yang dibutuhkan adalah label penyakit dari keseluruhan citra. Pemilihan varian \textit{nano} juga berkaitan dengan kebutuhan perangkat \textit{edge}, yaitu model yang memiliki ukuran kecil dan waktu inferensi rendah.
+        \begin{equation}
+            Accuracy = \frac{\text{Jumlah Prediksi Benar}}{\text{Jumlah Seluruh Data Uji}}
+        \end{equation}
 
-    Metrik evaluasi yang dijelaskan pada landasan teori digunakan untuk menilai hasil penelitian secara lebih lengkap. Akurasi digunakan untuk melihat ketepatan prediksi secara umum, sedangkan \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{confusion matrix} digunakan untuk melihat performa pada setiap kelas serta pola kesalahan klasifikasi. Sementara itu, teori komputasi \textit{edge} menjadi dasar penggunaan metrik efisiensi seperti waktu inferensi, FPS, penggunaan memori, dan ukuran model.
+        \textit{Precision} menunjukkan tingkat ketepatan model ketika memprediksi suatu kelas. Nilai ini menggambarkan seberapa banyak data yang diprediksi sebagai suatu kelas benar-benar berasal dari kelas tersebut. Untuk kelas ke-$i$, rumus \textit{precision} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
 
-    Uji Wilcoxon \textit{Signed-Rank} digunakan sebagai dasar analisis statistik karena hasil pengujian kedua model dibandingkan secara berpasangan pada \textit{seed} yang sama. Dengan demikian, landasan teori tidak berdiri sebagai penjelasan umum saja, tetapi menjadi dasar dalam penyusunan metode penelitian, pemilihan metrik evaluasi, dan interpretasi hasil.
-\end{subsectioncontent}
+        \begin{equation}
+            Precision_{i} = \frac{TP_{i}}{TP_{i} + FP_{i}}
+        \end{equation}
+
+        \textit{Recall} menunjukkan kemampuan model dalam menemukan data yang seharusnya termasuk ke dalam suatu kelas. Nilai ini menggambarkan seberapa banyak data dari suatu kelas berhasil dikenali dengan benar oleh model. Untuk kelas ke-$i$, rumus \textit{recall} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
+
+        \begin{equation}
+            Recall_{i} = \frac{TP_{i}}{TP_{i} + FN_{i}}
+        \end{equation}
+
+        \textit{F1-score} merupakan rata-rata harmonik dari \textit{precision} dan \textit{recall}. Metrik ini digunakan untuk memberikan gambaran keseimbangan antara ketepatan prediksi dan kemampuan model dalam mengenali data pada suatu kelas. Untuk kelas ke-$i$, rumus \textit{F1-score} adalah sebagai berikut \citep{powers2011evaluation,grandini2020metrics}:
+
+        \begin{equation}
+            F1\text{-}score_{i} = 2 \times \frac{Precision_{i} \times Recall_{i}}{Precision_{i} + Recall_{i}}
+        \end{equation}
+
+        Karena penelitian ini menggunakan klasifikasi multikelas, nilai \textit{precision}, \textit{recall}, dan \textit{F1-score} juga dapat dihitung menggunakan pendekatan \textit{macro average}. Pendekatan ini menghitung rata-rata metrik dari seluruh kelas tanpa memberikan bobot lebih besar pada kelas tertentu. Dengan demikian, setiap kelas memiliki kontribusi yang sama terhadap nilai akhir \citep{grandini2020metrics,opitz2019macro}.
+
+        \begin{equation}
+            \operatorname{Macro\ Precision} = \frac{1}{K} \sum_{i=1}^{K} Precision_{i}
+        \end{equation}
+
+        \begin{equation}
+            \operatorname{Macro\ Recall} = \frac{1}{K} \sum_{i=1}^{K} Recall_{i}
+        \end{equation}
+
+        \begin{equation}
+            \operatorname{Macro\ F1\text{-}score} = \frac{1}{K} \sum_{i=1}^{K} F1\text{-}score_{i}
+        \end{equation}
+
+        Keterangan $K$ menunjukkan jumlah kelas yang digunakan dalam penelitian. Pada penelitian ini, penggunaan \textit{macro average} diperlukan agar performa model tidak hanya terlihat dari akurasi keseluruhan, tetapi juga dari kemampuan model dalam mengenali setiap kelas penyakit daun tomat secara lebih seimbang.
+
+        Selain akurasi klasifikasi, efisiensi juga menjadi aspek penting ketika model diterapkan pada perangkat \textit{edge}. Efisiensi dapat dinilai melalui waktu inferensi, waktu total \textit{pipeline}, nilai FPS (\textit{Frame Per Second}), penggunaan memori, dan ukuran model. Waktu inferensi menunjukkan waktu yang dibutuhkan model untuk menghasilkan prediksi, sedangkan waktu total \textit{pipeline} mencakup proses \textit{preprocessing}, inferensi, dan \textit{postprocessing}. Nilai FPS menunjukkan jumlah citra yang dapat diproses dalam satu detik. Apabila waktu rata-rata dinyatakan dalam milidetik, rumus FPS adalah sebagai berikut:
+
+        \begin{equation}
+            FPS = \frac{1000}{\text{Average Time (ms)}}
+        \end{equation}
+
+        Penggunaan memori dan ukuran model digunakan sebagai pertimbangan tambahan karena perangkat \textit{edge} umumnya memiliki keterbatasan sumber daya. Dalam penelitian ini, akurasi dan efisiensi digunakan sebagai dua dasar utama untuk menentukan model yang lebih sesuai diterapkan pada sistem klasifikasi penyakit daun tomat berbasis perangkat \textit{edge} (\citealp[hlm. 71--74]{singh2023edge}; \citealp[hlm. 1--4]{gill2025taxonomy}; \citealp[hlm. 1--6]{xu2025edge}; \citealp[hlm. 10--13]{majeed2024edge}).
+    \end{subsectioncontent}
+
+    \subsection{Uji Wilcoxon Signed-Rank}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Uji Wilcoxon Signed-Rank merupakan uji statistik nonparametrik yang digunakan untuk membandingkan dua kelompok data yang saling berpasangan \citep[hlm. 80--83]{wilcoxon1945individual}. Uji ini sesuai digunakan ketika data berasal dari dua perlakuan atau dua model yang diuji pada kondisi yang sama.
+
+        Dalam penelitian ini, hasil pengujian YOLOv8 Nano dan YOLO11 Nano dipasangkan berdasarkan variasi \textit{seed} yang sama. Dengan demikian, uji Wilcoxon Signed-Rank digunakan untuk membantu melihat apakah perbedaan performa kedua model cukup kuat secara statistik atau hanya muncul sebagai variasi dari proses pelatihan. Meskipun demikian, hasil uji statistik tetap perlu dibaca bersama dengan nilai rata-rata metrik, arah selisih, dan aspek efisiensi agar interpretasi penelitian tidak hanya berhenti pada kesimpulan signifikan atau tidak signifikan.
+    \end{subsectioncontent}
+
+
+    \subsection{Keterkaitan Landasan Teori dengan Penelitian}
+    \begin{subsectioncontent}
+        \hspace{\parindent}Landasan teori pada penelitian ini digunakan sebagai dasar untuk menentukan data, model, metode pengujian, dan cara membaca hasil. Teori penyakit daun tomat menjelaskan bahwa setiap kelas penyakit memiliki ciri visual tertentu, seperti bercak, perubahan warna, nekrosis, pertumbuhan jamur, atau perubahan bentuk daun. Ciri visual tersebut menjadi alasan mengapa citra daun tomat dapat digunakan sebagai data masukan untuk tugas klasifikasi citra.
+
+        Teori klasifikasi citra dan \textit{deep learning} menjelaskan bahwa model mempelajari pola visual dari data latih, kemudian menggunakan pola tersebut untuk memprediksi label kelas pada data uji. Berdasarkan dasar tersebut, penelitian ini menggunakan YOLOv8 Nano dan YOLO11 Nano versi klasifikasi, bukan versi deteksi objek, karena keluaran yang dibutuhkan adalah label penyakit dari keseluruhan citra. Pemilihan varian \textit{nano} juga berkaitan dengan kebutuhan perangkat \textit{edge}, yaitu model yang memiliki ukuran kecil dan waktu inferensi rendah.
+
+        Metrik evaluasi yang dijelaskan pada landasan teori digunakan untuk menilai hasil penelitian secara lebih lengkap. Akurasi digunakan untuk melihat ketepatan prediksi secara umum, sedangkan \textit{precision}, \textit{recall}, \textit{F1-score}, dan \textit{confusion matrix} digunakan untuk melihat performa pada setiap kelas serta pola kesalahan klasifikasi. Sementara itu, teori komputasi \textit{edge} menjadi dasar penggunaan metrik efisiensi seperti waktu inferensi, FPS, penggunaan memori, dan ukuran model.
+
+        Uji Wilcoxon \textit{Signed-Rank} digunakan sebagai dasar analisis statistik karena hasil pengujian kedua model dibandingkan secara berpasangan pada \textit{seed} yang sama. Dengan demikian, landasan teori tidak berdiri sebagai penjelasan umum saja, tetapi menjadi dasar dalam penyusunan metode penelitian, pemilihan metrik evaluasi, dan interpretasi hasil.
+    \end{subsectioncontent}
+\end{sectioncontent}
 
 \section{Kerangka Pemikiran}
 \begin{sectioncontent}
