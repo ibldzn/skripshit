@@ -102,14 +102,31 @@
 \titleformat{\chapter}{\doublespacing\fontsize{16pt}{18pt}\bfseries}{\MakeUppercase{\chaptertitlename\ \Roman{chapter}}\filcenter}{0.15cm}{\centering\uppercase}
 
 % % Pengaturan format section dengan adjustwidth otomatis
-\titleformat{\section}{\fontsize{14}{16}\bfseries}{\thesection}{0.4cm}{}
+\titleformat{\section}
+{\fontsize{14}{16}\bfseries}
+{\thesection}
+{0.4cm}
+{}
+
+\titleformat{\subsection}
+{\fontsize{14}{16}\bfseries}
+{\thesubsection}
+{0.4cm}
+{}
+
+\titleformat{\subsubsection}
+{\fontsize{14}{16}\bfseries}
+{\thesubsubsection}
+{0.4cm}
+{}
+% \titleformat{\section}{\fontsize{14}{16}\bfseries}{\thesection}{0.4cm}{}
 % \titleformat{\subsection}{\fontsize{14}{16}\bfseries}{\thesubsection}{0.675cm}{}
-\titleformat{\subsection}{\fontsize{14}{16}\bfseries}{\makebox[3.4em][l]{\thesubsection}}{0cm}{}
+% \titleformat{\subsection}{\fontsize{14}{16}\bfseries}{\makebox[3.4em][l]{\thesubsection}}{0cm}{}
 
 % Mengatur jarak dan format spacing untuk chapter, section dan subsection
 \titlespacing*{\chapter}{0pt}{-1cm}{20pt}
 \titlespacing*{\section}{0pt}{10pt}{0cm}
-\titlespacing*{\subsection}{2.4em}{10pt}{0cm}
+\titlespacing*{\subsection}{0pt}{10pt}{0cm}
 
 %==================================================================
 % CUSTOM ENVIRONMENTS UNTUK INDENTASI SECTION DAN SUBSECTION
@@ -143,7 +160,7 @@
 
 % Environment untuk konten subsection (indentasi 6.0em)
 \newenvironment{subsectioncontent}{%
-	\begin{adjustwidth}{6.4em}{0pt}%
+	\begin{adjustwidth}{3.4em}{0pt}%
 		}{%
 	\end{adjustwidth}%
 }
@@ -189,7 +206,7 @@
 % 2. Format Judul Subsubsection
 % Menggunakan font 12pt (normalsize) bold. 
 % Box 4em disiapkan untuk nomor (misal 2.1.1)
-\titleformat{\subsubsection}{\fontsize{14}{16}\bfseries}{\makebox[4em][l]{\thesubsubsection}}{0cm}{}
+% \titleformat{\subsubsection}{\fontsize{14}{16}\bfseries}{\makebox[3.4em][l]{\thesubsubsection}}{0cm}{}
 
 % 3. Spacing Subsubsection
 % Left Indent: 6.4em (AGAR SEJAJAR DENGAN ISI SUBSECTION)
